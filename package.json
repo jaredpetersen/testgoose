@@ -12,8 +12,12 @@
     "mock",
     "test"
   ],
+  "engines" : {
+    "node" : ">=6.0.0"
+  },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "preinstall": "node scripts/preinstall.js",
+    "test": "./node_modules/mocha/bin/mocha test examples/*/test"
   },
   "devDependencies": {
     "chai": "^4.1.2",
