@@ -12,6 +12,9 @@
     "mock",
     "test"
   ],
+  "engines" : {
+    "node" : ">=6.0.0"
+  },
   "scripts": {
     "preinstall": "node scripts/preinstall.js",
     "test": "./node_modules/mocha/bin/mocha test examples/*/test"
