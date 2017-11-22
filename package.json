@@ -1,0 +1,25 @@
+{
+  "name": "mongoose-model-mock",
+  "version": "1.0.0",
+  "description": "Mock mongoose models for unit testing with ease",
+  "main": "index.js",
+  "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
+  "license": "MIT",
+  "repository": "https://github.com/jaredpetersen/mongoose-model-mock.git",
+  "bugs": "https://github.com/jaredpetersen/mongoose-model-mock/issues",
+  "keywords": [
+    "mongoose",
+    "mock",
+    "test"
+  ],
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Example API that shows the power of mongoosemodelmock",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "proxyquire": "^1.8.0",
+    "reqres": "^2.1.0",
+    "sinon-chai": "^2.14.0"
+  }
+}
