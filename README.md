@@ -1,5 +1,6 @@
 # mongoose-model-mock
 [![Build Status](https://travis-ci.org/jaredpetersen/mongoose-model-mock.svg?branch=master)](https://travis-ci.org/jaredpetersen/mongoose-model-mock)
+[![NPM Version](https://img.shields.io/npm/v/mongoose-model-mock.svg)](https://www.npmjs.com/package/mongoose-model-mock)
 
 mongoose-model-mock is a testing library that helps you mock [Mongoose](http://mongoosejs.com/) models so that your unit tests never have to hit a real MongoDB database ([in-memory](https://github.com/mockgoose/mockgoose) or otherwise).
 
