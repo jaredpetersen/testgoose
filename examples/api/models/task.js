@@ -3,11 +3,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Don't include the document version when converting the data to JSON
+const options = {
+  toJSON: {
+    transform: (doc, ret) => {
+      delete ret.__v;
+    }
+  }
+};
+
 const taskSchema = new Schema({
-    name: {type: String, required: true},
-    description: {type: String},
-    created: {type: Date, default: Date.now}
-});
+  name: {type: String, required: true},
+  description: {type: String, default: null},
+  created: {type: Date, default: Date.now}
+}, options);
 
 const Task = mongoose.model('Task', taskSchema);
 module.exports = Task;

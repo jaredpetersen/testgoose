@@ -8,6 +8,7 @@ module.exports.mock = () => {
   class ModelMock {
     static find() {}
     static findById() {}
+    save() {}
   }
 
   // Define the behavior of each of the model functions
@@ -25,6 +26,22 @@ module.exports.mock = () => {
       // Callback is always the last argument in the list
       const callback = parameters[parameters.length - 1];
       callback(err, value);
+    };
+  };
+
+  ModelMock.prototype.save.returns = (err, value) => {
+    ModelMock.prototype.save = function (...parameters) {
+      // Callback is always the last argument in the list
+      const callback = parameters[parameters.length - 1];
+
+      if (err === undefined || value === undefined) {
+        // User did not specify callback values so use the object properties
+        callback(null, Object.assign({}, this));
+      }
+      else {
+        // User specified callback values so honor them
+        callback(err, value);
+      }
     };
   };
 

@@ -6,6 +6,7 @@ let router = require('express').Router();
 let tasks = require('./controllers/task');
 router.get('/tasks', tasks.getAll);
 router.get('/tasks/:id', tasks.getSingle);
+router.post('/tasks', tasks.create);
 
 // Error Handling
 let errors = require('./controllers/errors');

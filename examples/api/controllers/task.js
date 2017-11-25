@@ -17,3 +17,14 @@ exports.getSingle = (req, res, next) => {
     res.json(task);
   });
 };
+
+exports.create = (req, res, next) => {
+  const newTask = new Task();
+  newTask.name = req.body.name;
+  newTask.description = req.body.description || null;
+
+  newTask.save((err, savedTask) => {
+    if (err) return next(err);
+    res.status(201).json(savedTask);
+  });
+};
