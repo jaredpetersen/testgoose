@@ -13,7 +13,7 @@ describe('Tasks', () => {
       // Setup our stubs
       const req = reqres.req();
       const res = reqres.res();
-      const databaseData = [ { id: 1234 }, {id: 5678 } ];
+      const databaseData = [ { name: 'Fix the gutters' }, { name: 'Paint the fence' } ];
 
       // Mock out the Mongoose Task model
       const TaskMock = modelmock.mock();
@@ -121,6 +121,57 @@ describe('Tasks', () => {
 
       // Run the function under test
       task.getSingle(req, res, (next) => {
+        // Make sure that task controller passes the error along via next
+        expect(next).to.equal(databaseError);
+        done();
+      });
+    });
+  });
+
+  describe('create', (done) => {
+    it('creates a new release in the database', (done) => {
+      // Setup our stubs
+      const req = reqres.req();
+      req.body = { name: 'Fix gutters' };
+      const res = reqres.res();
+
+      // Mock out the Mongoose Task model
+      const TaskMock = modelmock.mock();
+      TaskMock.prototype.save.returns();
+
+      // Replace the reference to the original Task model with our mock model
+      const task = proxyquire('../controllers/task', { '../models/task': TaskMock } );
+
+      // Make sure that the task controller calls res with the data from the database
+      res.on('end', () => {
+        expect(res.json).to.have.been.calledWithExactly({ name: 'Fix gutters', description: null });
+        done();
+      });
+
+      // Run the function under test
+      task.create(req, res, (next) => {
+        // If next exists, an error occurred
+        expect(next).to.not.exist();
+        done();
+      });
+    });
+
+    it('returns an error when the database encounters an error', (done) => {
+      // Setup our stubs
+      const req = reqres.req();
+      req.body = { name: 'Fix gutters' };
+      const res = reqres.res();
+      const databaseError = new Error('something bad happened');
+
+      // Mock out the Mongoose Task model
+      const TaskMock = modelmock.mock();
+      TaskMock.prototype.save.returns(databaseError, null);
+
+      // Replace the reference to the original Task model with our mock model
+      const task = proxyquire('../controllers/task', { '../models/task': TaskMock } );
+
+      // Run the function under test
+      task.create(req, res, (next) => {
         // Make sure that task controller passes the error along via next
         expect(next).to.equal(databaseError);
         done();
