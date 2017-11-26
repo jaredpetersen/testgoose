@@ -1,5 +1,5 @@
 # Mock
-Mock of Mongoose [Model](). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire]():
+Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
 const modelmock = require('mongoose-model-mock');
