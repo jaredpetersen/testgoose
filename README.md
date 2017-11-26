@@ -10,6 +10,7 @@ npm install mongoose-model-mock
 ```
 
 ## Usage
+### Getting Started
 ```javascript
 const modelmock = require('mongoose-model-mock');
 
@@ -26,12 +27,10 @@ TaskMock.find('__v', (err, tasks) => {
 
 Using mongoose-model-mock is easy and doesn't require the usage of other mocking libraries like [Sinon.js](http://sinonjs.org/) to make it work. Just create your mock, define its behavior, and [proxyquire](https://github.com/thlorenz/proxyquire) it in to your module under test as needed.
 
-To define the behavior of your mock, specify the name of the Mongoose function that needs its behavior to be defined and call `.returns()` on it, e.g. `mymock.findById.returns(error, data)`. For prototype functions (functions called on the document that the Mongoose model creates via `new MyModel()`), specify `.prototype` and then the name of the function, e.g. `mymock.prototype.save.returns(error, data)`. When the function under test calls your mocked model, the model will return the data that was specified via the model callback.
+To define the behavior of your mock, specify the name of the Mongoose function that needs its behavior to be defined and call `.returns()` on it, e.g. `mymock.findById.returns(error, data)`. To define the behavior of document functions, specify `.prototype` and then the name of the function, e.g. `mymock.prototype.save.returns(error, data)`. When the function under test calls your mocked model, the model will return the data that was specified via the model function's callback.
 
-### Supported Model Methods
-* [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find)
-* [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
-* [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save)
+### Documentation
+For more specific information on the available mongoose-model-mock functions, check out the [docs](/docs).
 
-## Examples
+### Examples
 To help you get started faster, we've provided a simple [Express.js](https://expressjs.com/) REST API example that utilizes mongoose-model-mock to unit test its controllers. Check out `examples/api` to learn more.
