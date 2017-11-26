@@ -9,4 +9,4 @@ const MyMock = modelmock.mock();
 ```
 
 ##### Returns
-Returns [Mock](#mock)
+Returns [Mock](/docs/MOCK.md)
