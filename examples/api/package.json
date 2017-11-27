@@ -4,7 +4,7 @@
   "description": "Example API that shows the power of mongoosemodelmock",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "mocha test"
   },
   "dependencies": {
     "express": "^4.16.2",
