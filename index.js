@@ -29,18 +29,18 @@ module.exports.mock = () => {
     };
   };
 
-  ModelMock.prototype.save.returns = (err, doc) => {
+  ModelMock.prototype.save.returns = (err, doc, numAffected=1) => {
     ModelMock.prototype.save = function (...parameters) {
       // Callback is always the last argument in the list
       const callback = parameters[parameters.length - 1];
 
       if (err === undefined || doc === undefined) {
         // User did not specify callback values so use the object properties
-        callback(null, Object.assign({}, this));
+        callback(null, Object.assign({}, this), numAffected);
       }
       else {
         // User specified callback values so honor them
-        callback(err, doc);
+        callback(err, doc, numAffected);
       }
     };
   };

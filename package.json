@@ -1,6 +1,6 @@
 {
   "name": "mongoose-model-mock",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Mock mongoose models for unit testing with ease",
   "main": "index.js",
   "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
