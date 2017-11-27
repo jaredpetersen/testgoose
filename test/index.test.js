@@ -150,16 +150,18 @@ describe('mongoose-model-mock', () => {
       // Setup our stubs
       const databaseError = new Error('something went wrong');
       const databaseData = { name: 'A' };
+      const databaseAffected = 20;
 
       // Create a Mongoose Model mock
       const MyMock = modelmock.mock();
-      MyMock.prototype.save.returns(databaseError, databaseData);
+      MyMock.prototype.save.returns(databaseError, databaseData, databaseAffected);
 
       // Use the mock like a real model
       const myMock = new MyMock();
-      myMock.save({validateBeforeSave: true}, (err, doc) => {
+      myMock.save({validateBeforeSave: true}, (err, doc, numAffected) => {
         expect(err).to.equal(databaseError);
         expect(doc).to.equal(databaseData);
+        expect(numAffected).to.equal(databaseAffected);
         done();
       });
     });
@@ -167,6 +169,41 @@ describe('mongoose-model-mock', () => {
     it('defines the callback data - without optional parameters', (done) => {
       // Setup our stubs
       const databaseError = new Error('something went wrong');
+      const databaseData = { name: 'A' };
+      const databaseAffected = 20;
+
+      // Create a Mongoose Model mock
+      const MyMock = modelmock.mock();
+      MyMock.prototype.save.returns(databaseError, databaseData, databaseAffected);
+
+      // Use the mock like a real model
+      const myMock = new MyMock();
+      myMock.save((err, doc, numAffected) => {
+        expect(err).to.equal(databaseError);
+        expect(doc).to.equal(databaseData);
+        expect(numAffected).to.equal(databaseAffected);
+        done();
+      });
+    });
+
+    it('defines the callback data - null data', (done) => {
+      // Create a Mongoose Model mock
+      const MyMock = modelmock.mock();
+      MyMock.prototype.save.returns(null, null, null);
+
+      // Use the mock like a real model
+      const myMock = new MyMock();
+      myMock.save((err, doc, numAffected) => {
+        expect(err).to.be.null;
+        expect(doc).to.be.null;
+        expect(numAffected).to.be.null;
+        done();
+      });
+    });
+
+    it('defines the callback data - optional callback numAffected', (done) => {
+      // Setup our stubs
+      const databaseError = null;
       const databaseData = { name: 'A' };
 
       // Create a Mongoose Model mock
@@ -178,20 +215,6 @@ describe('mongoose-model-mock', () => {
       myMock.save((err, doc) => {
         expect(err).to.equal(databaseError);
         expect(doc).to.equal(databaseData);
-        done();
-      });
-    });
-
-    it('defines the callback data - null data', (done) => {
-      // Create a Mongoose Model mock
-      const MyMock = modelmock.mock();
-      MyMock.prototype.save.returns(null, null);
-
-      // Use the mock like a real model
-      const myMock = new MyMock();
-      myMock.save((err, doc) => {
-        expect(err).to.be.null;
-        expect(doc).to.be.null;
         done();
       });
     });
@@ -209,9 +232,10 @@ describe('mongoose-model-mock', () => {
       myMock.name = databaseData.name;
       myMock.age = databaseData.age;
 
-      myMock.save((err, doc) => {
+      myMock.save((err, doc, numAffected) => {
         expect(err).to.be.null;
         expect(doc).to.eql(databaseData);
+        expect(numAffected).to.equal(1);
         done();
       });
     });
