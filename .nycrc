@@ -1,0 +1,16 @@
+{
+  "temp-directory": "./coverage/.nyc_output",
+  "reporter": [
+    "text",
+    "lcov"
+  ],
+  "exclude": [
+    "coverage/**",
+    "test/**",
+    "test{,-*}.js",
+    "**/*.test.js",
+    "**/__tests__/**",
+    "**/node_modules/**",
+    "examples/**"
+  ]
+}
