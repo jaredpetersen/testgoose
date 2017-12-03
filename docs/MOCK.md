@@ -18,6 +18,8 @@ Define the data returned from the callback function of Mongoose [Model.find](htt
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
 - `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
 
+##### Returns
+[QueryMock](/docs/QUERY.md)
 
 ##### Example
 ```javascript

@@ -1,23 +1,42 @@
 'use strict';
 
-module.exports.mock = () => {
-  // Mongoose model docs: http://mongoosejs.com/docs/api.html#model-js
-  // Mongoose model code: https://github.com/Automattic/mongoose/blob/master/lib/model.js
+const Query = require('./lib/Query');
 
-  // Mock of the Mongoose model
+module.exports.mock = () => {
+  // Mongoose Model docs: http://mongoosejs.com/docs/api.html#model-js
+  // Mongoose Model code: https://github.com/Automattic/mongoose/blob/master/lib/model.js
+
+  // Mock the Mongoose Model
   class ModelMock {
     static find() {}
     static findById() {}
     save() {}
   }
 
+  // Wrap the callback function so that we don't actually call it yet
+  const wrapCallback = (callback, args) => {
+    return () => callback.apply(null, args);
+  };
+
   // Define the behavior of each of the model functions
 
   ModelMock.find.returns = (err, docs) => {
     ModelMock.find = (...parameters) => {
-      // Callback is always the last argument in the list
-      const callback = parameters[parameters.length - 1];
-      callback(err, docs);
+      // Grab the last parameter which should be a callback function unless
+      // promises are used
+      let callback = parameters[parameters.length - 1];
+
+      if (typeof callback === 'function') {
+        // It is a callback function -- wrap it for passing to QueryMock
+        callback = wrapCallback(callback, [err, docs]);
+      }
+      else {
+        // Not a callback function so we must be using promises
+        callback = null;
+      }
+
+      // Return a query
+      return new Query(err, docs).find(callback);
     };
   };
 
