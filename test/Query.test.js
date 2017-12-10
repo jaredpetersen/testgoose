@@ -22,6 +22,23 @@ describe('Query', (done) => {
     });
   });
 
+  describe('findOne', (done) => {
+    it('returns itself when not given a callback', (done) => {
+      const query = new Query();
+      const queryChain = query.findOne();
+
+      expect(queryChain).to.equal(query);
+      done();
+    });
+
+    it('calls the provided callback', (done) => {
+      const query = new Query();
+      query.findOne(() => {
+        done();
+      });
+    });
+  });
+
   describe('then', () => {
     it('rejects a promise with error when called with error', () => {
       const queryError = new Error('something went wrong');

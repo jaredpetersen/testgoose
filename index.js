@@ -13,38 +13,42 @@ module.exports.mock = () => {
     save() {}
   }
 
-  // Wrap the callback function so that we don't actually call it yet
-  const wrapCallback = (callback, args) => {
-    return () => callback.apply(null, args);
+  // Parse out the callback from the model function call and prepare it for
+  // later use
+  const setupCallback = (parameters, err, data) => {
+    // Grab the last parameter which should be a callback function unless
+    // promises are used
+    let lastParam = parameters[parameters.length - 1];
+
+    // Callback we will be setting up
+    let callback;
+
+    if (typeof lastParam === 'function') {
+      // It is a callback function --
+      // wrap it with the right data for passing to QueryMock
+      callback = () => lastParam.apply(null, [err, data]);
+    }
+    else {
+      // Not a callback function so we must be using promises
+      callback = null;
+    }
+
+    return callback;
   };
 
   // Define the behavior of each of the model functions
 
   ModelMock.find.returns = (err, docs) => {
     ModelMock.find = (...parameters) => {
-      // Grab the last parameter which should be a callback function unless
-      // promises are used
-      let callback = parameters[parameters.length - 1];
-
-      if (typeof callback === 'function') {
-        // It is a callback function -- wrap it for passing to QueryMock
-        callback = wrapCallback(callback, [err, docs]);
-      }
-      else {
-        // Not a callback function so we must be using promises
-        callback = null;
-      }
-
-      // Return a query
+      const callback = setupCallback(parameters, err, docs);
       return new Query(err, docs).find(callback);
     };
   };
 
   ModelMock.findById.returns = (err, doc) => {
     ModelMock.findById = (...parameters) => {
-      // Callback is always the last argument in the list
-      const callback = parameters[parameters.length - 1];
-      callback(err, doc);
+      const callback = setupCallback(parameters, err, doc);
+      return new Query(err, doc).findOne(callback);
     };
   };
 
