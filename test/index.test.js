@@ -16,14 +16,14 @@ describe('Mongoose Model Mock', () => {
     });
   });
 
-  describe('mock find.returns', (done) => {
-    describe('callback', (done) => {
+  describe('mock find.returns', () => {
+    describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
 
         // Use the mock like a real model
-        return MyMock.find((err, docs) => {
+        return MyMock.find(() => {
           expect.fail();
         });
       });
@@ -106,7 +106,7 @@ describe('Mongoose Model Mock', () => {
       });
     });
 
-    describe('promises', (done) => {
+    describe('promises', () => {
       it('does nothing when called without defined behavior promise', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
@@ -125,7 +125,7 @@ describe('Mongoose Model Mock', () => {
 
         // Use the mock like a real model
         return MyMock.find({ name: /john/i }, 'name friends')
-          .then(docs => {
+          .then(() => {
             expect.fail();
           })
           .catch(err => {
@@ -146,7 +146,7 @@ describe('Mongoose Model Mock', () => {
           .then(docs => {
             expect(docs).to.equal(databaseData);
           })
-          .catch(err => {
+          .catch(() => {
             expect.fail();
           });
       });
@@ -161,7 +161,7 @@ describe('Mongoose Model Mock', () => {
 
         // Use the mock like a real model
         return MyMock.find()
-          .then(docs => {
+          .then(() => {
             expect.fail();
           })
           .catch(err => {
@@ -182,7 +182,7 @@ describe('Mongoose Model Mock', () => {
           .then(docs => {
             expect(docs).to.equal(databaseData);
           })
-          .catch(err => {
+          .catch(() => {
             expect.fail();
           });
       });
@@ -197,21 +197,21 @@ describe('Mongoose Model Mock', () => {
           .then(docs => {
             expect(docs).to.be.null;
           })
-          .catch(err => {
+          .catch(() => {
             expect.fail();
           });
       });
     });
   });
 
-  describe('mock findById.returns', (done) => {
-    describe('callback', (done) => {
+  describe('mock findById.returns', () => {
+    describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
 
         // Use the mock like a real model
-        return MyMock.findById('5a190f2cff422a139c0fbf36', (err, doc) => {
+        return MyMock.findById('5a190f2cff422a139c0fbf36', () => {
           expect.fail();
         });
       });
@@ -294,7 +294,7 @@ describe('Mongoose Model Mock', () => {
       });
     });
 
-    describe('promises', (done) => {
+    describe('promises', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
@@ -313,7 +313,7 @@ describe('Mongoose Model Mock', () => {
 
         // Use the mock like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36', '-__v')
-          .then(doc => {
+          .then(() => {
             expect.fail();
           })
           .catch(err => {
@@ -334,7 +334,7 @@ describe('Mongoose Model Mock', () => {
           .then(doc => {
             expect(doc).to.equal(databaseData);
           })
-          .catch(err => {
+          .catch(() => {
             expect.fail();
           });
       });
@@ -349,7 +349,7 @@ describe('Mongoose Model Mock', () => {
 
         // Use the mock like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36')
-          .then(doc => {
+          .then(() => {
             expect.fail();
           })
           .catch(err => {
@@ -370,7 +370,7 @@ describe('Mongoose Model Mock', () => {
           .then(doc => {
             expect(doc).to.equal(databaseData);
           })
-          .catch(err => {
+          .catch(() => {
             expect.fail();
           });
       });
@@ -385,22 +385,22 @@ describe('Mongoose Model Mock', () => {
           .then(doc => {
             expect(doc).to.be.null;
           })
-          .catch(err => {
+          .catch(() => {
             expect.fail();
           });
       });
     });
   });
 
-  describe('mock save.returns', (done) => {
-    describe('callback', (done) => {
+  describe('mock save.returns', () => {
+    describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
 
         // Use the mock like a real model
         const myMock = new MyMock();
-        return myMock.save((err, doc) => {
+        return myMock.save(() => {
           expect.fail();
         });
       });
@@ -454,7 +454,7 @@ describe('Mongoose Model Mock', () => {
         myMock.save({validateBeforeSave: true}, (err, doc, numAffected) => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
-          expect(numAffected).to.equal(databaseAffected)
+          expect(numAffected).to.equal(databaseAffected);
           done();
         });
       });
@@ -550,7 +550,7 @@ describe('Mongoose Model Mock', () => {
       });
     });
 
-    describe('promises', (done) => {
+    describe('promises', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
@@ -571,7 +571,7 @@ describe('Mongoose Model Mock', () => {
         // Use the mock like a real model
         const myMock = new MyMock();
         return myMock.save({validateBeforeSave: true})
-          .then(doc => {
+          .then(() => {
             expect.fail();
           })
           .catch(err => {
@@ -606,7 +606,7 @@ describe('Mongoose Model Mock', () => {
         // Use the mock like a real model
         const myMock = new MyMock();
         return myMock.save()
-          .then(doc => {
+          .then(() => {
             expect.fail();
           })
           .catch(err => {

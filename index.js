@@ -58,7 +58,7 @@ module.exports.mock = () => {
       let callbackDoc;
 
       if (err === undefined || doc === undefined) {
-        // Use model properties since we weren't given
+        // Use model properties since we weren't given any
         callbackDoc = Object.assign({}, this);
         callback = setupCallback(parameters, [null, callbackDoc, numAffected]);
       }
@@ -69,7 +69,7 @@ module.exports.mock = () => {
       }
 
       if (callback == null) {
-        // Use the promise if callback function was not provided
+        // Return a promise if a callback function was not provided
         if (err) {
           return Promise.reject(err);
         }

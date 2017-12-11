@@ -20,10 +20,12 @@
     "test": "mocha test",
     "test:coverage": "nyc npm test",
     "test:all": "mocha test examples/*/test",
-    "test:all:coverage": "nyc npm run test:all"
+    "test:all:coverage": "nyc npm run test:all",
+    "lint": "./node_modules/.bin/eslint index.js lib/* test/*"
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "eslint": "^4.13.0",
     "mocha": "^4.0.1",
     "nyc": "^11.3.0"
   }

@@ -4,8 +4,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const Query = require('../lib/Query');
 
-describe('Query', (done) => {
-  describe('find', (done) => {
+describe('Query', () => {
+  describe('find', () => {
     it('returns itself when not given a callback', (done) => {
       const query = new Query();
       const queryChain = query.find();
@@ -22,7 +22,7 @@ describe('Query', (done) => {
     });
   });
 
-  describe('findOne', (done) => {
+  describe('findOne', () => {
     it('returns itself when not given a callback', (done) => {
       const query = new Query();
       const queryChain = query.findOne();
@@ -45,7 +45,7 @@ describe('Query', (done) => {
       const query = new Query(queryError, null);
 
       return query.find()
-        .then(data => {
+        .then(() => {
           expect.fail();
         })
         .catch(err => {
@@ -61,13 +61,13 @@ describe('Query', (done) => {
         .then(data => {
           expect(data).to.equal(queryData);
         })
-        .catch(err => {
+        .catch(() => {
           expect.fail();
         });
     });
   });
 
-  describe('exec', (done) => {
+  describe('exec', () => {
     it('calls a callback with error when called with error', (done) => {
       const queryError = new Error('something went wrong');
       const query = new Query(queryError, null);
@@ -95,7 +95,7 @@ describe('Query', (done) => {
       const query = new Query(queryError, null);
 
       return query.exec()
-        .then(data => {
+        .then(() => {
           expect.fail();
         })
         .catch(err => {
@@ -111,7 +111,7 @@ describe('Query', (done) => {
         .then(data => {
           expect(data).to.equal(queryData);
         })
-        .catch(err => {
+        .catch(() => {
           expect.fail();
         });
     });
