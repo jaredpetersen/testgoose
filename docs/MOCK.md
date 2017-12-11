@@ -61,7 +61,7 @@ Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/a
 ##### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
-- `numAffected` **number** (default 1) number of documents affected by the save
+- `numAffected` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (default 1) number of documents affected by the save
 
 ##### Example
 ```javascript
