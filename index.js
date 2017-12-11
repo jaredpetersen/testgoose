@@ -20,20 +20,15 @@ module.exports.mock = () => {
     // promises are used
     let lastParam = parameters[parameters.length - 1];
 
-    // Callback we will be setting up
-    let callback;
-
     if (typeof lastParam === 'function') {
       // It is a callback function --
       // wrap it with the right data for passing to QueryMock
-      callback = () => lastParam.apply(null, callbackData);
+      return () => lastParam.apply(null, callbackData);
     }
     else {
       // Not a callback function so we must be using promises
-      callback = null;
+      return null;
     }
-
-    return callback;
   };
 
   // Define the behavior of each of the model functions
@@ -54,33 +49,25 @@ module.exports.mock = () => {
 
   ModelMock.prototype.save.returns = (err, doc, numAffected=1) => {
     ModelMock.prototype.save = function (...parameters) {
-      let callback;
-      let callbackDoc;
+      // Setup the callback data
+      let callbackData;
 
+      // Use model properties for the data or use user-defined data
+      // from the mock setup if it was provided
       if (err === undefined || doc === undefined) {
-        // Use model properties since we weren't given any
-        callbackDoc = Object.assign({}, this);
-        callback = setupCallback(parameters, [null, callbackDoc, numAffected]);
+        callbackData = [null, Object.assign({}, this), numAffected];
       }
       else {
-        // Use user-defined data for the callback
-        callbackDoc = doc;
-        callback = setupCallback(parameters, [err, doc, numAffected]);
+        callbackData = [err, doc, numAffected];
       }
 
-      if (callback == null) {
-        // Return a promise if a callback function was not provided
-        if (err) {
-          return Promise.reject(err);
-        }
-        else {
-          return Promise.resolve(callbackDoc);
-        }
-      }
-      else {
-        // Use the callback
-        callback();
-      }
+      // Setup the callback
+      const callback = setupCallback(parameters, callbackData);
+
+      // Call the callback or return a promise
+      if (callback) callback();
+      else if (err) return Promise.reject(err);
+      else return Promise.resolve(callbackData[1]);
     };
   };
 
