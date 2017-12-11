@@ -15,7 +15,7 @@ module.exports.mock = () => {
 
   // Parse out the callback from the model function call and prepare it for
   // later use
-  const setupCallback = (parameters, err, data) => {
+  const setupCallback = (parameters, callbackData) => {
     // Grab the last parameter which should be a callback function unless
     // promises are used
     let lastParam = parameters[parameters.length - 1];
@@ -26,7 +26,7 @@ module.exports.mock = () => {
     if (typeof lastParam === 'function') {
       // It is a callback function --
       // wrap it with the right data for passing to QueryMock
-      callback = () => lastParam.apply(null, [err, data]);
+      callback = () => lastParam.apply(null, callbackData);
     }
     else {
       // Not a callback function so we must be using promises
@@ -40,30 +40,46 @@ module.exports.mock = () => {
 
   ModelMock.find.returns = (err, docs) => {
     ModelMock.find = (...parameters) => {
-      const callback = setupCallback(parameters, err, docs);
+      const callback = setupCallback(parameters, [err, docs]);
       return new Query(err, docs).find(callback);
     };
   };
 
   ModelMock.findById.returns = (err, doc) => {
     ModelMock.findById = (...parameters) => {
-      const callback = setupCallback(parameters, err, doc);
+      const callback = setupCallback(parameters, [err, doc]);
       return new Query(err, doc).findOne(callback);
     };
   };
 
   ModelMock.prototype.save.returns = (err, doc, numAffected=1) => {
     ModelMock.prototype.save = function (...parameters) {
-      // Callback is always the last argument in the list
-      const callback = parameters[parameters.length - 1];
+      let callback;
+      let callbackDoc;
 
       if (err === undefined || doc === undefined) {
-        // User did not specify callback values so use the object properties
-        callback(null, Object.assign({}, this), numAffected);
+        // Use model properties since we weren't given
+        callbackDoc = Object.assign({}, this);
+        callback = setupCallback(parameters, [null, callbackDoc, numAffected]);
       }
       else {
-        // User specified callback values so honor them
-        callback(err, doc, numAffected);
+        // Use user-defined data for the callback
+        callbackDoc = doc;
+        callback = setupCallback(parameters, [err, doc, numAffected]);
+      }
+
+      if (callback == null) {
+        // Use the promise if callback function was not provided
+        if (err) {
+          return Promise.reject(err);
+        }
+        else {
+          return Promise.resolve(callbackDoc);
+        }
+      }
+      else {
+        // Use the callback
+        callback();
       }
     };
   };
