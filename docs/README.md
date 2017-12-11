@@ -1,6 +1,6 @@
 # mongoose-model-mock
 ## mock()
-Creates a mock of a Mongoose [Model]()
+Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js)
 
 ##### Example
 ```javascript
@@ -9,4 +9,4 @@ const MyMock = modelmock.mock();
 ```
 
 ##### Returns
-Returns [Mock](/docs/MOCK.md)
+Returns [Mock](/docs/Mock.md)
