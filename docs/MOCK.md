@@ -12,14 +12,11 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 ```
 
 ## find.returns
-Define the data returned from the callback function of Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
+Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
 
 ##### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
 - `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
-
-##### Returns
-[QueryMock](/docs/QUERY.md)
 
 ##### Example
 ```javascript
@@ -39,12 +36,11 @@ ProductMock.find.returns(null, productData);
 ```
 
 ## findById.returns
-Define the data returned from the callback function of Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
+Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
 
 ##### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
-
 
 ##### Example
 ```javascript
@@ -60,12 +56,11 @@ UserMock.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'S
 ```
 
 ## prototype.save.returns
-Define the data returned from the callback function of Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If no data is specified, the mock Model instance will use the properties assigned to it instead.
+Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If no data is specified, the mock Model instance will use the properties assigned to it instead to return a new object
 
 ##### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
-
 
 ##### Example
 ```javascript
