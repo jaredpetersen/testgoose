@@ -16,7 +16,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "preinstall": "node scripts/preinstall.js",
+    "install:all": "node scripts/installall.js",
     "test": "mocha test",
     "test:coverage": "nyc npm test",
     "test:all": "mocha test examples/*/test",
