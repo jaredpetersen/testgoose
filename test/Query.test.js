@@ -5,73 +5,29 @@ const expect = chai.expect;
 const Query = require('../lib/Query');
 
 describe('Query', () => {
-  describe('find', () => {
-    it('returns itself when not given a callback', (done) => {
-      const query = new Query();
-      const queryChain = query.find();
 
-      expect(queryChain).to.equal(query);
-      done();
-    });
+  const passThroughFunctionNames = [ 'find', 'findOne', 'findOneAndRemove', 'findOneAndUpdate'];
 
-    it('calls the provided callback', (done) => {
-      const query = new Query();
-      query.find(() => {
+  for (const functionName of passThroughFunctionNames) {
+
+    describe(functionName, () => {
+      it('returns itself when not given a callback', (done) => {
+        const query = new Query();
+        const queryChain = query[functionName]();
+
+        expect(queryChain).to.equal(query);
         done();
       });
-    });
-  });
 
-  describe('findOne', () => {
-    it('returns itself when not given a callback', (done) => {
-      const query = new Query();
-      const queryChain = query.findOne();
-
-      expect(queryChain).to.equal(query);
-      done();
-    });
-
-    it('calls the provided callback', (done) => {
-      const query = new Query();
-      query.findOne(() => {
-        done();
+      it('calls the provided callback', (done) => {
+        const query = new Query();
+        query[functionName](() => {
+          done();
+        });
       });
     });
-  });
 
-  describe('findOneAndUpdate', () => {
-    it('returns itself when not given a callback', (done) => {
-      const query = new Query();
-      const queryChain = query.findOneAndUpdate();
-
-      expect(queryChain).to.equal(query);
-      done();
-    });
-
-    it('calls the provided callback', (done) => {
-      const query = new Query();
-      query.findOneAndUpdate(() => {
-        done();
-      });
-    });
-  });
-
-  describe('findOneAndRemove', () => {
-    it('returns itself when not given a callback', (done) => {
-      const query = new Query();
-      const queryChain = query.findOneAndRemove();
-
-      expect(queryChain).to.equal(query);
-      done();
-    });
-
-    it('calls the provided callback', (done) => {
-      const query = new Query();
-      query.findOneAndRemove(() => {
-        done();
-      });
-    });
-  });
+  }
 
   describe('then', () => {
     it('rejects a promise with error when called with error', () => {
