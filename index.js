@@ -10,6 +10,8 @@ module.exports.mock = () => {
   class ModelMock {
     static find() {}
     static findById() {}
+    static findByIdAndRemove() {}
+    static findByIdAndUpdate() {}
     save() {}
   }
 
@@ -31,7 +33,9 @@ module.exports.mock = () => {
     }
   };
 
-  // Define the behavior of each of the model functions
+  // Set up a `returns` on supported Mongoose Model functions that allows users to override behavior
+
+  // Model functions
 
   ModelMock.find.returns = (err, docs) => {
     ModelMock.find = (...parameters) => {
@@ -46,6 +50,22 @@ module.exports.mock = () => {
       return new Query(err, doc).findOne(callback);
     };
   };
+
+  ModelMock.findByIdAndRemove.returns = (err, doc) => {
+    ModelMock.findByIdAndRemove = (...parameters) => {
+      const callback = setupCallback(parameters, [err, doc]);
+      return new Query(err, doc).findOneAndRemove(callback);
+    };
+  };
+
+  ModelMock.findByIdAndUpdate.returns = (err, doc) => {
+    ModelMock.findByIdAndUpdate = (...parameters) => {
+      const callback = setupCallback(parameters, [err, doc]);
+      return new Query(err, doc).findOneAndUpdate(callback);
+    };
+  };
+
+  // Document functions
 
   ModelMock.prototype.save.returns = (err, doc, numAffected=1) => {
     ModelMock.prototype.save = function (...parameters) {
