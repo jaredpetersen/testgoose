@@ -2,14 +2,19 @@
 
 const Query = require('./lib/Query');
 
-module.exports.mock = () => {
+module.exports.mock = (modelName, schema) => {
   // Mongoose Model docs: http://mongoosejs.com/docs/api.html#model-js
   // Mongoose Model code: https://github.com/Automattic/mongoose/blob/master/lib/model.js
 
   // Mock the Mongoose Model
-  class ModelMock {
+  class Model {
     static find() {}
     static findById() {}
+    static findByIdAndRemove() {}
+    static findByIdAndUpdate() {}
+    static get modelName() { return modelName; }
+    static get schema() { return schema; }
+
     save() {}
   }
 
@@ -31,24 +36,42 @@ module.exports.mock = () => {
     }
   };
 
-  // Define the behavior of each of the model functions
+  // Set up a `returns` on supported Mongoose Model functions that allows users to override behavior
 
-  ModelMock.find.returns = (err, docs) => {
-    ModelMock.find = (...parameters) => {
+  // Model functions
+
+  Model.find.returns = (err, docs) => {
+    Model.find = (...parameters) => {
       const callback = setupCallback(parameters, [err, docs]);
       return new Query(err, docs).find(callback);
     };
   };
 
-  ModelMock.findById.returns = (err, doc) => {
-    ModelMock.findById = (...parameters) => {
+  Model.findById.returns = (err, doc) => {
+    Model.findById = (...parameters) => {
       const callback = setupCallback(parameters, [err, doc]);
       return new Query(err, doc).findOne(callback);
     };
   };
 
-  ModelMock.prototype.save.returns = (err, doc, numAffected=1) => {
-    ModelMock.prototype.save = function (...parameters) {
+  Model.findByIdAndRemove.returns = (err, doc) => {
+    Model.findByIdAndRemove = (...parameters) => {
+      const callback = setupCallback(parameters, [err, doc]);
+      return new Query(err, doc).findOneAndRemove(callback);
+    };
+  };
+
+  Model.findByIdAndUpdate.returns = (err, doc) => {
+    Model.findByIdAndUpdate = (...parameters) => {
+      const callback = setupCallback(parameters, [err, doc]);
+      return new Query(err, doc).findOneAndUpdate(callback);
+    };
+  };
+
+  // Document functions
+
+  Model.prototype.save.returns = (err, doc, numAffected=1) => {
+    Model.prototype.save = function (...parameters) {
       // Setup the callback data
       let callbackData;
 
@@ -71,5 +94,5 @@ module.exports.mock = () => {
     };
   };
 
-  return ModelMock;
+  return Model;
 };

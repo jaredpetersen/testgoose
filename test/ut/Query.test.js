@@ -2,41 +2,31 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const Query = require('../lib/Query');
+const Query = require('../../lib/Query');
+const queryReturnFunctions = require('../../lib/queryReturnFunctions');
 
-describe('Query', () => {
-  describe('find', () => {
-    it('returns itself when not given a callback', (done) => {
-      const query = new Query();
-      const queryChain = query.find();
+describe('Query - Unit Tests', () => {
 
-      expect(queryChain).to.equal(query);
-      done();
-    });
+  // Automatically test that functions that are supposed to return queries all do the same thing
+  describe('query return functions', () => {
+    for (const functionName of queryReturnFunctions) {
+      describe(functionName, () => {
+        it('returns itself when not given a callback', (done) => {
+          const query = new Query();
+          const queryChain = query[functionName]();
 
-    it('calls the provided callback', (done) => {
-      const query = new Query();
-      query.find(() => {
-        done();
+          expect(queryChain).to.equal(query);
+          done();
+        });
+
+        it('calls the provided callback', (done) => {
+          const query = new Query();
+          query[functionName](() => {
+            done();
+          });
+        });
       });
-    });
-  });
-
-  describe('findOne', () => {
-    it('returns itself when not given a callback', (done) => {
-      const query = new Query();
-      const queryChain = query.findOne();
-
-      expect(queryChain).to.equal(query);
-      done();
-    });
-
-    it('calls the provided callback', (done) => {
-      const query = new Query();
-      query.findOne(() => {
-        done();
-      });
-    });
+    }
   });
 
   describe('then', () => {

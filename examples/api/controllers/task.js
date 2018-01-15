@@ -4,7 +4,7 @@ let Task = require('../models/task')
 let errors = require('./errors.js');
 
 exports.getAll = (req, res, next) => {
-  Task.find('__v', (err, tasks) => {
+  Task.find((err, tasks) => {
     if (err) return next(err);
     res.json(tasks);
   });

@@ -1,4 +1,4 @@
-# Mock
+# Model
 Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
@@ -53,6 +53,46 @@ UserMock.findById.returns(new Error('something bad happened'), null);
 const modelmock = require('mongoose-model-mock');
 const UserMock = modelmock.mock();
 UserMock.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+```
+
+## findByIdAndRemove.returns
+Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
+
+##### Parameters
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
+- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndRemove callback
+
+##### Example
+```javascript
+const modelmock = require('mongoose-model-mock');
+const UserMock = modelmock.mock();
+UserMock.findByIdAndRemove.returns(new Error('something bad happened'), null);
+```
+
+```javascript
+const modelmock = require('mongoose-model-mock');
+const UserMock = modelmock.mock();
+UserMock.findByIdAndRemove.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+```
+
+## findByIdAndUpdate.returns
+Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
+
+##### Parameters
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback
+- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndUpdate callback
+
+##### Example
+```javascript
+const modelmock = require('mongoose-model-mock');
+const UserMock = modelmock.mock();
+UserMock.findByIdAndUpdate.returns(new Error('something bad happened'), null);
+```
+
+```javascript
+const modelmock = require('mongoose-model-mock');
+const UserMock = modelmock.mock();
+UserMock.findByIdAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
 ## prototype.save.returns

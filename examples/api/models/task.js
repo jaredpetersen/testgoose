@@ -6,9 +6,7 @@ const Schema = mongoose.Schema;
 // Don't include the document version when converting the data to JSON
 const options = {
   toJSON: {
-    transform: (doc, ret) => {
-      delete ret.__v;
-    }
+    versionKey: false
   }
 };
 
