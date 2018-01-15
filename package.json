@@ -17,9 +17,9 @@
   },
   "scripts": {
     "install:all": "npm install && node scripts/examplesinstall.js",
-    "test": "mocha test",
+    "test": "mocha test test/**",
     "test:coverage": "nyc npm test",
-    "test:all": "mocha test examples/*/test",
+    "test:all": "mocha test examples/*/test test/**",
     "test:all:coverage": "nyc npm run test:all",
     "lint": "./node_modules/.bin/eslint index.js lib/* test/*"
   },

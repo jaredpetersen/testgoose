@@ -2,9 +2,9 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const modelmock = require('../index');
+const modelmock = require('../../index');
 
-describe('Mongoose Model Mock', () => {
+describe('Model - Unit Tests', () => {
   describe('mock', () => {
     it('creates a mock', (done) => {
       // Create a Mongoose Model mock

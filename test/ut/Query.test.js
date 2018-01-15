@@ -2,32 +2,32 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const Query = require('../lib/Query');
+const Query = require('../../lib/Query');
+const queryReturnFunctions = require('../../lib/queryReturnFunctions');
 
-describe('Query', () => {
+describe('Query - Unit Tests', () => {
 
-  const passThroughFunctionNames = [ 'find', 'findOne', 'findOneAndRemove', 'findOneAndUpdate'];
+  // Automatically test that functions that are supposed to return queries all do the same thing
+  describe('query return functions', () => {
+    for (const functionName of queryReturnFunctions) {
+      describe(functionName, () => {
+        it('returns itself when not given a callback', (done) => {
+          const query = new Query();
+          const queryChain = query[functionName]();
 
-  for (const functionName of passThroughFunctionNames) {
-
-    describe(functionName, () => {
-      it('returns itself when not given a callback', (done) => {
-        const query = new Query();
-        const queryChain = query[functionName]();
-
-        expect(queryChain).to.equal(query);
-        done();
-      });
-
-      it('calls the provided callback', (done) => {
-        const query = new Query();
-        query[functionName](() => {
+          expect(queryChain).to.equal(query);
           done();
         });
-      });
-    });
 
-  }
+        it('calls the provided callback', (done) => {
+          const query = new Query();
+          query[functionName](() => {
+            done();
+          });
+        });
+      });
+    }
+  });
 
   describe('then', () => {
     it('rejects a promise with error when called with error', () => {
