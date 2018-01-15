@@ -520,7 +520,7 @@ describe('Model - Unit Tests', () => {
         // Use the mock like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v')
           .then(doc => {
-            expect(doc).to.equal(databaseData)
+            expect(doc).to.equal(databaseData);
           });
       });
 
@@ -553,7 +553,7 @@ describe('Model - Unit Tests', () => {
         // Use the mock like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
           .then(doc => {
-            expect(doc).to.equal(databaseData)
+            expect(doc).to.equal(databaseData);
           });
       });
 
@@ -699,7 +699,7 @@ describe('Model - Unit Tests', () => {
         // Use the mock like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v')
           .then(doc => {
-            expect(doc).to.equal(databaseData)
+            expect(doc).to.equal(databaseData);
           });
       });
 
@@ -732,7 +732,7 @@ describe('Model - Unit Tests', () => {
         // Use the mock like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
           .then(doc => {
-            expect(doc).to.equal(databaseData)
+            expect(doc).to.equal(databaseData);
           });
       });
 

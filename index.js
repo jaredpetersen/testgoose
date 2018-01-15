@@ -12,8 +12,8 @@ module.exports.mock = (modelName, schema) => {
     static findById() {}
     static findByIdAndRemove() {}
     static findByIdAndUpdate() {}
-    static get modelName() { return modelName };
-    static get schema() { return schema; };
+    static get modelName() { return modelName; }
+    static get schema() { return schema; }
 
     save() {}
   }
