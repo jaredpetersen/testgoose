@@ -750,6 +750,52 @@ describe('Model - Unit Tests', () => {
     });
   });
 
+  describe('mock modelName', () => {
+    it('returns undefined when called without defined behavior', (done) => {
+      // Create a Mongoose Model mock
+      const MyMock = modelmock.mock();
+
+      // Use the mock like a real model
+      expect(MyMock.modelName).to.be.undefined;
+      done();
+    });
+
+    it('mocks the schema', (done) => {
+      // Setup our stubs
+      const modelName = 'Task';
+
+      // Create a Mongoose Model mock
+      const MyMock = modelmock.mock(modelName);
+
+      // Use the mock like a real model
+      expect(MyMock.modelName).to.equal(modelName);
+      done();
+    });
+  });
+
+  describe('mock schema', () => {
+    it('returns undefined when called without defined behavior', (done) => {
+      // Create a Mongoose Model mock
+      const MyMock = modelmock.mock();
+
+      // Use the mock like a real model
+      expect(MyMock.schema).to.be.undefined;
+      done();
+    });
+
+    it('mocks the schema', (done) => {
+      // Setup our stubs
+      const schemaData = { name: 'jared' };
+
+      // Create a Mongoose Model mock
+      const MyMock = modelmock.mock(null, schemaData);
+
+      // Use the mock like a real model
+      expect(MyMock.schema).to.equal(schemaData);
+      done();
+    });
+  });
+
   describe('mock save.returns', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {

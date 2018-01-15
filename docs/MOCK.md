@@ -11,6 +11,19 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 // Call the function under test and make assertions
 ```
 
+`mock()` has two optional parameters, `modelName` and `schema`. If you pass either, you can mock out the data returned from Mongoose [Model.modelName](http://mongoosejs.com/docs/api.html#model_Model-modelName) and Mongoose [Model.schema](http://mongoosejs.com/docs/api.html#model_Model-schema). If you do not pass either, both values will be undefined.
+```javaScript
+const proxyquire = require('proxyquire').noCallThru();
+const modelmock = require('mongoose-model-mock');
+
+const TaskMock = modelmock.mock('Task', {key: 'value'});
+// Define other mock behavior
+
+const taskController = proxyquire('../controllers/task', { '../models/task': TaskMock } );
+// Call the function under test and make assertions
+```
+
+
 ## find.returns
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
 

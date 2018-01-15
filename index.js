@@ -2,7 +2,7 @@
 
 const Query = require('./lib/Query');
 
-module.exports.mock = () => {
+module.exports.mock = (modelName, schema) => {
   // Mongoose Model docs: http://mongoosejs.com/docs/api.html#model-js
   // Mongoose Model code: https://github.com/Automattic/mongoose/blob/master/lib/model.js
 
@@ -12,6 +12,9 @@ module.exports.mock = () => {
     static findById() {}
     static findByIdAndRemove() {}
     static findByIdAndUpdate() {}
+    static get modelName() { return modelName };
+    static get schema() { return schema; };
+
     save() {}
   }
 
