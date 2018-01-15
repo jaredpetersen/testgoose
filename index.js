@@ -7,7 +7,7 @@ module.exports.mock = (modelName, schema) => {
   // Mongoose Model code: https://github.com/Automattic/mongoose/blob/master/lib/model.js
 
   // Mock the Mongoose Model
-  class ModelMock {
+  class Model {
     static find() {}
     static findById() {}
     static findByIdAndRemove() {}
@@ -40,29 +40,29 @@ module.exports.mock = (modelName, schema) => {
 
   // Model functions
 
-  ModelMock.find.returns = (err, docs) => {
-    ModelMock.find = (...parameters) => {
+  Model.find.returns = (err, docs) => {
+    Model.find = (...parameters) => {
       const callback = setupCallback(parameters, [err, docs]);
       return new Query(err, docs).find(callback);
     };
   };
 
-  ModelMock.findById.returns = (err, doc) => {
-    ModelMock.findById = (...parameters) => {
+  Model.findById.returns = (err, doc) => {
+    Model.findById = (...parameters) => {
       const callback = setupCallback(parameters, [err, doc]);
       return new Query(err, doc).findOne(callback);
     };
   };
 
-  ModelMock.findByIdAndRemove.returns = (err, doc) => {
-    ModelMock.findByIdAndRemove = (...parameters) => {
+  Model.findByIdAndRemove.returns = (err, doc) => {
+    Model.findByIdAndRemove = (...parameters) => {
       const callback = setupCallback(parameters, [err, doc]);
       return new Query(err, doc).findOneAndRemove(callback);
     };
   };
 
-  ModelMock.findByIdAndUpdate.returns = (err, doc) => {
-    ModelMock.findByIdAndUpdate = (...parameters) => {
+  Model.findByIdAndUpdate.returns = (err, doc) => {
+    Model.findByIdAndUpdate = (...parameters) => {
       const callback = setupCallback(parameters, [err, doc]);
       return new Query(err, doc).findOneAndUpdate(callback);
     };
@@ -70,8 +70,8 @@ module.exports.mock = (modelName, schema) => {
 
   // Document functions
 
-  ModelMock.prototype.save.returns = (err, doc, numAffected=1) => {
-    ModelMock.prototype.save = function (...parameters) {
+  Model.prototype.save.returns = (err, doc, numAffected=1) => {
+    Model.prototype.save = function (...parameters) {
       // Setup the callback data
       let callbackData;
 
@@ -94,5 +94,5 @@ module.exports.mock = (modelName, schema) => {
     };
   };
 
-  return ModelMock;
+  return Model;
 };
