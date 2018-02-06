@@ -21,5 +21,7 @@ describe('Model - Integration Tests', () => {
         done();
       });
     });
+
+    it('performs a query chain using withParams');
   });
 });

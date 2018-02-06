@@ -1,5 +1,7 @@
 'use strict';
 
+const deepEqual = require('deep-equal');
+
 const Query = require('./lib/Query');
 
 module.exports.mock = (modelName, schema) => {
@@ -18,16 +20,13 @@ module.exports.mock = (modelName, schema) => {
     save() {}
   }
 
-  // Parse out the callback from the model function call and prepare it for
-  // later use
+  // Parse out the callback from the model function call and prepare it for later use
   const setupCallback = (parameters, callbackData) => {
-    // Grab the last parameter which should be a callback function unless
-    // promises are used
+    // Grab the last parameter which should be a callback function unless promises are used
     let lastParam = parameters[parameters.length - 1];
 
     if (typeof lastParam === 'function') {
-      // It is a callback function --
-      // wrap it with the right data for passing to QueryMock
+      // It is a callback function -- wrap it with the right data for passing to QueryMock
       return () => lastParam.apply(null, callbackData);
     }
     else {
@@ -36,37 +35,46 @@ module.exports.mock = (modelName, schema) => {
     }
   };
 
-  // Set up a `returns` on supported Mongoose Model functions that allows users to override behavior
+  // Set up extra functions on supported Mongoose Model functions that allows users to override behavior
 
   // Model functions
 
-  Model.find.returns = (err, docs) => {
-    Model.find = (...parameters) => {
-      const callback = setupCallback(parameters, [err, docs]);
-      return new Query(err, docs).find(callback);
-    };
-  };
+  // Dynamically set up functions that return query objects
+  const queryReturningFunctions = [
+    {modelFunc: 'find', queryFunc: 'find'},
+    {modelFunc: 'findById', queryFunc: 'findOne'},
+    {modelFunc: 'findByIdAndRemove', queryFunc: 'findOneAndRemove'},
+    {modelFunc: 'findByIdAndUpdate', queryFunc: 'findOneAndUpdate'}
+  ];
 
-  Model.findById.returns = (err, doc) => {
-    Model.findById = (...parameters) => {
-      const callback = setupCallback(parameters, [err, doc]);
-      return new Query(err, doc).findOne(callback);
+  for (const queryReturningFunction of queryReturningFunctions) {
+    // Add the withParams() argument matching function
+    Model[queryReturningFunction.modelFunc].withParams = (...paramMatchers) => {
+      Model[queryReturningFunction.modelFunc].paramMatchers = paramMatchers;
+      return Model[queryReturningFunction.modelFunc];
     };
-  };
 
-  Model.findByIdAndRemove.returns = (err, doc) => {
-    Model.findByIdAndRemove = (...parameters) => {
-      const callback = setupCallback(parameters, [err, doc]);
-      return new Query(err, doc).findOneAndRemove(callback);
-    };
-  };
+    // Add the returns() function to specify what the stub should return (without an argument matcher)
+    Model[queryReturningFunction.modelFunc].returns = (err, data) => {
+      const paramMatchers = Model[queryReturningFunction.modelFunc].paramMatchers;
 
-  Model.findByIdAndUpdate.returns = (err, doc) => {
-    Model.findByIdAndUpdate = (...parameters) => {
-      const callback = setupCallback(parameters, [err, doc]);
-      return new Query(err, doc).findOneAndUpdate(callback);
+      Model[queryReturningFunction.modelFunc] = (...parameters) => {
+        // Remove callback function from parameters for param matching purposes
+        const parametersWithoutCallback = (typeof parameters[parameters.length - 1] === 'function') ?
+          parameters.slice(0, -1) :
+          parameters;
+
+        // If the user specified param matchers, don't execute if they are not met
+        if (paramMatchers === undefined || deepEqual(parametersWithoutCallback, paramMatchers)) {
+          const callback = setupCallback(parameters, [err, data]);
+          return new Query(err, data)[queryReturningFunction.queryFunc](callback);
+        }
+      };
     };
-  };
+
+    // Make sure that withParams is chainable so that returns can be called after it
+    Model[queryReturningFunction.modelFunc].withParams.returns = Model[queryReturningFunction.modelFunc].returns;
+  }
 
   // Document functions
 
@@ -75,8 +83,7 @@ module.exports.mock = (modelName, schema) => {
       // Setup the callback data
       let callbackData;
 
-      // Use model properties for the data or use user-defined data
-      // from the mock setup if it was provided
+      // Use model properties for the data or use user-defined data from the mock setup if it was provided
       if (err === undefined || doc === undefined) {
         callbackData = [null, Object.assign({}, this), numAffected];
       }

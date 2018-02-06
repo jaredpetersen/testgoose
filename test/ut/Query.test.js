@@ -3,13 +3,13 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Query = require('../../lib/Query');
-const queryReturnFunctions = require('../../lib/queryReturnFunctions');
+const chainableQueryFunctions = require('../../lib/chainableQueryFunctions');
 
 describe('Query - Unit Tests', () => {
 
   // Automatically test that functions that are supposed to return queries all do the same thing
   describe('query return functions', () => {
-    for (const functionName of queryReturnFunctions) {
+    for (const functionName of chainableQueryFunctions) {
       describe(functionName, () => {
         it('returns itself when not given a callback', (done) => {
           const query = new Query();

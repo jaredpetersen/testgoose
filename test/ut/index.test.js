@@ -104,6 +104,36 @@ describe('Model - Unit Tests', () => {
           done();
         });
       });
+
+      it('mocks the callback using matching withParams', (done) => {
+        // Setup our stubs
+        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.find.withParams({ name: /john/i }, 'name friends').returns(null, databaseData);
+
+        // Use the mock like a real model
+        MyMock.find({ name: /john/i }, 'name friends', (err, docs) => {
+          expect(err).to.be.null;
+          expect(docs).to.equal(databaseData);
+          done();
+        });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.find.withParams('sody-pop').returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.find({ name: /john/i }, 'name friends', () => {
+          expect.fail();
+        });
+      });
     });
 
     describe('promise', () => {
@@ -201,6 +231,36 @@ describe('Model - Unit Tests', () => {
             expect.fail();
           });
       });
+
+      it('mocks the promise using matching withParams', () => {
+        // Setup our stubs
+        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.find.withParams({ name: /john/i }, 'name friends').returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.find({ name: /john/i }, 'name friends')
+          .then(docs => {
+            expect(docs).to.equal(databaseData);
+          })
+          .catch(() => {
+            expect.fail();
+          });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.find.withParams('sody-pop').returns(null, databaseData);
+
+        // Use the mock like a real model
+        expect(MyMock.find({ name: /john/i }, 'name friends')).to.be.undefined;
+      });
     });
   });
 
@@ -290,6 +350,37 @@ describe('Model - Unit Tests', () => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
           done();
+        });
+      });
+
+      it('mocks the callback using matching withParams', (done) => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+        const findByIdParams = '5a190f2cff422a139c0fbf36';
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findById.withParams(findByIdParams).returns(null, databaseData);
+
+        // Use the mock like a real model
+        MyMock.findById(findByIdParams, (err, doc) => {
+          expect(err).to.be.null;
+          expect(doc).to.equal(databaseData);
+          done();
+        });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findById.withParams('sody-pop').returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.findById('5a190f2cff422a139c0fbf36', () => {
+          expect.fail();
         });
       });
     });
@@ -389,6 +480,37 @@ describe('Model - Unit Tests', () => {
             expect.fail();
           });
       });
+
+      it('mocks the promise using matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+        const findByIdParams = '5a190f2cff422a139c0fbf36';
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findById.withParams(findByIdParams).returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.findById(findByIdParams)
+          .then(docs => {
+            expect(docs).to.equal(databaseData);
+          })
+          .catch(() => {
+            expect.fail();
+          });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findById.withParams('sody-pop').returns(null, databaseData);
+
+        // Use the mock like a real model
+        expect(MyMock.findById('5a190f2cff422a139c0fbf36')).to.be.undefined;
+      });
     });
   });
 
@@ -422,7 +544,7 @@ describe('Model - Unit Tests', () => {
 
       it('mocks the callback doc with optional parameters', (done) => {
         // Setup our stubs
-        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+        const databaseData = { name: 'A' };
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
@@ -454,7 +576,7 @@ describe('Model - Unit Tests', () => {
 
       it('mocks the callback doc without optional parameters ', (done) => {
         // Setup our stubs
-        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+        const databaseData = { name: 'A' };
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
@@ -478,6 +600,36 @@ describe('Model - Unit Tests', () => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
           done();
+        });
+      });
+
+      it('mocks the callback using matching withParams', (done) => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndUpdate.withParams('5a190f2cff422a139c0fbf36', { name: 'C' }).returns(null, databaseData);
+
+        // Use the mock like a real model
+        MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
+          expect(err).to.be.null;
+          expect(doc).to.equal(databaseData);
+          done();
+        });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findById.withParams('sody-pop', { name: 'B' }).returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.findById('5a190f2cff422a139c0fbf36', { name: 'C' }, () => {
+          expect.fail();
         });
       });
     });
@@ -567,6 +719,36 @@ describe('Model - Unit Tests', () => {
           .then(doc => {
             expect(doc).to.be.null;
           });
+      });
+
+      it('mocks the promise using matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndUpdate.withParams('5a190f2cff422a139c0fbf36', { name: 'C' }).returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
+          .then(docs => {
+            expect(docs).to.equal(databaseData);
+          })
+          .catch(() => {
+            expect.fail();
+          });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndUpdate.withParams('sody-pop', { name: 'B' }).returns(null, databaseData);
+
+        // Use the mock like a real model
+        expect(MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' },)).to.be.undefined;
       });
     });
   });
@@ -592,7 +774,7 @@ describe('Model - Unit Tests', () => {
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the mock like a real model
-        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', { collation: null }, (err, doc) => {
+        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
           done();
@@ -608,7 +790,7 @@ describe('Model - Unit Tests', () => {
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the mock like a real model
-        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', { collation: null }, (err, doc) => {
+        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
           done();
@@ -621,10 +803,10 @@ describe('Model - Unit Tests', () => {
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(databaseError, null);
+        MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the mock like a real model
-        MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
+        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
           done();
@@ -637,10 +819,10 @@ describe('Model - Unit Tests', () => {
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(null, databaseData);
+        MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the mock like a real model
-        MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
+        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
           done();
@@ -650,13 +832,44 @@ describe('Model - Unit Tests', () => {
       it('mocks the callback doc with null', (done) => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(null, null);
+        MyMock.findByIdAndRemove.returns(null, null);
 
         // Use the mock like a real model
-        MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
+        MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
           done();
+        });
+      });
+
+      it('mocks the callback using matching withParams', (done) => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+        const findByIdParams = '5a190f2cff422a139c0fbf36';
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndRemove.withParams(findByIdParams).returns(null, databaseData);
+
+        // Use the mock like a real model
+        MyMock.findByIdAndRemove(findByIdParams, (err, doc) => {
+          expect(err).to.be.null;
+          expect(doc).to.equal(databaseData);
+          done();
+        });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndRemove.withParams('sody-pop').returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', () => {
+          expect.fail();
         });
       });
     });
@@ -667,7 +880,7 @@ describe('Model - Unit Tests', () => {
         const MyMock = modelmock.mock();
 
         // Use the mock like a real model
-        expect(MyMock.findByIdAndUpdate()).to.be.undefined;
+        expect(MyMock.findByIdAndRemove()).to.be.undefined;
       });
 
       it('mocks the promise error with optional parameters', () => {
@@ -676,10 +889,10 @@ describe('Model - Unit Tests', () => {
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(databaseError, null);
+        MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the mock like a real model
-        return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v')
+        return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v')
           .then(() => {
             expect.fail();
           })
@@ -694,10 +907,10 @@ describe('Model - Unit Tests', () => {
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(null, databaseData);
+        MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the mock like a real model
-        return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v')
+        return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v')
           .then(doc => {
             expect(doc).to.equal(databaseData);
           });
@@ -709,10 +922,10 @@ describe('Model - Unit Tests', () => {
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(databaseError, null);
+        MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the mock like a real model
-        return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
+        return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')
           .then(() => {
             expect.fail();
           })
@@ -727,10 +940,10 @@ describe('Model - Unit Tests', () => {
 
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(null, databaseData);
+        MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the mock like a real model
-        return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
+        return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')
           .then(doc => {
             expect(doc).to.equal(databaseData);
           });
@@ -739,13 +952,44 @@ describe('Model - Unit Tests', () => {
       it('mocks the promise data with null', () => {
         // Create a Mongoose Model mock
         const MyMock = modelmock.mock();
-        MyMock.findByIdAndUpdate.returns(null, null);
+        MyMock.findByIdAndRemove.returns(null, null);
 
         // Use the mock like a real model
-        return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
+        return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')
           .then(doc => {
             expect(doc).to.be.null;
           });
+      });
+
+      it('mocks the promise using matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+        const findByIdParams = '5a190f2cff422a139c0fbf36';
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndRemove.withParams(findByIdParams).returns(null, databaseData);
+
+        // Use the mock like a real model
+        return MyMock.findByIdAndRemove(findByIdParams)
+          .then(docs => {
+            expect(docs).to.equal(databaseData);
+          })
+          .catch(() => {
+            expect.fail();
+          });
+      });
+
+      it('does nothing when called with non-matching withParams', () => {
+        // Setup our stubs
+        const databaseData = { name: 'A' };
+
+        // Create a Mongoose Model mock
+        const MyMock = modelmock.mock();
+        MyMock.findByIdAndRemove.withParams('sody-pop').returns(null, databaseData);
+
+        // Use the mock like a real model
+        expect(MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')).to.be.undefined;
       });
     });
   });
@@ -796,7 +1040,7 @@ describe('Model - Unit Tests', () => {
     });
   });
 
-  describe('mock save.returns', () => {
+  describe('mock prototype.save.returns', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model mock
