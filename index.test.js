@@ -2,41 +2,41 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const modelmock = require('../../index');
+const modelgoose = require('./index');
 
-describe('Model - Unit Tests', () => {
-  describe('mock', () => {
-    it('creates a mock', (done) => {
-      // Create a Mongoose Model mock
-      const MyMock = modelmock.stub();
+describe('modelgoose.stub()', () => {
+  describe('stub', () => {
+    it('creates a stub', (done) => {
+      // Create a Mongoose Model stub
+      const MyMock = modelgoose.stub();
 
-      // Make sure that a mock was created
+      // Make sure that a stub was created
       expect(MyMock).to.exist;
       done();
     });
   });
 
-  describe('mock find.returns', () => {
+  describe('stub find', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.find(() => {
           expect.fail();
         });
       });
 
-      it('mocks the callback error with optional parameters', (done) => {
+      it('stubs the callback error with optional parameters', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.find({ name: /john/i }, 'name friends', (err, docs) => {
           expect(err).to.equal(databaseError);
           expect(docs).to.be.null;
@@ -44,15 +44,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback docs with optional parameters', (done) => {
+      it('stubs the callback docs with optional parameters', (done) => {
         // Setup our stubs
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.find({ name: /john/i }, 'name friends', (err, docs) => {
           expect(err).to.be.null;
           expect(docs).to.equal(databaseData);
@@ -60,15 +60,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback error without optional parameters ', (done) => {
+      it('stubs the callback error without optional parameters ', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.find((err, docs) => {
           expect(err).to.equal(databaseError);
           expect(docs).to.be.null;
@@ -76,15 +76,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback docs without optional parameters ', (done) => {
+      it('stubs the callback docs without optional parameters ', (done) => {
         // Setup our stubs
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.find((err, docs) => {
           expect(err).to.be.null;
           expect(docs).to.equal(databaseData);
@@ -92,12 +92,44 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback docs with null', (done) => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the callback err with a full query chain', (done) => {
+        // Setup our stubs
+        const databaseError = new Error('something went wrong');
+
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
+        MyMock.find.returns(databaseError, null);
+
+        // Use the stub like a real model
+        MyMock.find({ name: /john/i }, 'name friends').where('age').gt(10).exec((err, docs) => {
+          expect(err).to.equal(databaseError);
+          expect(docs).to.be.null;
+          done();
+        });
+      });
+
+      it('stubs the callback docs with a full query chain', (done) => {
+        // Setup our stubs
+        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
+        MyMock.find.returns(null, databaseData);
+
+        // Use the stub like a real model
+        MyMock.find({ name: /john/i }, 'name friends').where('age').gt(10).exec((err, docs) => {
+          expect(err).to.be.null;
+          expect(docs).to.equal(databaseData);
+          done();
+        });
+      });
+
+      it('stubs the callback docs with null', (done) => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.find((err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
@@ -108,22 +140,22 @@ describe('Model - Unit Tests', () => {
 
     describe('promise', () => {
       it('does nothing when called without defined behavior promise', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         expect(MyMock.find()).to.be.undefined;
       });
 
-      it('mocks the promise error with optional parameters', () => {
+      it('stubs the promise error with optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.find({ name: /john/i }, 'name friends')
           .then(() => {
             expect.fail();
@@ -133,15 +165,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise docs with optional parameters', () => {
+      it('stubs the promise docs with optional parameters', () => {
         // Setup our stubs
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.find({ name: /john/i }, 'name friends')
           .then(docs => {
             expect(docs).to.equal(databaseData);
@@ -151,15 +183,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise error without optional parameters', () => {
+      it('stubs the promise error without optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.find()
           .then(() => {
             expect.fail();
@@ -169,15 +201,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise docs without optional parameters', () => {
+      it('stubs the promise docs without optional parameters', () => {
         // Setup our stubs
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.find()
           .then(docs => {
             expect(docs).to.equal(databaseData);
@@ -187,12 +219,48 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise docs with null', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the promise err with a full query chain', () => {
+        // Setup our stubs
+        const databaseError = new Error('something went wrong');
+
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
+        MyMock.find.returns(databaseError, null);
+
+        // Use the stub like a real model
+        return MyMock.find({ name: /john/i }, 'name friends').where('age').gt(10)
+          .then(data => {
+            expect.fail();
+          })
+          .catch(err => {
+            expect(err).to.equal(databaseError);
+          });
+      });
+
+      it('stubs the promise docs with a full query chain', () => {
+        // Setup our stubs
+        const databaseData = [ { name: 'A' }, { name: 'B' } ];
+
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
+        MyMock.find.returns(null, databaseData);
+
+        // Use the stub like a real model
+        return MyMock.find({ name: /john/i }, 'name friends').where('age').gt(10)
+          .then(docs => {
+            expect(docs).to.equal(databaseData);
+          })
+          .catch(() => {
+            expect.fail();
+          });
+      });
+
+      it('stubs the promise docs with null', () => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.find.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.find()
           .then(docs => {
             expect(docs).to.be.null;
@@ -204,27 +272,27 @@ describe('Model - Unit Tests', () => {
     });
   });
 
-  describe('mock findById.returns', () => {
+  describe('stub findById', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36', () => {
           expect.fail();
         });
       });
 
-      it('mocks the callback error with optional parameterse', (done) => {
+      it('stubs the callback error with optional parameterse', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findById('5a190f2cff422a139c0fbf36', '-__v', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
@@ -232,15 +300,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with optional parameterse', (done) => {
+      it('stubs the callback doc with optional parameterse', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findById('5a190f2cff422a139c0fbf36', '-__v', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
@@ -248,15 +316,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback error without optional parameters', (done) => {
+      it('stubs the callback error without optional parameters', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findById('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
@@ -264,15 +332,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc without optional parameters', (done) => {
+      it('stubs the callback doc without optional parameters', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findById('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
@@ -280,12 +348,12 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with null', (done) => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the callback doc with null', (done) => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findById('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
@@ -296,22 +364,22 @@ describe('Model - Unit Tests', () => {
 
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         expect(MyMock.find()).to.be.undefined;
       });
 
-      it('mocks the promise error with optional parameters', () => {
+      it('stubs the promise error with optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36', '-__v')
           .then(() => {
             expect.fail();
@@ -321,15 +389,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise doc with optional parameters', () => {
+      it('stubs the promise doc with optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36', '-__v')
           .then(doc => {
             expect(doc).to.equal(databaseData);
@@ -339,15 +407,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise error without optional parameters', () => {
+      it('stubs the promise error without optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36')
           .then(() => {
             expect.fail();
@@ -357,15 +425,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise doc without optional parameters', () => {
+      it('stubs the promise doc without optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36')
           .then(doc => {
             expect(doc).to.equal(databaseData);
@@ -375,12 +443,12 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise docs with null', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the promise docs with null', () => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findById.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findById()
           .then(doc => {
             expect(doc).to.be.null;
@@ -392,27 +460,27 @@ describe('Model - Unit Tests', () => {
     });
   });
 
-  describe('mock findByIdAndUpdate.returns', () => {
+  describe('stub findByIdAndUpdate', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, () => {
           expect.fail();
         });
       });
 
-      it('mocks the callback error with optional parameters', (done) => {
+      it('stubs the callback error with optional parameters', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
@@ -420,15 +488,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with optional parameters', (done) => {
+      it('stubs the callback doc with optional parameters', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
@@ -436,15 +504,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback error without optional parameters ', (done) => {
+      it('stubs the callback error without optional parameters ', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
@@ -452,15 +520,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc without optional parameters ', (done) => {
+      it('stubs the callback doc without optional parameters ', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
@@ -468,12 +536,12 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with null', (done) => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the callback doc with null', (done) => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
@@ -484,22 +552,22 @@ describe('Model - Unit Tests', () => {
 
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         expect(MyMock.findByIdAndUpdate()).to.be.undefined;
       });
 
-      it('mocks the promise error with optional parameters', () => {
+      it('stubs the promise error with optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v')
           .then(() => {
             expect.fail();
@@ -509,30 +577,30 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data with optional parameters', () => {
+      it('stubs the promise data with optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'C' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, '-__v')
           .then(doc => {
             expect(doc).to.equal(databaseData);
           });
       });
 
-      it('mocks the promise error without optional parameter', () => {
+      it('stubs the promise error without optional parameter', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
           .then(() => {
             expect.fail();
@@ -542,27 +610,27 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data without optional parameters', () => {
+      it('stubs the promise data without optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'C' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
           .then(doc => {
             expect(doc).to.equal(databaseData);
           });
       });
 
-      it('mocks the promise data with null', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the promise data with null', () => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndUpdate.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' })
           .then(doc => {
             expect(doc).to.be.null;
@@ -571,27 +639,27 @@ describe('Model - Unit Tests', () => {
     });
   });
 
-  describe('mock findByIdAndRemove.returns', () => {
+  describe('stub findByIdAndRemove', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', () => {
           expect.fail();
         });
       });
 
-      it('mocks the callback error with optional parameters', (done) => {
+      it('stubs the callback error with optional parameters', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
@@ -599,15 +667,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with optional parameters', (done) => {
+      it('stubs the callback doc with optional parameters', (done) => {
         // Setup our stubs
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
@@ -615,15 +683,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback error without optional parameters ', (done) => {
+      it('stubs the callback error without optional parameters ', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.equal(databaseError);
           expect(doc).to.be.null;
@@ -631,15 +699,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc without optional parameters ', (done) => {
+      it('stubs the callback doc without optional parameters ', (done) => {
         // Setup our stubs
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.equal(databaseData);
@@ -647,12 +715,12 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with null', (done) => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the callback doc with null', (done) => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', (err, doc) => {
           expect(err).to.be.null;
           expect(doc).to.be.null;
@@ -663,22 +731,22 @@ describe('Model - Unit Tests', () => {
 
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         expect(MyMock.findByIdAndRemove()).to.be.undefined;
       });
 
-      it('mocks the promise error with optional parameters', () => {
+      it('stubs the promise error with optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v')
           .then(() => {
             expect.fail();
@@ -688,30 +756,30 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data with optional parameters', () => {
+      it('stubs the promise data with optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'C' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', '-__v')
           .then(doc => {
             expect(doc).to.equal(databaseData);
           });
       });
 
-      it('mocks the promise error without optional parameter', () => {
+      it('stubs the promise error without optional parameter', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')
           .then(() => {
             expect.fail();
@@ -721,27 +789,27 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data without optional parameters', () => {
+      it('stubs the promise data without optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'C' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')
           .then(doc => {
             expect(doc).to.equal(databaseData);
           });
       });
 
-      it('mocks the promise data with null', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the promise data with null', () => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.findByIdAndRemove.returns(null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36')
           .then(doc => {
             expect(doc).to.be.null;
@@ -750,74 +818,74 @@ describe('Model - Unit Tests', () => {
     });
   });
 
-  describe('mock modelName', () => {
+  describe('stub modelName', () => {
     it('returns undefined when called without defined behavior', (done) => {
-      // Create a Mongoose Model mock
-      const MyMock = modelmock.stub();
+      // Create a Mongoose Model stub
+      const MyMock = modelgoose.stub();
 
-      // Use the mock like a real model
+      // Use the stub like a real model
       expect(MyMock.modelName).to.be.undefined;
       done();
     });
 
-    it('mocks the schema', (done) => {
+    it('stubs the schema', (done) => {
       // Setup our stubs
       const modelName = 'Task';
 
-      // Create a Mongoose Model mock
-      const MyMock = modelmock.stub(modelName);
+      // Create a Mongoose Model stub
+      const MyMock = modelgoose.stub(modelName);
 
-      // Use the mock like a real model
+      // Use the stub like a real model
       expect(MyMock.modelName).to.equal(modelName);
       done();
     });
   });
 
-  describe('mock schema', () => {
+  describe('stub schema', () => {
     it('returns undefined when called without defined behavior', (done) => {
-      // Create a Mongoose Model mock
-      const MyMock = modelmock.stub();
+      // Create a Mongoose Model stub
+      const MyMock = modelgoose.stub();
 
-      // Use the mock like a real model
+      // Use the stub like a real model
       expect(MyMock.schema).to.be.undefined;
       done();
     });
 
-    it('mocks the schema', (done) => {
+    it('stubs the schema', (done) => {
       // Setup our stubs
       const schemaData = { name: 'jared' };
 
-      // Create a Mongoose Model mock
-      const MyMock = modelmock.mock(null, schemaData);
+      // Create a Mongoose Model stub
+      const MyMock = modelgoose.stub(null, schemaData);
 
-      // Use the mock like a real model
+      // Use the stub like a real model
       expect(MyMock.schema).to.equal(schemaData);
       done();
     });
   });
 
-  describe('mock prototype.save.returns', () => {
+  describe('stub prototype.save', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         return myMock.save(() => {
           expect.fail();
         });
       });
 
-      it('mocks the callback error with optional parameters', (done) => {
+      it('stubs the callback error with optional parameters', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(databaseError, null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save({validateBeforeSave: true}, (err, doc, numAffected) => {
           expect(err).to.equal(databaseError);
@@ -827,15 +895,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with optional parameters', (done) => {
+      it('stubs the callback doc with optional parameters', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save({validateBeforeSave: true}, (err, doc, numAffected) => {
           expect(err).to.be.null;
@@ -845,15 +913,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback numAffected with optional parameters', (done) => {
+      it('stubs the callback numAffected with optional parameters', (done) => {
         // Setup our stubs
         const databaseAffected = 20;
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, null, databaseAffected);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save({validateBeforeSave: true}, (err, doc, numAffected) => {
           expect(err).to.be.null;
@@ -863,15 +931,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback error without optional parameters', (done) => {
+      it('stubs the callback error without optional parameters', (done) => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(databaseError, null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save((err, doc, numAffected) => {
           expect(err).to.equal(databaseError);
@@ -881,15 +949,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc without optional parameters', (done) => {
+      it('stubs the callback doc without optional parameters', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save((err, doc, numAffected) => {
           expect(err).to.be.null;
@@ -899,15 +967,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback numAffected without optional parameters', (done) => {
+      it('stubs the callback numAffected without optional parameters', (done) => {
         // Setup our stubs
         const databaseAffected = 20;
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, null, databaseAffected);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save((err, doc, numAffected) => {
           expect(err).to.be.null;
@@ -917,12 +985,12 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback doc with null', (done) => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the callback doc with null', (done) => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.save((err, doc, numAffected) => {
           expect(err).to.be.null;
@@ -932,15 +1000,15 @@ describe('Model - Unit Tests', () => {
         });
       });
 
-      it('mocks the callback using document properties', (done) => {
+      it('stubs the callback using document properties', (done) => {
         // Setup our stubs
         const databaseData = { name: 'A', age: 49 };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.name = databaseData.name;
         myMock.age = databaseData.age;
@@ -956,23 +1024,23 @@ describe('Model - Unit Tests', () => {
 
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         expect(myMock.save()).to.be.undefined;
       });
 
-      it('mocks the promise error with optional parameters', () => {
+      it('stubs the promise error with optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(databaseError, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         return myMock.save({validateBeforeSave: true})
           .then(() => {
@@ -983,15 +1051,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data with optional parameters', () => {
+      it('stubs the promise data with optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         return myMock.save({validateBeforeSave: true})
           .then(doc => {
@@ -999,15 +1067,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise error without optional parameters', () => {
+      it('stubs the promise error without optional parameters', () => {
         // Setup our stubs
         const databaseError = new Error('something went wrong');
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(databaseError, null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         return myMock.save()
           .then(() => {
@@ -1018,15 +1086,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data without optional parameters', () => {
+      it('stubs the promise data without optional parameters', () => {
         // Setup our stubs
         const databaseData = { name: 'A' };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         return myMock.save()
           .then(doc => {
@@ -1034,12 +1102,12 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise data with null', () => {
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+      it('stubs the promise data with null', () => {
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns(null, null, null);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         return myMock.save()
           .then(doc => {
@@ -1047,15 +1115,15 @@ describe('Model - Unit Tests', () => {
           });
       });
 
-      it('mocks the promise using document properties', () => {
+      it('stubs the promise using document properties', () => {
         // Setup our stubs
         const databaseData = { name: 'A', age: 49 };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.stub();
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.stub();
         MyMock.prototype.save.returns();
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
         myMock.name = databaseData.name;
         myMock.age = databaseData.age;
@@ -1065,18 +1133,24 @@ describe('Model - Unit Tests', () => {
             expect(doc).to.deep.equal(databaseData);
           });
       });
+    });
+  });
+});
 
+describe('modelgoose.mock()', () => {
+  describe('mock find', () => {
+    describe('promise', () => {
       it('asdf', () => {
         // Setup our stubs
         const databaseData = { name: 'A', age: 35 };
         const databaseData2 = { name: 'A', age: 49 };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.mock();
-        MyMock.find.withParams({name: 'A'}).where.withParams({age: 49 }).returns(null, databaseData2);
-        MyMock.find.withParams({name: 'A'}).where.withParams({age: 35 }).where.withParams({age: 35 }).returns(null, databaseData);
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.mock();
+        MyMock.find.withArgs({name: 'A'}).where.withArgs({age: 49 }).returns(null, databaseData2);
+        MyMock.find.withArgs({name: 'A'}).where.withArgs({age: 35 }).where.withArgs({age: 35 }).returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
 
         return MyMock.find({name: 'A'}).where({age: 49})
@@ -1091,12 +1165,12 @@ describe('Model - Unit Tests', () => {
         const databaseData = { name: 'A', age: 35 };
         const databaseData2 = { name: 'A', age: 49 };
 
-        // Create a Mongoose Model mock
-        const MyMock = modelmock.mock();
-        MyMock.find.withParams({name: 'A'}).where.withParams({age: 49 }).returns(null, databaseData2);
-        MyMock.find.withParams({name: 'A'}).where.withParams({age: 35 }).where.withParams({age: 35 }).returns(null, databaseData);
+        // Create a Mongoose Model stub
+        const MyMock = modelgoose.mock();
+        MyMock.find.withArgs({name: 'A'}).where.withArgs({age: 49 }).returns(null, databaseData2);
+        MyMock.find.withArgs({name: 'A'}).where.withArgs({age: 35 }).where.withArgs({age: 35 }).returns(null, databaseData);
 
-        // Use the mock like a real model
+        // Use the stub like a real model
         const myMock = new MyMock();
 
         return MyMock.find({name: 'A'}).where({age: 49})
@@ -1106,5 +1180,5 @@ describe('Model - Unit Tests', () => {
           });
       });
     });
-  });
+  })
 });
