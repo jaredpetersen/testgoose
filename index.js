@@ -1,14 +1,96 @@
 'use strict';
 
+const QueryMock = require('./lib/QueryMock');
+const QueryStub = require('./lib/Query');
 const deepEqual = require('deep-equal');
 
-const Query = require('./lib/Query');
-
 module.exports.mock = (modelName, schema) => {
-  // Mongoose Model docs: http://mongoosejs.com/docs/api.html#model-js
-  // Mongoose Model code: https://github.com/Automattic/mongoose/blob/master/lib/model.js
+  class Model {
+    static find() {}
+    static findById() {}
+    static findByIdAndRemove() {}
+    static findByIdAndUpdate() {}
+    static get modelName() { return modelName; }
+    static get schema() { return schema; }
 
-  // Mock the Mongoose Model
+    save() {}
+  }
+
+  // Set up extra functions on supported Mongoose Model functions that allows users to override behavior
+  const queryReturningFunctions = ['find', 'findById', 'findByIdAndRemove', 'findByIdAndUpdate'];
+
+  for (const queryReturningFunction of queryReturningFunctions) {
+    // Define the mock behavior
+    Model[queryReturningFunction] = function(...parameters) {
+      // Remove callback function from parameters for param matching purposes
+      const parametersWithoutCallback = (typeof parameters[parameters.length - 1] === 'function') ?
+        parameters.slice(0, -1) :
+        parameters;
+
+      for (const parameterMatcher of Model[queryReturningFunction].paramMatchers) {
+        if (parameterMatcher.matcher === null || deepEqual(parametersWithoutCallback, parameterMatcher.matcher)) {
+          return parameterMatcher.query;
+        }
+      }
+    }
+
+    // Setup the parameter matchers
+    Model[queryReturningFunction].paramMatchers = [];
+
+    // Setup the parameter matcher setter
+    Model[queryReturningFunction].withParams = (...paramMatchers) => {
+      // Try to find if the matcher already exists
+      for (const matcher of Model[queryReturningFunction].paramMatchers) {
+        if (deepEqual(matcher.matcher, paramMatchers)) {
+          // Matcher already exists, return the query
+          return matcher.query;
+        }
+      }
+
+      // Matcher does not already exist so add it
+      Model[queryReturningFunction].paramMatchers.push({ matcher: paramMatchers, query: new QueryMock(null, 'pizza')});
+      return Model[queryReturningFunction].paramMatchers[Model[queryReturningFunction].paramMatchers.length - 1].query;
+    };
+  }
+
+  /*Model.goob = function(...parameters) {
+    // Remove callback function from parameters for param matching purposes
+    const parametersWithoutCallback = (typeof parameters[parameters.length - 1] === 'function') ?
+      parameters.slice(0, -1) :
+      parameters;
+
+    for (const parameterMatcher of Model.goob.paramMatchers) {
+      if (parameterMatcher.matcher === null || deepEqual(parametersWithoutCallback, parameterMatcher.matcher)) {
+        return parameterMatcher.query;
+      }
+    }
+  }
+
+  Model.goob.paramMatchers = [];
+
+  Model.goob.withParams = (...paramMatchers) => {
+    // Try to find if the matcher already exists
+    for (const matcher of Model.goob.paramMatchers) {
+      if (deepEqual(matcher.matcher, paramMatchers)) {
+        // Matcher already exists, return the query
+        return matcher.query;
+      }
+    }
+
+    // Matcher does not already exist so add it
+    Model.goob.paramMatchers.push({ matcher: paramMatchers, query: new Query(null, 'pizza')});
+    return Model.goob.paramMatchers[Model.goob.paramMatchers.length - 1].query;
+  };
+
+  // Not used right now
+  Model.goob.returns = (err, doc) => {
+    this.paramMatchers = [ {matcher: null, query: new Query(err, doc)} ];
+  };*/
+
+  return Model;
+};
+
+module.exports.stub = (modelName, schema) => {
   class Model {
     static find() {}
     static findById() {}
@@ -21,23 +103,13 @@ module.exports.mock = (modelName, schema) => {
   }
 
   // Parse out the callback from the model function call and prepare it for later use
-  const setupCallback = (parameters, callbackData) => {
+  const parseCallback = (parameters) => {
     // Grab the last parameter which should be a callback function unless promises are used
-    let lastParam = parameters[parameters.length - 1];
+    const lastParam = parameters[parameters.length - 1];
 
-    if (typeof lastParam === 'function') {
-      // It is a callback function -- wrap it with the right data for passing to QueryMock
-      return () => lastParam.apply(null, callbackData);
-    }
-    else {
-      // Not a callback function so we must be using promises
-      return null;
-    }
+    // If the last parameter is a function then return it, otherwise return null
+    return (typeof lastParam === 'function') ? lastParam : null;
   };
-
-  // Set up extra functions on supported Mongoose Model functions that allows users to override behavior
-
-  // Model functions
 
   // Dynamically set up functions that return query objects
   const queryReturningFunctions = [
@@ -48,16 +120,11 @@ module.exports.mock = (modelName, schema) => {
   ];
 
   for (const queryReturningFunction of queryReturningFunctions) {
-    // Add the withParams() argument matching function
-    Model[queryReturningFunction.modelFunc].withParams = (...paramMatchers) => {
-      Model[queryReturningFunction.modelFunc].paramMatchers = paramMatchers;
-      return Model[queryReturningFunction.modelFunc];
-    };
-
     // Add the returns() function to specify what the stub should return (without an argument matcher)
     Model[queryReturningFunction.modelFunc].returns = (err, data) => {
       const paramMatchers = Model[queryReturningFunction.modelFunc].paramMatchers;
 
+      // Define the stub behavior
       Model[queryReturningFunction.modelFunc] = (...parameters) => {
         // Remove callback function from parameters for param matching purposes
         const parametersWithoutCallback = (typeof parameters[parameters.length - 1] === 'function') ?
@@ -66,38 +133,29 @@ module.exports.mock = (modelName, schema) => {
 
         // If the user specified param matchers, don't execute if they are not met
         if (paramMatchers === undefined || deepEqual(parametersWithoutCallback, paramMatchers)) {
-          const callback = setupCallback(parameters, [err, data]);
-          return new Query(err, data)[queryReturningFunction.queryFunc](callback);
+          const callback = parseCallback(parameters);
+          return new QueryStub(err, data)[queryReturningFunction.queryFunc](callback);
         }
       };
     };
-
-    // Make sure that withParams is chainable so that returns can be called after it
-    Model[queryReturningFunction.modelFunc].withParams.returns = Model[queryReturningFunction.modelFunc].returns;
   }
 
   // Document functions
 
   Model.prototype.save.returns = (err, doc, numAffected=1) => {
     Model.prototype.save = function (...parameters) {
-      // Setup the callback data
-      let callbackData;
-
       // Use model properties for the data or use user-defined data from the mock setup if it was provided
-      if (err === undefined || doc === undefined) {
-        callbackData = [null, Object.assign({}, this), numAffected];
-      }
-      else {
-        callbackData = [err, doc, numAffected];
-      }
+      const callbackData = (err === undefined || doc === undefined) ?
+        { err: null, doc: Object.assign({}, this), numAffected } :
+        { err, doc, numAffected };
 
-      // Setup the callback
-      const callback = setupCallback(parameters, callbackData);
+      // Get the callback function from the parameters
+      const callback = parseCallback(parameters);
 
       // Call the callback or return a promise
-      if (callback) callback();
-      else if (err) return Promise.reject(err);
-      else return Promise.resolve(callbackData[1]);
+      if (callback) callback(callbackData.err, callbackData.doc, callbackData.numAffected);
+      else if (err) return Promise.reject(callbackData.err);
+      else return Promise.resolve(callbackData.doc);
     };
   };
 

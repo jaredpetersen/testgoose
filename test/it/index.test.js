@@ -11,7 +11,7 @@ describe('Model - Integration Tests', () => {
       const databaseError = new Error('something went wrong');
 
       // Create a Mongoose Model mock
-      const MyMock = modelmock.mock();
+      const MyMock = modelmock.stub();
       MyMock.find.returns(databaseError, null);
 
       // Use the mock like a real model
@@ -31,7 +31,7 @@ describe('Model - Integration Tests', () => {
       const databaseError = new Error('something went wrong');
 
       // Create a Mongoose Model mock
-      const MyMock = modelmock.mock();
+      const MyMock = modelmock.stub();
       MyMock.find.returns(databaseError, null);
 
       // Use the mock like a real model
