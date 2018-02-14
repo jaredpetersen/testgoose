@@ -68,11 +68,9 @@ describe('Examples - Express.js REST API', () => {
         // Mock out the Mongoose Task model
         const TaskMock = modelmock.mock();
         TaskMock.findById.withArgs(req.params.id, '__v').returns(null, databaseData);
-        console.log('defined mock behavior');
 
         // Replace the reference to the original Task model with our mock model
         const task = proxyquire('../controllers/task', { '../models/task': TaskMock } );
-        console.log('proxied in');
 
         // Make sure that the task controller calls res with the data from the database
         res.on('end', () => {

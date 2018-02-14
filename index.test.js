@@ -1175,7 +1175,6 @@ describe('modelgoose.mock()', () => {
 
         return MyMock.find({name: 'A'}).where({age: 49}, '--x')
           .then(doc => {
-            console.log(doc);
             expect(doc).to.deep.equal(databaseData2);
           });
       });
@@ -1195,7 +1194,6 @@ describe('modelgoose.mock()', () => {
 
         return MyMock.find({name: 'A'}).where({age: 49}, '--x')
           .then(doc => {
-            console.log(doc);
             expect(doc).to.deep.equal(databaseData2);
           });
       });
