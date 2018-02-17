@@ -4,11 +4,11 @@ const chai = require('chai');
 const expect = chai.expect;
 const modelgoose = require('./index');
 
-describe('modelgoose.stub()', () => {
+describe('modelgoose.model.stub()', () => {
   describe('stub', () => {
     it('creates a stub', (done) => {
       // Create a Mongoose Model stub
-      const MyMock = modelgoose.stub();
+      const MyMock = modelgoose.model.stub();
 
       // Make sure that a stub was created
       expect(MyMock).to.exist;
@@ -20,7 +20,7 @@ describe('modelgoose.stub()', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         return MyMock.find(() => {
@@ -33,7 +33,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -49,7 +49,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -65,7 +65,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -81,7 +81,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -97,7 +97,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -113,7 +113,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -126,7 +126,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the callback docs with null', (done) => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, null);
 
         // Use the stub like a real model
@@ -141,7 +141,7 @@ describe('modelgoose.stub()', () => {
     describe('promise', () => {
       it('does nothing when called without defined behavior promise', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         expect(MyMock.find()).to.be.undefined;
@@ -152,7 +152,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -170,7 +170,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -188,7 +188,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -206,7 +206,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -224,7 +224,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -242,7 +242,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -257,7 +257,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the promise docs with null', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.find.returns(null, null);
 
         // Use the stub like a real model
@@ -276,7 +276,7 @@ describe('modelgoose.stub()', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         return MyMock.findById('5a190f2cff422a139c0fbf36', () => {
@@ -289,7 +289,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -305,7 +305,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -321,7 +321,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -337,7 +337,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -350,7 +350,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the callback doc with null', (done) => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(null, null);
 
         // Use the stub like a real model
@@ -365,7 +365,7 @@ describe('modelgoose.stub()', () => {
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         expect(MyMock.find()).to.be.undefined;
@@ -376,7 +376,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -394,7 +394,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -412,7 +412,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -430,7 +430,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -445,7 +445,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the promise docs with null', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findById.returns(null, null);
 
         // Use the stub like a real model
@@ -464,7 +464,7 @@ describe('modelgoose.stub()', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         return MyMock.findByIdAndUpdate('5a190f2cff422a139c0fbf36', { name: 'C' }, () => {
@@ -477,7 +477,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -493,7 +493,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -509,7 +509,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -525,7 +525,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -538,7 +538,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the callback doc with null', (done) => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(null, null);
 
         // Use the stub like a real model
@@ -553,7 +553,7 @@ describe('modelgoose.stub()', () => {
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         expect(MyMock.findByIdAndUpdate()).to.be.undefined;
@@ -564,7 +564,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -582,7 +582,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'C' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -597,7 +597,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -615,7 +615,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'C' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -627,7 +627,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the promise data with null', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndUpdate.returns(null, null);
 
         // Use the stub like a real model
@@ -643,7 +643,7 @@ describe('modelgoose.stub()', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         return MyMock.findByIdAndRemove('5a190f2cff422a139c0fbf36', () => {
@@ -656,7 +656,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -672,7 +672,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -688,7 +688,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -704,7 +704,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = [ { name: 'A' }, { name: 'B' } ];
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -717,7 +717,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the callback doc with null', (done) => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(null, null);
 
         // Use the stub like a real model
@@ -732,7 +732,7 @@ describe('modelgoose.stub()', () => {
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         expect(MyMock.findByIdAndRemove()).to.be.undefined;
@@ -743,7 +743,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -761,7 +761,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'C' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -776,7 +776,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -794,7 +794,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'C' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(null, databaseData);
 
         // Use the stub like a real model
@@ -806,7 +806,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the promise data with null', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.findByIdAndRemove.returns(null, null);
 
         // Use the stub like a real model
@@ -821,7 +821,7 @@ describe('modelgoose.stub()', () => {
   describe('stub modelName', () => {
     it('returns undefined when called without defined behavior', (done) => {
       // Create a Mongoose Model stub
-      const MyMock = modelgoose.stub();
+      const MyMock = modelgoose.model.stub();
 
       // Use the stub like a real model
       expect(MyMock.modelName).to.be.undefined;
@@ -833,7 +833,7 @@ describe('modelgoose.stub()', () => {
       const modelName = 'Task';
 
       // Create a Mongoose Model stub
-      const MyMock = modelgoose.stub(modelName);
+      const MyMock = modelgoose.model.stub(modelName);
 
       // Use the stub like a real model
       expect(MyMock.modelName).to.equal(modelName);
@@ -844,7 +844,7 @@ describe('modelgoose.stub()', () => {
   describe('stub schema', () => {
     it('returns undefined when called without defined behavior', (done) => {
       // Create a Mongoose Model stub
-      const MyMock = modelgoose.stub();
+      const MyMock = modelgoose.model.stub();
 
       // Use the stub like a real model
       expect(MyMock.schema).to.be.undefined;
@@ -856,7 +856,7 @@ describe('modelgoose.stub()', () => {
       const schemaData = { name: 'jared' };
 
       // Create a Mongoose Model stub
-      const MyMock = modelgoose.stub(null, schemaData);
+      const MyMock = modelgoose.model.stub(null, schemaData);
 
       // Use the stub like a real model
       expect(MyMock.schema).to.equal(schemaData);
@@ -868,7 +868,7 @@ describe('modelgoose.stub()', () => {
     describe('callback', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         const myMock = new MyMock();
@@ -882,7 +882,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(databaseError, null, null);
 
         // Use the stub like a real model
@@ -900,7 +900,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
         // Use the stub like a real model
@@ -918,7 +918,7 @@ describe('modelgoose.stub()', () => {
         const databaseAffected = 20;
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, null, databaseAffected);
 
         // Use the stub like a real model
@@ -936,7 +936,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(databaseError, null, null);
 
         // Use the stub like a real model
@@ -954,7 +954,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
         // Use the stub like a real model
@@ -972,7 +972,7 @@ describe('modelgoose.stub()', () => {
         const databaseAffected = 20;
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, null, databaseAffected);
 
         // Use the stub like a real model
@@ -987,7 +987,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the callback doc with null', (done) => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, null, null);
 
         // Use the stub like a real model
@@ -1005,7 +1005,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A', age: 49 };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns();
 
         // Use the stub like a real model
@@ -1025,7 +1025,7 @@ describe('modelgoose.stub()', () => {
     describe('promise', () => {
       it('does nothing when called without defined behavior', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
 
         // Use the stub like a real model
         const myMock = new MyMock();
@@ -1037,7 +1037,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(databaseError, null);
 
         // Use the stub like a real model
@@ -1056,7 +1056,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
         // Use the stub like a real model
@@ -1072,7 +1072,7 @@ describe('modelgoose.stub()', () => {
         const databaseError = new Error('something went wrong');
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(databaseError, null, null);
 
         // Use the stub like a real model
@@ -1091,7 +1091,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A' };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, databaseData, null);
 
         // Use the stub like a real model
@@ -1104,7 +1104,7 @@ describe('modelgoose.stub()', () => {
 
       it('stubs the promise data with null', () => {
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns(null, null, null);
 
         // Use the stub like a real model
@@ -1120,7 +1120,7 @@ describe('modelgoose.stub()', () => {
         const databaseData = { name: 'A', age: 49 };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.stub();
+        const MyMock = modelgoose.model.stub();
         MyMock.prototype.save.returns();
 
         // Use the stub like a real model
@@ -1137,7 +1137,7 @@ describe('modelgoose.stub()', () => {
   });
 });
 
-describe('modelgoose.mock()', () => {
+describe('modelgoose.model.mock()', () => {
   describe('mock find', () => {
     describe('callback', () => {
       it('it works with a callback', (done) => {
@@ -1145,7 +1145,7 @@ describe('modelgoose.mock()', () => {
         const databaseData = { name: 'A', age: 49 };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.mock();
+        const MyMock = modelgoose.model.mock();
         MyMock.find.withArgs({name: 'A'}).returns(null, databaseData);
 
         // Use the stub like a real model
@@ -1166,7 +1166,7 @@ describe('modelgoose.mock()', () => {
         const databaseData2 = { name: 'A', age: 49 };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.mock();
+        const MyMock = modelgoose.model.mock();
         MyMock.find.withArgs({name: 'A'}).where.withArgs({ age: 49 }, '--x').returns(null, databaseData2);
         MyMock.find.withArgs({name: 'A'}).where.withArgs({ age: 35 }, '--v').returns(null, databaseData);
 
@@ -1185,7 +1185,7 @@ describe('modelgoose.mock()', () => {
         const databaseData2 = { name: 'A', age: 49 };
 
         // Create a Mongoose Model stub
-        const MyMock = modelgoose.mock();
+        const MyMock = modelgoose.model.mock();
         MyMock.find.withArgs({name: 'A'}).where.withArgs({age: 49 }, '--x').returns(null, databaseData2);
         MyMock.find.withArgs({name: 'A'}).where.withArgs({age: 35 }, '--v').where.withArgs({age: 35 }).returns(null, databaseData);
 
