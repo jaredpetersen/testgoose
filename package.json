@@ -18,6 +18,7 @@
   "scripts": {
     "install:all": "npm install && node scripts/examplesinstall.js",
     "test": "mocha index.test.js lib/**",
+    "test:model": "mocha lib/model/model-mock.test.js",
     "test:coverage": "nyc npm test",
     "test:all": "mocha index.test.js lib/** examples/*/test/*",
     "test:all:coverage": "nyc npm run test:all",
