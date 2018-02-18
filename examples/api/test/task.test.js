@@ -7,9 +7,9 @@ const reqres = require('reqres');
 const proxyquire = require('proxyquire').noCallThru();
 const modelmock = require('../../../index');
 
-describe('Examples - Express.js REST API', () => {
-  describe('Tasks', () => {
-    describe('getAll', () => {
+describe('examples - express.js rest api', () => {
+  describe('task controller', () => {
+    describe('getAll()', () => {
       it('returns all tasks from the database', (done) => {
         // Setup our stubs
         const req = reqres.req();
@@ -17,7 +17,7 @@ describe('Examples - Express.js REST API', () => {
         const databaseData = [ { name: 'Fix the gutters' }, { name: 'Paint the fence' } ];
 
         // Mock out the Mongoose Task model
-        const TaskStub = modelmock.stub();
+        const TaskStub = modelmock.model.stub();
         TaskStub.find.returns(null, databaseData);
 
         // Replace the reference to the original Task model with our stub model
@@ -43,7 +43,7 @@ describe('Examples - Express.js REST API', () => {
         const databaseError = new Error('something bad happened');
 
         // Mock out the Mongoose Task model
-        const TaskStub = modelmock.stub();
+        const TaskStub = modelmock.model.stub();
         TaskStub.find.returns(databaseError);
 
         // Replace the reference to the original Task model with our stub model
@@ -58,7 +58,7 @@ describe('Examples - Express.js REST API', () => {
       });
     });
 
-    describe('getSingle', () => {
+    describe('getSingle()', () => {
       it('returns a single task from the database', (done) => {
         // Setup our stubs
         const req = reqres.req({ params: { id: 1234 } });
@@ -66,7 +66,7 @@ describe('Examples - Express.js REST API', () => {
         const databaseData = { name: 'Mow the lawn' };
 
         // Mock out the Mongoose Task model
-        const TaskMock = modelmock.mock();
+        const TaskMock = modelmock.model.mock();
         TaskMock.findById.withArgs(req.params.id, '__v').returns(null, databaseData);
 
         // Replace the reference to the original Task model with our mock model
@@ -93,7 +93,7 @@ describe('Examples - Express.js REST API', () => {
         const databaseData = null;
 
         // Mock out the Mongoose Task model
-        const TaskStub = modelmock.stub();
+        const TaskStub = modelmock.model.stub();
         TaskStub.findById.returns(null, databaseData);
 
         // Replace the reference to the original Task model with our stub model
@@ -114,7 +114,7 @@ describe('Examples - Express.js REST API', () => {
         const databaseError = new Error('something bad happened');
 
         // Mock out the Mongoose Task model
-        const TaskStub = modelmock.stub();
+        const TaskStub = modelmock.model.stub();
         TaskStub.findById.returns(databaseError);
 
         // Replace the reference to the original Task model with our stub model
@@ -129,7 +129,7 @@ describe('Examples - Express.js REST API', () => {
       });
     });
 
-    describe('create', (done) => {
+    describe('create()', (done) => {
       it('creates a new release in the database', (done) => {
         // Setup our stubs
         const req = reqres.req();
@@ -137,7 +137,7 @@ describe('Examples - Express.js REST API', () => {
         const res = reqres.res();
 
         // Mock out the Mongoose Task model
-        const TaskStub = modelmock.stub();
+        const TaskStub = modelmock.model.stub();
         TaskStub.prototype.save.returns();
 
         // Replace the reference to the original Task model with our stub model
@@ -165,7 +165,7 @@ describe('Examples - Express.js REST API', () => {
         const databaseError = new Error('something bad happened');
 
         // Mock out the Mongoose Task model
-        const TaskStub = modelmock.stub();
+        const TaskStub = modelmock.model.stub();
         TaskStub.prototype.save.returns(databaseError, null);
 
         // Replace the reference to the original Task model with our stub model

@@ -11,9 +11,7 @@ exports.getAll = (req, res, next) => {
 };
 
 exports.getSingle = (req, res, next) => {
-  console.log('inside controller');
   Task.findById(req.params.id, '__v', (err, task) => {
-    console.log('inside callback');
     if (err) return next(err);
     if (task == null) return next(errors.newHttpError(404, 'specified task does not exist'));
     res.json(task);
