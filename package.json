@@ -1,32 +1,40 @@
 {
-  "name": "mongoose-model-mock",
-  "version": "1.4.0",
-  "description": "Mock mongoose models for unit testing with ease",
+  "name": "testgoose",
+  "version": "1.0.0",
+  "description": "Mock and stub mongoose models for unit testing with ease",
   "main": "index.js",
   "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
   "license": "MIT",
-  "repository": "https://github.com/jaredpetersen/mongoose-model-mock.git",
-  "bugs": "https://github.com/jaredpetersen/mongoose-model-mock/issues",
+  "repository": "https://github.com/jaredpetersen/testgoose.git",
+  "bugs": "https://github.com/jaredpetersen/testgoose/issues",
   "keywords": [
     "mongoose",
+    "mongodb",
     "mock",
-    "test"
+    "stub",
+    "test",
+    "unit test",
+    "model"
   ],
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
     "install:all": "npm install && node scripts/examplesinstall.js",
-    "test": "mocha test test/**",
+    "test": "mocha index.test.js lib/* --recursive",
+    "test:model": "mocha lib/model/model-mock.test.js",
     "test:coverage": "nyc npm test",
-    "test:all": "mocha test examples/*/test test/**",
+    "test:all": "mocha index.test.js lib/* examples/*/test/* --recursive",
     "test:all:coverage": "nyc npm run test:all",
-    "lint": "./node_modules/.bin/eslint index.js lib/* test/*"
+    "lint": "eslint index.js index.test.js lib/*"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^4.13.0",
     "mocha": "^4.0.1",
     "nyc": "^11.3.0"
+  },
+  "dependencies": {
+    "deep-equal": "^1.0.1"
   }
 }

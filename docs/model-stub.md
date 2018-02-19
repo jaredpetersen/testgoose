@@ -1,17 +1,18 @@
-# Model
-Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
+# Model Stub
+Stub of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
-const modelmock = require('mongoose-model-mock');
+const testgoose = require('testgoose');
 
-const TaskMock = modelmock.mock();
-// Define mock behavior
+const TaskStub = testgoose.model.stub();
+// Define stub behavior
 
-const taskController = proxyquire('../controllers/task', { '../models/task': TaskMock } );
+const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
 // Call the function under test and make assertions
 ```
 
-## find.returns
+
+## find.returns()
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
 
 ##### Parameters
@@ -20,22 +21,23 @@ Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/a
 
 ##### Example
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const ProductMock = modelmock.mock();
-ProductMock.find.returns(new Error('something bad happened'), null);
+const testgoose = require('testgoose');
+const ProductStub = testgoose.model.stub();
+ProductStub.find.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const ProductMock = modelmock.mock();
+const testgoose = require('testgoose');
+const ProductStub = testgoose.model.stub();
 const productData = [
   { _id: '507f191e810c19729de860ea', name: 'banana' },
   { _id: '5a16602357c05c3a06a4dca8', name: 'orange' }
 ];
-ProductMock.find.returns(null, productData);
+ProductStub.find.returns(null, productData);
 ```
 
-## findById.returns
+
+## findById.returns()
 Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
 
 ##### Parameters
@@ -44,18 +46,19 @@ Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/do
 
 ##### Example
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const UserMock = modelmock.mock();
-UserMock.findById.returns(new Error('something bad happened'), null);
+const testgoose = require('testgoose');
+const UserStub = testgoose.model.stub();
+UserStub.findById.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const UserMock = modelmock.mock();
-UserMock.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+const testgoose = require('testgoose');
+const UserStub = testgoose.model.stub();
+UserStub.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
-## findByIdAndRemove.returns
+
+## findByIdAndRemove.returns()
 Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
 
 ##### Parameters
@@ -64,18 +67,19 @@ Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoose
 
 ##### Example
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const UserMock = modelmock.mock();
-UserMock.findByIdAndRemove.returns(new Error('something bad happened'), null);
+const testgoose = require('testgoose');
+const UserStub = testgoose.model.stub();
+UserStub.findByIdAndRemove.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const UserMock = modelmock.mock();
-UserMock.findByIdAndRemove.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+const testgoose = require('testgoose');
+const UserStub = testgoose.model.stub();
+UserStub.findByIdAndRemove.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
-## findByIdAndUpdate.returns
+
+## findByIdAndUpdate.returns()
 Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
 
 ##### Parameters
@@ -84,40 +88,40 @@ Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoose
 
 ##### Example
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const UserMock = modelmock.mock();
-UserMock.findByIdAndUpdate.returns(new Error('something bad happened'), null);
+const testgoose = require('testgoose');
+const UserStub = testgoose.model.stub();
+UserStub.findByIdAndUpdate.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const UserMock = modelmock.mock();
-UserMock.findByIdAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+const testgoose = require('testgoose');
+const UserStub = testgoose.model.stub();
+UserStub.findByIdAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
-## prototype.save.returns
-Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If no data is specified, the mock Model instance will use the properties assigned to it instead to return a new object
+
+## prototype.save.returns()
+Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
 
 ##### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
-- `numAffected` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (default 1) number of documents affected by the save
 
 ##### Example
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const CarMock = modelmock.mock();
-CarMock.prototype.save.returns(new Error('something bad happened'), null);
+const testgoose = require('testgoose');
+const CarStub = testgoose.model.stub();
+CarStub.prototype.save.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const TaskMock = modelmock.mock();
-CarMock.prototype.save.returns(null, { vin: '1B7HC16Z6SS365053', color: 'viper red' });
+const testgoose = require('testgoose');
+const TaskStub = testgoose.model.stub();
+CarStub.prototype.save.returns(null, { vin: '1B7HC16Z6SS365053', color: 'viper red' });
 ```
 
 ```javascript
-const modelmock = require('mongoose-model-mock');
-const TaskMock = modelmock.mock();
-CarMock.prototype.save.returns();
+const testgoose = require('testgoose');
+const TaskStub = testgoose.model.stub();
+CarStub.prototype.save.returns();
 ```
