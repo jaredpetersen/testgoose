@@ -39,7 +39,7 @@ describe('testgoose', () => {
           .select('SOMETHING ELSE')
           .exec();
 
-        done(new Error('should have thrown an error'))
+        done(new Error('should have thrown an error'));
       }
       catch(err) {
         const expectedErrorMessage = 'invoked query with incorrect chain: ' +
