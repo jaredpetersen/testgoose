@@ -1,16 +1,20 @@
 {
-  "name": "mongoose-model-mock",
-  "version": "1.4.0",
-  "description": "Mock mongoose models for unit testing with ease",
+  "name": "testgoose",
+  "version": "1.0.0",
+  "description": "Mock and stub mongoose models for unit testing with ease",
   "main": "index.js",
   "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
   "license": "MIT",
-  "repository": "https://github.com/jaredpetersen/mongoose-model-mock.git",
-  "bugs": "https://github.com/jaredpetersen/mongoose-model-mock/issues",
+  "repository": "https://github.com/jaredpetersen/testgoose.git",
+  "bugs": "https://github.com/jaredpetersen/testgoose/issues",
   "keywords": [
     "mongoose",
+    "mongodb",
     "mock",
-    "test"
+    "stub",
+    "test",
+    "unit test",
+    "model"
   ],
   "engines": {
     "node": ">=6.0.0"

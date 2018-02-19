@@ -2,13 +2,13 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const modelgoose = require('./index');
+const testgoose = require('./index');
 
-describe('modelgoose', () => {
+describe('testgoose', () => {
   describe('model.mock()', () => {
     it('throws an error when called with arguments that the tester did not specify', (done) => {
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
         .where.withArgs('name.last')
@@ -68,7 +68,7 @@ describe('modelgoose', () => {
 
       // Create the Mongoose Model mocks
 
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
         .where.withArgs('name.last')
@@ -83,7 +83,7 @@ describe('modelgoose', () => {
         .select.withArgs('name occupation')
         .returns(errStub, null);
 
-      const SecondaryModelMock = modelgoose.model.mock();
+      const SecondaryModelMock = testgoose.model.mock();
       SecondaryModelMock
         .find.withArgs('fish')
         .returns(null, null);
@@ -113,7 +113,7 @@ describe('modelgoose', () => {
       const errStub = 'something went wrong';
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
         .where.withArgs('name.last')
@@ -153,7 +153,7 @@ describe('modelgoose', () => {
       const errStub = 'something went wrong';
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
 
       // Setup our chain definitions
 
@@ -224,7 +224,7 @@ describe('modelgoose', () => {
       const dataStub = { name: 'fred' };
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
         .where.withArgs('name.last')
@@ -264,7 +264,7 @@ describe('modelgoose', () => {
       const dataStub = { name: 'fred' };
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
 
       // Setup our chain definitions
 
@@ -335,7 +335,7 @@ describe('modelgoose', () => {
       const errStub = 'something went wrong';
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
         .where.withArgs('name.last')
@@ -376,7 +376,7 @@ describe('modelgoose', () => {
       const errStub = 'something went wrong';
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
 
       // Setup our chain definitions
 
@@ -448,7 +448,7 @@ describe('modelgoose', () => {
       const dataStub = { name: 'fred' };
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
         .where.withArgs('name.last')
@@ -489,7 +489,7 @@ describe('modelgoose', () => {
       const dataStub = { name: 'fred' };
 
       // Create a Mongoose Model mock
-      const ModelMock = modelgoose.model.mock();
+      const ModelMock = testgoose.model.mock();
 
       // Setup our chain definitions
 
@@ -564,10 +564,10 @@ describe('modelgoose', () => {
 
       // Create the Mongoose Model stubs
 
-      const ModelStub = modelgoose.model.stub();
+      const ModelStub = testgoose.model.stub();
       ModelStub.find.returns(errStub, null);
 
-      const SecondaryModelStub = modelgoose.model.stub();
+      const SecondaryModelStub = testgoose.model.stub();
       SecondaryModelStub.find.returns(null, null);
 
       // Use the stub like a real model
@@ -595,7 +595,7 @@ describe('modelgoose', () => {
       const errStub = 'something went wrong';
 
       // Create a Mongoose Model stub
-      const ModelStub = modelgoose.model.stub();
+      const ModelStub = testgoose.model.stub();
       ModelStub.find.returns(errStub, null);
 
       // Use the stub like a real model
@@ -623,7 +623,7 @@ describe('modelgoose', () => {
       const dataStub = { name: 'fred' };
 
       // Create a Mongoose Model stub
-      const ModelStub = modelgoose.model.stub();
+      const ModelStub = testgoose.model.stub();
       ModelStub.find.returns(null, dataStub);
 
       // Use the stub like a real model
@@ -651,7 +651,7 @@ describe('modelgoose', () => {
       const errStub = 'something went wrong';
 
       // Create a Mongoose Model stub
-      const ModelStub = modelgoose.model.stub();
+      const ModelStub = testgoose.model.stub();
       ModelStub.find.returns(errStub, null);
 
       // Use the stub like a real model
@@ -680,7 +680,7 @@ describe('modelgoose', () => {
       const dataStub = { name: 'fred' };
 
       // Create a Mongoose Model mock
-      const ModelStub = modelgoose.model.stub();
+      const ModelStub = testgoose.model.stub();
       ModelStub.find.returns(null, dataStub);
 
       // Use the stub like a real model
