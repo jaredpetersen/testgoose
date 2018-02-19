@@ -17,7 +17,7 @@ const MyMock = testgoose.model.mock('Task', {key: 'value'});
 ```
 
 ### Returns
-Returns [Model Stub](/docs/MODEL-STUB.md).
+Returns [Model Stub](/docs/model-stub.md).
 
 
 ## model.mock()
@@ -38,4 +38,4 @@ const MyMock = testgoose.model.mock('Task', {key: 'value'});
 ```
 
 ### Returns
-Returns [Model Mock](/docs/MODEL-MOCK.md).
+Returns [Model Mock](/docs/model-mock.md).

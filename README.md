@@ -30,7 +30,7 @@ TaskStub.findById(1234, (err, task) => {
 
 To define the behavior of your stub, specify the name of the Mongoose function that needs its behavior to be defined and call `.returns()` on it, e.g. `MyStub.find.returns(error, data)`. For document functions, specify `.prototype` and then the name of the function, e.g. `MyStub.prototype.save.returns(error, data)`. When the function under test calls your stubbed model, the model will return the data that was specified via the model function's callback or via a promise.
 
-This even works with query chains. With a model stub, you don't need to specify the exact query chain that comes after; you just need to define the behavior of top-level model function. Whatever query that comes after it in the system under test will be resolved with the data that you specified. This allows you to write tests that aren't tightly coupled to the implementation of the system under test.
+This even works with query chains. With a model stub, you don't need to specify the exact query chain that comes after; you just need to define the behavior of top-level model function. Whatever query comes after it will be resolved with the data that you specified. This allows you to write tests that aren't tightly coupled to the implementation of the system under test.
 
 ```javascript
 const testgoose = require('testgoose');
@@ -72,7 +72,7 @@ TaskMock.findById(1234, (err, task) => {
 });
 ```
 
-Model mocks work the exact same as model stubs but with one exception: you must use argument matchers to specify the arguments you expect your mock to be called with.
+Model mocks work the exact same as model stubs but with one exception: you must use argument matchers to specify the arguments that you expect your mock to be called with.
 
 To define the behavior of your mock, specify the name of the Mongoose function that needs its behavior defined and call `.withArgs()` on it with the arguments that you expect and then `.returns()` with the data you want the mock to return, e.g. `MyStub.find.withArgs('__v').returns(error, data)`. If the mock is called the exact same way that it was defined, the mock will return the data that was specified. If the mock is invoked in a way that you did not define during the mock setup, the mock will throw an error. This ensures that the system under test uses your mock correctly.
 
@@ -140,7 +140,7 @@ TaskMock.findById(5678)
 
 **We advise that you generally stick to stubs when possible** as mocks tightly couple your tests to the system under test. This is sometimes necessary though in order to assert that the system under test is performing correctly.
 
-At this point in time, the argument matchers must be the exact same as the data that is coming in. In the future, we'd like to also support matchers like `testgoose.match.string` for any string, `testgoose.match.boolean` for any boolean, `testgoose.match.number` for any number, etc. to alleviate the level of coupling between the test and the system under test. Look forward to an update on this in the future.
+At this point in time, the argument matchers must be the exact same as the data that is coming in. In the future, we'd like to also support matchers like `testgoose.match.string` for any string, `testgoose.match.boolean` for any boolean, `testgoose.match.number` for any number, etc. to alleviate the level of coupling. Look forward to an update on this in the future.
 
 ### Documentation
 For more specific information on the available testgoose functions, check out the [docs](/docs).

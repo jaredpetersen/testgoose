@@ -12,7 +12,7 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 ```
 
 
-## find.returns
+## find.returns()
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
 
 ##### Parameters
@@ -37,7 +37,7 @@ ProductStub.find.returns(null, productData);
 ```
 
 
-## findById.returns
+## findById.returns()
 Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
 
 ##### Parameters
@@ -58,7 +58,7 @@ UserStub.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'S
 ```
 
 
-## findByIdAndRemove.returns
+## findByIdAndRemove.returns()
 Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
 
 ##### Parameters
@@ -79,7 +79,7 @@ UserStub.findByIdAndRemove.returns(null, { _id: '507f1f77bcf86cd799439011', firs
 ```
 
 
-## findByIdAndUpdate.returns
+## findByIdAndUpdate.returns()
 Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
 
 ##### Parameters
@@ -100,7 +100,7 @@ UserStub.findByIdAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011', firs
 ```
 
 
-## prototype.save.returns
+## prototype.save.returns()
 Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
 
 ##### Parameters
