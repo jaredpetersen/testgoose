@@ -11,16 +11,16 @@ describe('testgoose', () => {
       const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(null, { name: 'fred' });
 
       // Use the mock like a real model
@@ -44,17 +44,17 @@ describe('testgoose', () => {
       catch(err) {
         const expectedErrorMessage = 'invoked query with incorrect chain: ' +
           '[' +
-            '{"func":"find","matchers":[{"occupation":{}}]},' +
-            '{"func":"where","matchers":["name.last"]},' +
-            '{"func":"equals","matchers":["Ghost"]},' +
-            '{"func":"where","matchers":["age"]},' +
-            '{"func":"gt","matchers":[17]},' +
-            '{"func":"lt","matchers":[66]},' +
-            '{"func":"where","matchers":["likes"]},' +
-            '{"func":"in","matchers":[["vaporizing","talking"]]}' +
-            ',{"func":"limit","matchers":[10]},' +
-            '{"func":"sort","matchers":["-occupation"]},' +
-            '{"func":"select","matchers":["SOMETHING ELSE"]}' +
+            '{"name":"find","args":[{"occupation":{}}]},' +
+            '{"name":"where","args":["name.last"]},' +
+            '{"name":"equals","args":["Ghost"]},' +
+            '{"name":"where","args":["age"]},' +
+            '{"name":"gt","args":[17]},' +
+            '{"name":"lt","args":[66]},' +
+            '{"name":"where","args":["likes"]},' +
+            '{"name":"in","args":[["vaporizing","talking"]]},' +
+            '{"name":"limit","args":[10]},' +
+            '{"name":"sort","args":["-occupation"]},' +
+            '{"name":"select","args":["SOMETHING ELSE"]}' +
           ']';
 
         expect(err.message).to.equal(expectedErrorMessage);
@@ -67,20 +67,19 @@ describe('testgoose', () => {
       const errStub = 'something went wrong';
 
       // Create the Mongoose Model mocks
-
       const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(errStub, null);
 
       const SecondaryModelMock = testgoose.model.mock();
@@ -116,16 +115,16 @@ describe('testgoose', () => {
       const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(errStub, null);
 
       // Use the mock like a real model
@@ -159,44 +158,44 @@ describe('testgoose', () => {
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name sandwich')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
         .returns('moose', null);
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(errStub, null);
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('hero')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('hero')
         .returns('caravan');
 
       // Use the mock like a real model
@@ -227,16 +226,16 @@ describe('testgoose', () => {
       const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(null, dataStub);
 
       // Use the mock like a real model
@@ -270,44 +269,44 @@ describe('testgoose', () => {
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name sandwich')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
         .returns(null, 'moose');
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(null, dataStub);
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name sandwich')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
         .returns(null, 'caravan');
 
       // Use the mock like a real model
@@ -338,16 +337,16 @@ describe('testgoose', () => {
       const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(errStub, null);
 
       // Use the mock like a real model
@@ -382,44 +381,44 @@ describe('testgoose', () => {
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name sandwich')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
         .returns('moose', null);
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(errStub, null);
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('hero')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('hero')
         .returns('caravan');
 
       // Use the mock like a real model
@@ -451,16 +450,16 @@ describe('testgoose', () => {
       const ModelMock = testgoose.model.mock();
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(null, dataStub);
 
       // Use the mock like a real model
@@ -495,44 +494,44 @@ describe('testgoose', () => {
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name sandwich')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
         .returns(null, 'moose');
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name occupation')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
         .returns(null, dataStub);
 
       ModelMock
         .find.withArgs({ occupation: /host/ })
-        .where.withArgs('name.last')
-        .equals.withArgs('Ghost')
-        .where.withArgs('age')
-        .gt.withArgs(17)
-        .lt.withArgs(66)
-        .where.withArgs('likes')
-        .in.withArgs(['vaporizing', 'talking'])
-        .limit.withArgs(10)
-        .sort.withArgs('-occupation')
-        .select.withArgs('name sandwich')
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
         .returns(null, 'caravan');
 
       // Use the mock like a real model
@@ -805,6 +804,64 @@ describe('testgoose', () => {
       // Use the stub like a real query
       const queryStub = new QueryStub();
       return queryStub
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+    });
+  });
+
+  describe('query.mock()', () => {
+    it('mocks the query with multiple mock setups', () => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(null, dataStub);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('saddle')
+        .returns(null, null);
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      return queryMock
         .find({ occupation: /host/ })
         .where('name.last')
         .equals('Ghost')
