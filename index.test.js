@@ -832,8 +832,6 @@ describe('testgoose', () => {
       FirstQueryMock.proto.find.withArgs('piña colada');
       SecondQueryMock.proto.find.withArgs('margarita');
 
-      console.log(JSON.stringify(FirstQueryMock.proto._chains));
-      console.log(JSON.stringify(SecondQueryMock.proto._chains));
       expect(FirstQueryMock.proto).to.not.equal(SecondQueryMock.proto);
       done();
     });
