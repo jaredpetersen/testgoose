@@ -7,6 +7,10 @@ module.exports.model = model;
 
 // TODO Make query directly available as a mock/stub
 const query = {};
-query.mock = () => { return require('./lib/query/query-mock'); };
+query.mock = () => {
+  console.log('requested new mock');
+  delete require.cache[require.resolve('./lib/query/query-mock')]
+  return require('./lib/query/query-mock')
+};
 query.stub = () => { return require('./lib/query/query-stub'); };
 module.exports.query = query;

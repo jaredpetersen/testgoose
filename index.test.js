@@ -825,6 +825,19 @@ describe('testgoose', () => {
   });
 
   describe('query.mock()', () => {
+    it('returns a new query', (done) => {
+      const FirstQueryMock = testgoose.query.mock();
+      const SecondQueryMock = testgoose.query.mock();
+
+      FirstQueryMock.proto.find.withArgs('piña colada');
+      SecondQueryMock.proto.find.withArgs('margarita');
+
+      console.log(JSON.stringify(FirstQueryMock.proto._chains));
+      console.log(JSON.stringify(SecondQueryMock.proto._chains));
+      expect(FirstQueryMock.proto).to.not.equal(SecondQueryMock.proto);
+      done();
+    });
+
     it('mocks the query with multiple mock setups', () => {
       // Setup our stubs
       const dataStub = { name: 'fred' };
@@ -878,6 +891,47 @@ describe('testgoose', () => {
         })
         .catch(() => {
           expect.fail();
+        });
+    });
+
+    it('mocks the callback err with a single long chain definition', (done) => {
+      // Setup our stubs
+      const errStub = 'something went wrong';
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(errStub, null);
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .exec((err, data) => {
+          expect(err).to.equal(errStub);
+          expect(data).to.be.null;
+          done();
         });
     });
   });
