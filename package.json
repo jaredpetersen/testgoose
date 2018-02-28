@@ -22,7 +22,6 @@
   "scripts": {
     "install:all": "npm install && node scripts/examplesinstall.js",
     "test": "mocha index.test.js lib/* --recursive",
-    "test:model": "mocha lib/model/model-mock.test.js",
     "test:coverage": "nyc npm test",
     "test:all": "mocha index.test.js lib/* examples/*/test/* --recursive",
     "test:all:coverage": "nyc npm run test:all",

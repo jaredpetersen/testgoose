@@ -932,5 +932,420 @@ describe('testgoose', () => {
           done();
         });
     });
+
+    it('mocks the callback err with multiple long query chain definitions', (done) => {
+      // Setup our stubs
+      const errStub = 'something went wrong';
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+
+      // Setup our chain definitions
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
+        .returns('moose', null);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(errStub, null);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('hero')
+        .returns('caravan');
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .exec((err, data) => {
+          expect(err).to.equal(errStub);
+          expect(data).to.be.null;
+          done();
+        });
+    });
+
+    it('mocks the callback data with a single long query chain definition', (done) => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(null, dataStub);
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .exec((err, data) => {
+          expect(err).to.be.null;
+          expect(data).to.equal(dataStub);
+          done();
+        });
+    });
+
+    it('mocks the callback data with multiple long query chain definitions', (done) => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+
+      // Setup our chain definitions
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
+        .returns(null, 'moose');
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(null, dataStub);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
+        .returns(null, 'caravan');
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .exec((err, data) => {
+          expect(err).to.be.null;
+          expect(data).to.equal(dataStub);
+          done();
+        });
+    });
+
+    it('mocks the promise err with a single long query chain definition', () => {
+      // Setup our stubs
+      const errStub = 'something went wrong';
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(errStub, null);
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      return queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(() => {
+          expect.fail();
+        })
+        .catch(err => {
+          expect(err).to.deep.equal(errStub);
+        });
+    });
+
+    it('mocks the promise err with multiple long query chain definitions', () => {
+      // Setup our stubs
+      const errStub = 'something went wrong';
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+
+      // Setup our chain definitions
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
+        .returns('moose', null);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(errStub, null);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('hero')
+        .returns('caravan');
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      return queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(() => {
+          expect.fail();
+        })
+        .catch(err => {
+          expect(err).to.deep.equal(errStub);
+        });
+    });
+
+    it('mocks the promise data with a single long query chain definition', () => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(null, dataStub);
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      return queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+    });
+
+    it('mocks the promise data with multiple long query chain definitions', () => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+
+      // Setup our chain definitions
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
+        .returns(null, 'moose');
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name occupation')
+        .returns(null, dataStub);
+
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('name sandwich')
+        .returns(null, 'caravan');
+
+      // Use the mock like a real query
+      const queryMock = new QueryMock();
+      return queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+    });
   });
 });
