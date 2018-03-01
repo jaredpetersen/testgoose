@@ -14,7 +14,8 @@
     "stub",
     "test",
     "unit test",
-    "model"
+    "model",
+    "query"
   ],
   "engines": {
     "node": ">=6.0.0"
