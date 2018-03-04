@@ -16,7 +16,7 @@ You must specify `withArgs()` on each function that you expect the mock to be ca
 The mock will throw an error in the system under test if it is invoked differently than what was specified.
 
 
-## find.withArgs()...returns()
+## static.find.withArgs()...returns()
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
 
 ##### Parameters
@@ -27,7 +27,7 @@ Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/a
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
-ProductMock.find.withArgs({name: 'banana'}).returns(new Error('something bad happened'), null);
+ProductMock.static.find.withArgs({name: 'banana'}).returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
@@ -37,17 +37,20 @@ const productData = [
   { _id: '507f191e810c19729de860ea', name: 'banana' },
   { _id: '5a16602357c05c3a06a4dca8', name: 'orange' }
 ];
-ProductMock.find.withArgs().returns(null, productData);
+ProductMock.static.find.withArgs().returns(null, productData);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
-ProductMock.find.withArgs({name: 'banana'}).sort.withArgs('-name').returns(new Error('something bad happened'), null);
+ProductMock
+  .static.find.withArgs({name: 'banana'})
+  .proto.sort.withArgs('-name')
+  .returns(new Error('something bad happened'), null);
 ```
 
 
-## findById.withArgs()...returns()
+## static.findById.withArgs()...returns()
 Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
 
 ##### Parameters
@@ -58,24 +61,27 @@ Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/do
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
-UserMock.findById.withArgs(1234).returns(new Error('something bad happened'), null);
+UserMock.static.findById.withArgs(1234).returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const dataStub = { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' };
 const UserMock = testgoose.model.mock();
-UserMock.findById.withArgs(dataStub._id).returns(null, dataStub);
+UserMock.static.findById.withArgs(dataStub._id).returns(null, dataStub);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
-UserMock.findById.withArgs('507f1f77bcf86cd799439011').select.withArgs('firstName').returns(null, { firstName: 'Sally' });
+UserMock
+  .static.findById.withArgs('507f1f77bcf86cd799439011')
+  .proto.select.withArgs('firstName')
+  .returns(null, { firstName: 'Sally' });
 ```
 
 
-## findByIdAndRemove.withArgs()...returns()
+## static.findByIdAndRemove.withArgs()...returns()
 Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
 
 ##### Parameters
@@ -86,14 +92,14 @@ Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoose
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
-UserMock.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011').returns(new Error('something bad happened'), null);
+UserMock.static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011').returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
 UserMock
-  .findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
+  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
   .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
@@ -101,13 +107,13 @@ UserMock
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
 UserMock
-  .findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
-  .select.withArgs('firstName')
+  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
+  .proto.select.withArgs('firstName')
   .returns(null, { firstName: 'Sally' });
 ```
 
 
-## findByIdAndUpdate.withArgs()...returns()
+## static.findByIdAndUpdate.withArgs()...returns()
 Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
 
 ##### Parameters
@@ -119,7 +125,7 @@ Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoose
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
 UserMock
-  .findByIdAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Samuel' })
+  .static.findByIdAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Samuel' })
   .returns(new Error('something bad happened'), null);
 ```
 
@@ -127,7 +133,7 @@ UserMock
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
 UserMock
-  .findByIdAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Samuel' })
+  .static.findByIdAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Samuel' })
   .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Samuel', lastName: 'Saltwater' });
 ```
 
@@ -135,13 +141,13 @@ UserMock
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
 UserMock
-  .findByIdAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Samuel' })
-  .select.withArgs('firstName')
+  .static.findByIdAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Samuel' })
+  .proto.select.withArgs('firstName')
   .returns(null, { firstName: 'Samuel' });
 ```
 
 
-## prototype.save.withArgs()...returns()
+## proto.prototype.save.withArgs()...returns()
 Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save).
 
 ##### Parameters
@@ -152,11 +158,11 @@ Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/a
 ```javascript
 const testgoose = require('testgoose');
 const CarMock = testgoose.model.mock();
-CarMock.prototype.save.withArgs().returns(new Error('something bad happened'), null);
+CarMock.proto.save.withArgs().returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const TaskMock = testgoose.model.mock();
-CarMock.prototype.save.withArgs().returns(null, { vin: '1B7HC16Z6SS365053', color: 'viper red' });
+CarMock.proto.save.withArgs().returns(null, { vin: '1B7HC16Z6SS365053', color: 'viper red' });
 ```
