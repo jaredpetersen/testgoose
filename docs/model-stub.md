@@ -12,7 +12,7 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 ```
 
 
-## find.returns()
+## static.find.returns()
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
 
 ##### Parameters
@@ -23,7 +23,7 @@ Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/a
 ```javascript
 const testgoose = require('testgoose');
 const ProductStub = testgoose.model.stub();
-ProductStub.find.returns(new Error('something bad happened'), null);
+ProductStub.static.find.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
@@ -33,11 +33,11 @@ const productData = [
   { _id: '507f191e810c19729de860ea', name: 'banana' },
   { _id: '5a16602357c05c3a06a4dca8', name: 'orange' }
 ];
-ProductStub.find.returns(null, productData);
+ProductStub.static.find.returns(null, productData);
 ```
 
 
-## findById.returns()
+## static.findById.returns()
 Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
 
 ##### Parameters
@@ -48,17 +48,17 @@ Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/do
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.findById.returns(new Error('something bad happened'), null);
+UserStub.static.findById.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+UserStub.static.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
 
-## findByIdAndRemove.returns()
+## static.findByIdAndRemove.returns()
 Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
 
 ##### Parameters
@@ -69,17 +69,19 @@ Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoose
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.findByIdAndRemove.returns(new Error('something bad happened'), null);
+UserStub.static.findByIdAndRemove.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.findByIdAndRemove.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+UserStub
+  .static.findByIdAndRemove
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
 
-## findByIdAndUpdate.returns()
+## static.findByIdAndUpdate.returns()
 Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
 
 ##### Parameters
@@ -90,17 +92,21 @@ Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoose
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.findByIdAndUpdate.returns(new Error('something bad happened'), null);
+UserStub
+  .static.findByIdAndUpdate
+  .returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.findByIdAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+UserStub
+  .static.findByIdAndUpdate
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
 
-## prototype.save.returns()
+## proto.save.returns()
 Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
 
 ##### Parameters
@@ -111,17 +117,17 @@ Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/a
 ```javascript
 const testgoose = require('testgoose');
 const CarStub = testgoose.model.stub();
-CarStub.prototype.save.returns(new Error('something bad happened'), null);
+CarStub.proto.save.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const TaskStub = testgoose.model.stub();
-CarStub.prototype.save.returns(null, { vin: '1B7HC16Z6SS365053', color: 'viper red' });
+CarStub.proto.save.returns(null, { vin: '1B7HC16Z6SS365053', color: 'viper red' });
 ```
 
 ```javascript
 const testgoose = require('testgoose');
 const TaskStub = testgoose.model.stub();
-CarStub.prototype.save.returns();
+CarStub.proto.save.returns();
 ```

@@ -92,7 +92,9 @@ Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoose
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
-UserMock.static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011').returns(new Error('something bad happened'), null);
+UserMock
+  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
+  .returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
