@@ -704,126 +704,6 @@ describe('testgoose', () => {
     });
   });
 
-  describe('query.stub()', () => {
-    it('stubs the callback err with a long query chain', (done) => {
-      // Setup our stubs
-      const errStub = 'something went wrong';
-
-      // Create a Mongoose Query stub
-      const QueryStub = testgoose.query.stub();
-      QueryStub.returns(errStub, null);
-
-      // Use the stub like a real query
-      const queryStub = new QueryStub();
-      queryStub
-        .find({ occupation: /host/ })
-        .where('name.last')
-        .equals('Ghost')
-        .where('age')
-        .gt(17)
-        .lt(66)
-        .where('likes')
-        .in(['vaporizing', 'talking'])
-        .limit(10)
-        .sort('-occupation')
-        .select('name occupation')
-        .exec((err, data) => {
-          expect(err).to.equal(errStub);
-          expect(data).to.be.null;
-          done();
-        });
-    });
-
-    it('stubs the callback data with a long query chain', (done) => {
-      // Setup our stubs
-      const dataStub = { name: 'fred' };
-
-      // Create a Mongoose Query stub
-      const QueryStub = testgoose.query.stub();
-      QueryStub.returns(null, dataStub);
-
-      // Use the stub like a real query
-      const queryStub = new QueryStub();
-      queryStub
-        .find({ occupation: /host/ })
-        .where('name.last')
-        .equals('Ghost')
-        .where('age')
-        .gt(17)
-        .lt(66)
-        .where('likes')
-        .in(['vaporizing', 'talking'])
-        .limit(10)
-        .sort('-occupation')
-        .select('name occupation')
-        .exec((err, data) => {
-          expect(err).to.be.null;
-          expect(data).to.equal(dataStub);
-          done();
-        });
-    });
-
-    it('stubs the promise err with a long query chain', () => {
-      // Setup our stubs
-      const errStub = 'something went wrong';
-
-      // Create a Mongoose Query stub
-      const QueryStub = testgoose.query.stub();
-      QueryStub.returns(errStub, null);
-
-      // Use the stub like a real query
-      const queryStub = new QueryStub();
-      return queryStub
-        .find({ occupation: /host/ })
-        .where('name.last')
-        .equals('Ghost')
-        .where('age')
-        .gt(17)
-        .lt(66)
-        .where('likes')
-        .in(['vaporizing', 'talking'])
-        .limit(10)
-        .sort('-occupation')
-        .select('name occupation')
-        .then(() => {
-          expect.fail();
-        })
-        .catch(err => {
-          expect(err).to.deep.equal(errStub);
-        });
-    });
-
-    it('stubs the promise data with a long query chain', () => {
-      // Setup our stubs
-      const dataStub = { name: 'fred' };
-
-      // Create a Mongoose Query stub
-      const QueryStub = testgoose.query.stub();
-      QueryStub.returns(null, dataStub);
-
-      // Use the stub like a real query
-      const queryStub = new QueryStub();
-      return queryStub
-        .find({ occupation: /host/ })
-        .where('name.last')
-        .equals('Ghost')
-        .where('age')
-        .gt(17)
-        .lt(66)
-        .where('likes')
-        .in(['vaporizing', 'talking'])
-        .limit(10)
-        .sort('-occupation')
-        .select('name occupation')
-        .then(doc => {
-          expect(doc).to.deep.equal(dataStub);
-        })
-        .catch(() => {
-          expect.fail();
-        });
-    });
-  });
-
   describe('query.mock()', () => {
     it('returns a new query', (done) => {
       const FirstQueryMock = testgoose.query.mock();
@@ -1329,6 +1209,126 @@ describe('testgoose', () => {
       // Use the mock like a real query
       const queryMock = new QueryMock();
       return queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+    });
+  });
+
+  describe('query.stub()', () => {
+    it('stubs the callback err with a long query chain', (done) => {
+      // Setup our stubs
+      const errStub = 'something went wrong';
+
+      // Create a Mongoose Query stub
+      const QueryStub = testgoose.query.stub();
+      QueryStub.returns(errStub, null);
+
+      // Use the stub like a real query
+      const queryStub = new QueryStub();
+      queryStub
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .exec((err, data) => {
+          expect(err).to.equal(errStub);
+          expect(data).to.be.null;
+          done();
+        });
+    });
+
+    it('stubs the callback data with a long query chain', (done) => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query stub
+      const QueryStub = testgoose.query.stub();
+      QueryStub.returns(null, dataStub);
+
+      // Use the stub like a real query
+      const queryStub = new QueryStub();
+      queryStub
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .exec((err, data) => {
+          expect(err).to.be.null;
+          expect(data).to.equal(dataStub);
+          done();
+        });
+    });
+
+    it('stubs the promise err with a long query chain', () => {
+      // Setup our stubs
+      const errStub = 'something went wrong';
+
+      // Create a Mongoose Query stub
+      const QueryStub = testgoose.query.stub();
+      QueryStub.returns(errStub, null);
+
+      // Use the stub like a real query
+      const queryStub = new QueryStub();
+      return queryStub
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('name occupation')
+        .then(() => {
+          expect.fail();
+        })
+        .catch(err => {
+          expect(err).to.deep.equal(errStub);
+        });
+    });
+
+    it('stubs the promise data with a long query chain', () => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query stub
+      const QueryStub = testgoose.query.stub();
+      QueryStub.returns(null, dataStub);
+
+      // Use the stub like a real query
+      const queryStub = new QueryStub();
+      return queryStub
         .find({ occupation: /host/ })
         .where('name.last')
         .equals('Ghost')
