@@ -10,7 +10,7 @@ describe('testgoose', () => {
       // Create a Mongoose Model mock
       const ModelMock = testgoose.model.mock();
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -69,7 +69,7 @@ describe('testgoose', () => {
       // Create the Mongoose Model mocks
       const ModelMock = testgoose.model.mock();
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -84,7 +84,7 @@ describe('testgoose', () => {
 
       const SecondaryModelMock = testgoose.model.mock();
       SecondaryModelMock
-        .find.withArgs('fish')
+        .static.find.withArgs('fish')
         .returns(null, null);
 
       // Use the mock like a real model
@@ -114,7 +114,7 @@ describe('testgoose', () => {
       // Create a Mongoose Model mock
       const ModelMock = testgoose.model.mock();
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -157,7 +157,7 @@ describe('testgoose', () => {
       // Setup our chain definitions
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -171,7 +171,7 @@ describe('testgoose', () => {
         .returns('moose', null);
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -185,7 +185,7 @@ describe('testgoose', () => {
         .returns(errStub, null);
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -225,7 +225,7 @@ describe('testgoose', () => {
       // Create a Mongoose Model mock
       const ModelMock = testgoose.model.mock();
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -268,7 +268,7 @@ describe('testgoose', () => {
       // Setup our chain definitions
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -282,7 +282,7 @@ describe('testgoose', () => {
         .returns(null, 'moose');
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -296,7 +296,7 @@ describe('testgoose', () => {
         .returns(null, dataStub);
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -336,7 +336,7 @@ describe('testgoose', () => {
       // Create a Mongoose Model mock
       const ModelMock = testgoose.model.mock();
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -380,7 +380,7 @@ describe('testgoose', () => {
       // Setup our chain definitions
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -394,7 +394,7 @@ describe('testgoose', () => {
         .returns('moose', null);
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -408,7 +408,7 @@ describe('testgoose', () => {
         .returns(errStub, null);
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -449,7 +449,7 @@ describe('testgoose', () => {
       // Create a Mongoose Model mock
       const ModelMock = testgoose.model.mock();
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -493,7 +493,7 @@ describe('testgoose', () => {
       // Setup our chain definitions
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -507,7 +507,7 @@ describe('testgoose', () => {
         .returns(null, 'moose');
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -521,7 +521,7 @@ describe('testgoose', () => {
         .returns(null, dataStub);
 
       ModelMock
-        .find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: /host/ })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -564,10 +564,10 @@ describe('testgoose', () => {
       // Create the Mongoose Model stubs
 
       const ModelStub = testgoose.model.stub();
-      ModelStub.find.returns(errStub, null);
+      ModelStub.static.find.returns(errStub, null);
 
       const SecondaryModelStub = testgoose.model.stub();
-      SecondaryModelStub.find.returns(null, null);
+      SecondaryModelStub.static.find.returns(null, null);
 
       // Use the stub like a real model
       ModelStub
@@ -595,7 +595,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Model stub
       const ModelStub = testgoose.model.stub();
-      ModelStub.find.returns(errStub, null);
+      ModelStub.static.find.returns(errStub, null);
 
       // Use the stub like a real model
       ModelStub
@@ -623,7 +623,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Model stub
       const ModelStub = testgoose.model.stub();
-      ModelStub.find.returns(null, dataStub);
+      ModelStub.static.find.returns(null, dataStub);
 
       // Use the stub like a real model
       ModelStub
@@ -651,7 +651,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Model stub
       const ModelStub = testgoose.model.stub();
-      ModelStub.find.returns(errStub, null);
+      ModelStub.static.find.returns(errStub, null);
 
       // Use the stub like a real model
       return ModelStub
@@ -680,7 +680,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Model mock
       const ModelStub = testgoose.model.stub();
-      ModelStub.find.returns(null, dataStub);
+      ModelStub.static.find.returns(null, dataStub);
 
       // Use the stub like a real model
       return ModelStub
