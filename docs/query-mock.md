@@ -5,10 +5,10 @@ Mock of Mongoose [Query](http://mongoosejs.com/docs/api.html#query-js). This is 
 const proxyquire = require('proxyquire').noCallThru();
 const testgoose = require('testgoose');
 
-const TaskMock = testgoose.query.mock();
+const QueryMock = testgoose.query.mock();
 // Define mock behavior
 
-const taskController = proxyquire('mongoose', { '../models/task': TaskMock } );
+const taskController = proxyquire('../controllers/task', { 'mongoose': { Query: QueryMock } });
 // Call the function under test and make assertions
 ```
 
