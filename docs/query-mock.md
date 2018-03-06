@@ -23,12 +23,15 @@ Add [Query.$where](http://mongoosejs.com/docs/api.html#query_Query-$where) to th
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
 const ProductQueryMock = testgoose.query.mock();
 ProductQueryMock
-  .proto.$where.withArgs('() => { return this.comments.length === 10 || this.name.length === 5; }')
+  .proto.$where.withArgs('() => { return false; }')
   .returns(new Error('something bad happened'), null);
 ```
 
@@ -58,6 +61,9 @@ Add [Query.where](http://mongoosejs.com/docs/api.html#query_Query-where) to the 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -85,6 +91,9 @@ Add [Query.equals](http://mongoosejs.com/docs/api.html#query_Query-equals) to th
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -102,6 +111,9 @@ Add [Query.or](http://mongoosejs.com/docs/api.html#query_Query-or) to the mock a
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -117,6 +129,9 @@ Add [Query.nor](http://mongoosejs.com/docs/api.html#query_Query-nor) to the mock
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -134,6 +149,9 @@ Add [Query.and](http://mongoosejs.com/docs/api.html#query_Query-and) to the mock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -149,6 +167,9 @@ Add [Query.gt](http://mongoosejs.com/docs/api.html#query_Query-gt) to the mock a
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -177,6 +198,9 @@ Add [Query.gte](http://mongoosejs.com/docs/api.html#query_Query-gte) to the mock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -204,12 +228,18 @@ Add [Query.lt](http://mongoosejs.com/docs/api.html#query_Query-lt) to the mock a
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.lte.withArgs()
 Add [Query.lte](http://mongoosejs.com/docs/api.html#query_Query-lte) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 
 ## proto.ne.withArgs()
@@ -218,12 +248,18 @@ Add [Query.ne](http://mongoosejs.com/docs/api.html#query_Query-ne) to the mock a
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.in.withArgs()
 Add [Query.in](http://mongoosejs.com/docs/api.html#query_Query-in) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 
 ## proto.nin.withArgs()
@@ -232,12 +268,18 @@ Add [Query.nin](http://mongoosejs.com/docs/api.html#query_Query-nin) to the mock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.all.withArgs()
 Add [Query.all](http://mongoosejs.com/docs/api.html#query_Query-all) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 
 ## proto.size.withArgs()
@@ -246,12 +288,18 @@ Add [Query.size](http://mongoosejs.com/docs/api.html#query_Query-size) to the mo
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.regex.withArgs()
 Add [Query.regex](http://mongoosejs.com/docs/api.html#query_Query-regex) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 
 ## proto.maxDistance.withArgs()
@@ -260,12 +308,18 @@ Add [Query.maxDistance](http://mongoosejs.com/docs/api.html#query_Query-maxDista
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.mod.withArgs()
 Add [Query.mod](http://mongoosejs.com/docs/api.html#query_Query-mod) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -283,6 +337,9 @@ Add [Query.exists](http://mongoosejs.com/docs/api.html#query_Query-exists) to th
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -310,6 +367,9 @@ Add [Query.elemMatch](http://mongoosejs.com/docs/api.html#query_Query-mod) to th
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -325,6 +385,9 @@ Add [Query.within](http://mongoosejs.com/docs/api.html#query_Query-within) to th
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -343,6 +406,9 @@ Add [Query.slice](http://mongoosejs.com/docs/api.html#query_Query-slice) to the 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -359,6 +425,9 @@ Add [Query.limit](http://mongoosejs.com/docs/api.html#query_Query-limit) to the 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -374,6 +443,9 @@ Add [Query.skip](http://mongoosejs.com/docs/api.html#query_Query-skip) to the mo
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -392,6 +464,9 @@ Add [Query.maxScan](http://mongoosejs.com/docs/api.html#query_Query-maxScan) to 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -407,6 +482,9 @@ Add [Query.batchSize](http://mongoosejs.com/docs/api.html#query_Query-batchSize)
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -424,6 +502,9 @@ Add [Query.comment](http://mongoosejs.com/docs/api.html#query_Query-comment) to 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -439,6 +520,9 @@ Add [Query.snapshot](http://mongoosejs.com/docs/api.html#query_Query-snapshot) t
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -456,6 +540,9 @@ Add [Query.hint](http://mongoosejs.com/docs/api.html#query_Query-hint) to the mo
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -471,6 +558,9 @@ Add [Query.select](http://mongoosejs.com/docs/api.html#query_Query-select) to th
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -488,6 +578,9 @@ ProductQueryMock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -503,6 +596,9 @@ Add [Query.read](http://mongoosejs.com/docs/api.html#query_Query-read) to the mo
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -520,12 +616,18 @@ Add [Query.merge](http://mongoosejs.com/docs/api.html#query_Query-merge) to the 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.lean.withArgs()
 Add [Query.lean](http://mongoosejs.com/docs/api.html#query_Query-lean) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -542,6 +644,9 @@ Add [Query.find](http://mongoosejs.com/docs/api.html#query_Query-find) to the mo
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -562,12 +667,18 @@ Add [Query.collation](http://mongoosejs.com/docs/api.html#query_Query-collation)
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.findOne.withArgs()
 Add [Query.findOne](http://mongoosejs.com/docs/api.html#query_Query-findOne) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -585,6 +696,9 @@ Add [Query.count](http://mongoosejs.com/docs/api.html#query_Query-count) to the 
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -600,6 +714,9 @@ Add [Query.distinct](http://mongoosejs.com/docs/api.html#query_Query-distinct) t
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -617,6 +734,9 @@ Add [Query.sort](http://mongoosejs.com/docs/api.html#query_Query-sort) to the mo
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -632,6 +752,9 @@ Add [Query.remove](http://mongoosejs.com/docs/api.html#query_Query-remove) to th
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -649,6 +772,9 @@ Add [Query.deleteOne](http://mongoosejs.com/docs/api.html#query_Query-deleteOne)
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -664,6 +790,9 @@ Add [Query.deleteMany](http://mongoosejs.com/docs/api.html#query_Query-deleteMan
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -681,6 +810,9 @@ Add [Query.findOneAndUpdate](http://mongoosejs.com/docs/api.html#query_Query-fin
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.findOneAndRemove.withArgs()
 Add [Query.findOneAndRemove](http://mongoosejs.com/docs/api.html#query_Query-findOneAndRemove) to the mock assertion chain with argument matchers.
@@ -688,12 +820,18 @@ Add [Query.findOneAndRemove](http://mongoosejs.com/docs/api.html#query_Query-fin
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.update.withArgs()
 Add [Query.update](http://mongoosejs.com/docs/api.html#query_Query-update) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -711,12 +849,18 @@ Add [Query.updateMany](http://mongoosejs.com/docs/api.html#query_Query-updateMan
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.updateOne.withArgs()
 Add [Query.updateOne](http://mongoosejs.com/docs/api.html#query_Query-updateOne) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 
 ## proto.replaceOne.withArgs()
@@ -725,12 +869,18 @@ Add [Query.replaceOne](http://mongoosejs.com/docs/api.html#query_Query-replaceOn
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.populate.withArgs()
 Add [Query.populate](http://mongoosejs.com/docs/api.html#query_Query-populate) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -748,12 +898,18 @@ CarQueryMock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.intersects.withArgs()
 Add [Query.intersects](http://mongoosejs.com/docs/api.html#query_Query-intersects) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -771,6 +927,9 @@ Add [Query.geometry](http://mongoosejs.com/docs/api.html#query_Query-geometry) t
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -790,6 +949,9 @@ Add [Query.near](http://mongoosejs.com/docs/api.html#query_Query-near) to the mo
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -807,12 +969,18 @@ GeoQueryMock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.polygon.withArgs()
 Add [Query.polygon](http://mongoosejs.com/docs/api.html#query_Query-polygon) to the mock assertion chain with argument matchers.
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -832,6 +1000,9 @@ Add [Query.box](http://mongoosejs.com/docs/api.html#query_Query-box) to the mock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 ### Example
 ```javascript
 const testgoose = require('testgoose');
@@ -849,6 +1020,9 @@ Add [Query.circle](http://mongoosejs.com/docs/api.html#query_Query-circle) to th
 
 ### Parameters
 Any
+
+### Returns
+`Query.proto`
 
 ### Example
 ```javascript
@@ -868,6 +1042,9 @@ GeoQueryMock
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
+
 
 ## proto.centerSphere.withArgs()
 *DEPRECATED* Add [Query.centerSphere](http://mongoosejs.com/docs/api.html#query_Query-centerSphere) to the mock assertion chain with argument matchers.
@@ -875,10 +1052,16 @@ Any
 ### Parameters
 Any
 
+### Returns
+`Query.proto`
 
-## ....withArgs().returns()
-Specify the data that the mock assertion chain should return. Can only be called on one of the supported assertion functions, e.g. `proto.$where.withArgs()`, `proto.find.withArgs()`, etc.
+
+## proto.returns()
+Specify the data that the mock assertion chain should return. Should only be called after setting up the assertion chain, e.g. `proto.$where.withArgs().returns()`, `proto.find.withArgs().proto.where.withArgs().returns()`, etc.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the Query Mock
 - `data` **???** data to be returned by the Query Mock that should vary by the query
+
+### Returns
+[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
