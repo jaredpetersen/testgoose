@@ -13,7 +13,7 @@ const taskController = proxyquire('../controllers/task', { 'mongoose': { Query: 
 ```
 
 
-## returns()
+## proto.returns()
 Specify the data that the stub should return.
 
 ### Parameters
@@ -27,7 +27,7 @@ Specify the data that the stub should return.
 ```javascript
 const testgoose = require('testgoose');
 const ProductQueryMock = testgoose.query.stub();
-ProductQueryMock.returns(new Error('something bad happened'), null);
+ProductQueryMock.proto.returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
@@ -37,5 +37,5 @@ const productData = [
   { _id: '507f191e810c19729de860ea', name: 'banana' },
   { _id: '5a16602357c05c3a06a4dca8', name: 'orange' }
 ];
-ProductQueryMock.returns(null, productData);
+ProductQueryMock.proto.returns(null, productData);
 ```

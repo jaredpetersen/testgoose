@@ -1236,7 +1236,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Query stub
       const QueryStub = testgoose.query.stub();
-      QueryStub.returns(errStub, null);
+      QueryStub.proto.returns(errStub, null);
 
       // Use the stub like a real query
       const queryStub = new QueryStub();
@@ -1265,7 +1265,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Query stub
       const QueryStub = testgoose.query.stub();
-      QueryStub.returns(null, dataStub);
+      QueryStub.proto.returns(null, dataStub);
 
       // Use the stub like a real query
       const queryStub = new QueryStub();
@@ -1294,7 +1294,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Query stub
       const QueryStub = testgoose.query.stub();
-      QueryStub.returns(errStub, null);
+      QueryStub.proto.returns(errStub, null);
 
       // Use the stub like a real query
       const queryStub = new QueryStub();
@@ -1324,7 +1324,7 @@ describe('testgoose', () => {
 
       // Create a Mongoose Query stub
       const QueryStub = testgoose.query.stub();
-      QueryStub.returns(null, dataStub);
+      QueryStub.proto.returns(null, dataStub);
 
       // Use the stub like a real query
       const queryStub = new QueryStub();
