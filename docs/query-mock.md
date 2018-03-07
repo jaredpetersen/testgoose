@@ -24,7 +24,7 @@ Add [Query.prototype.$where](http://mongoosejs.com/docs/api.html#query_Query-$wh
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -62,7 +62,7 @@ Add [Query.prototype.where](http://mongoosejs.com/docs/api.html#query_Query-wher
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -92,7 +92,7 @@ Add [Query.prototype.equals](http://mongoosejs.com/docs/api.html#query_Query-equ
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -112,7 +112,7 @@ Add [Query.prototype.or](http://mongoosejs.com/docs/api.html#query_Query-or) to 
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -131,7 +131,7 @@ Add [Query.prototype.nor](http://mongoosejs.com/docs/api.html#query_Query-nor) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -150,7 +150,7 @@ Add [Query.prototype.and](http://mongoosejs.com/docs/api.html#query_Query-and) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -169,7 +169,7 @@ Add [Query.prototype.gt](http://mongoosejs.com/docs/api.html#query_Query-gt) to 
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -199,7 +199,7 @@ Add [Query.prototype.gte](http://mongoosejs.com/docs/api.html#query_Query-gte) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -229,7 +229,7 @@ Add [Query.prototype.lt](http://mongoosejs.com/docs/api.html#query_Query-lt) to 
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.lte.withArgs()`
@@ -239,7 +239,7 @@ Add [Query.prototype.lte](http://mongoosejs.com/docs/api.html#query_Query-lte) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.ne.withArgs()`
@@ -249,7 +249,7 @@ Add [Query.prototype.ne](http://mongoosejs.com/docs/api.html#query_Query-ne) to 
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.in.withArgs()`
@@ -259,7 +259,7 @@ Add [Query.prototype.in](http://mongoosejs.com/docs/api.html#query_Query-in) to 
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.nin.withArgs()`
@@ -269,7 +269,7 @@ Add [Query.prototype.nin](http://mongoosejs.com/docs/api.html#query_Query-nin) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.all.withArgs()`
@@ -279,7 +279,7 @@ Add [Query.prototype.all](http://mongoosejs.com/docs/api.html#query_Query-all) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.size.withArgs()`
@@ -289,7 +289,7 @@ Add [Query.prototype.size](http://mongoosejs.com/docs/api.html#query_Query-size)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.regex.withArgs()`
@@ -299,7 +299,7 @@ Add [Query.prototype.regex](http://mongoosejs.com/docs/api.html#query_Query-rege
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.maxDistance.withArgs()`
@@ -309,7 +309,7 @@ Add [Query.prototype.maxDistance](http://mongoosejs.com/docs/api.html#query_Quer
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.mod.withArgs()`
@@ -319,7 +319,7 @@ Add [Query.prototype.mod](http://mongoosejs.com/docs/api.html#query_Query-mod) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -339,7 +339,7 @@ Add [Query.prototype.exists](http://mongoosejs.com/docs/api.html#query_Query-exi
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -368,7 +368,7 @@ Add [Query.prototype.elemMatch](http://mongoosejs.com/docs/api.html#query_Query-
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -387,7 +387,7 @@ Add [Query.prototype.within](http://mongoosejs.com/docs/api.html#query_Query-wit
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -407,7 +407,7 @@ Add [Query.prototype.slice](http://mongoosejs.com/docs/api.html#query_Query-slic
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -426,7 +426,7 @@ Add [Query.prototype.limit](http://mongoosejs.com/docs/api.html#query_Query-limi
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -445,7 +445,7 @@ Add [Query.prototype.skip](http://mongoosejs.com/docs/api.html#query_Query-skip)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -465,7 +465,7 @@ Add [Query.prototype.maxScan](http://mongoosejs.com/docs/api.html#query_Query-ma
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -484,7 +484,7 @@ Add [Query.prototype.batchSize](http://mongoosejs.com/docs/api.html#query_Query-
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -503,7 +503,7 @@ Add [Query.prototype.comment](http://mongoosejs.com/docs/api.html#query_Query-co
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -522,7 +522,7 @@ Add [Query.prototype.snapshot](http://mongoosejs.com/docs/api.html#query_Query-s
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -541,7 +541,7 @@ Add [Query.prototype.hint](http://mongoosejs.com/docs/api.html#query_Query-hint)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -560,7 +560,7 @@ Add [Query.prototype.select](http://mongoosejs.com/docs/api.html#query_Query-sel
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -579,7 +579,7 @@ ProductQueryMock
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -598,7 +598,7 @@ Add [Query.prototype.read](http://mongoosejs.com/docs/api.html#query_Query-read)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -617,7 +617,7 @@ Add [Query.prototype.merge](http://mongoosejs.com/docs/api.html#query_Query-merg
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.lean.withArgs()`
@@ -627,7 +627,7 @@ Add [Query.prototype.lean](http://mongoosejs.com/docs/api.html#query_Query-lean)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -646,7 +646,7 @@ Add [Query.prototype.find](http://mongoosejs.com/docs/api.html#query_Query-find)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -668,7 +668,7 @@ Add [Query.prototype.collation](http://mongoosejs.com/docs/api.html#query_Query-
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.findOne.withArgs()`
@@ -678,7 +678,7 @@ Add [Query.prototype.findOne](http://mongoosejs.com/docs/api.html#query_Query-fi
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -697,7 +697,7 @@ Add [Query.prototype.count](http://mongoosejs.com/docs/api.html#query_Query-coun
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -716,7 +716,7 @@ Add [Query.prototype.distinct](http://mongoosejs.com/docs/api.html#query_Query-d
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -735,7 +735,7 @@ Add [Query.prototype.sort](http://mongoosejs.com/docs/api.html#query_Query-sort)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -754,7 +754,7 @@ Add [Query.prototype.remove](http://mongoosejs.com/docs/api.html#query_Query-rem
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -773,7 +773,7 @@ Add [Query.prototype.deleteOne](http://mongoosejs.com/docs/api.html#query_Query-
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -792,7 +792,7 @@ Add [Query.prototype.deleteMany](http://mongoosejs.com/docs/api.html#query_Query
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -811,7 +811,7 @@ Add [Query.prototype.findOneAndUpdate](http://mongoosejs.com/docs/api.html#query
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.findOneAndRemove.withArgs()`
@@ -821,7 +821,7 @@ Add [Query.prototype.findOneAndRemove](http://mongoosejs.com/docs/api.html#query
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.update.withArgs()`
@@ -831,7 +831,7 @@ Add [Query.prototype.update](http://mongoosejs.com/docs/api.html#query_Query-upd
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -850,7 +850,7 @@ Add [Query.prototype.updateMany](http://mongoosejs.com/docs/api.html#query_Query
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.updateOne.withArgs()`
@@ -860,7 +860,7 @@ Add [Query.prototype.updateOne](http://mongoosejs.com/docs/api.html#query_Query-
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.replaceOne.withArgs()`
@@ -870,7 +870,7 @@ Add [Query.prototype.replaceOne](http://mongoosejs.com/docs/api.html#query_Query
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.populate.withArgs()`
@@ -880,7 +880,7 @@ Add [Query.prototype.populate](http://mongoosejs.com/docs/api.html#query_Query-p
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -899,7 +899,7 @@ CarQueryMock
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.intersects.withArgs()`
@@ -909,7 +909,7 @@ Add [Query.prototype.intersects](http://mongoosejs.com/docs/api.html#query_Query
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -929,7 +929,7 @@ Add [Query.prototype.geometry](http://mongoosejs.com/docs/api.html#query_Query-g
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -950,7 +950,7 @@ Add [Query.prototype.near](http://mongoosejs.com/docs/api.html#query_Query-near)
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -970,7 +970,7 @@ GeoQueryMock
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.polygon.withArgs()`
@@ -980,7 +980,7 @@ Add [Query.prototype.polygon](http://mongoosejs.com/docs/api.html#query_Query-po
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -1001,7 +1001,7 @@ Add [Query.prototype.box](http://mongoosejs.com/docs/api.html#query_Query-box) t
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -1022,7 +1022,7 @@ Add [Query.prototype.circle](http://mongoosejs.com/docs/api.html#query_Query-cir
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 ### Example
 ```javascript
@@ -1043,7 +1043,7 @@ GeoQueryMock
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.centerSphere.withArgs()`
@@ -1053,7 +1053,7 @@ Any
 Any
 
 ### Returns
-**[QueryMock](docs/query-mock.md)**
+**[QueryMock](/docs/query-mock.md)**
 
 
 ## `proto.returns()`
