@@ -1,5 +1,5 @@
 # testgoose
-## model.stub()
+## `model.stub()`
 Creates a stub of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js).
 
 ### Parameters
@@ -20,7 +20,7 @@ const MyStub = testgoose.model.stub('Task', {key: 'value'});
 **[ModelStub](/docs/model-stub.md)**
 
 
-## model.mock()
+## `model.mock()`
 Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js).
 
 ### Parameters
@@ -41,7 +41,7 @@ const MyMock = testgoose.model.mock('Task', {key: 'value'});
 **[ModelMock](/docs/model-mock.md)**
 
 
-## query.stub()
+## `query.stub()`
 Creates a stub of a Mongoose [Query](http://mongoosejs.com/docs/api.html#Query).
 
 ### Parameters
@@ -57,7 +57,7 @@ const MyStub = testgoose.query.stub();
 **[QueryStub](/docs/query-stub.md)**
 
 
-## query.mock()
+## `query.mock()`
 Creates a mock of a Mongoose [Query](http://mongoosejs.com/docs/api.html#Query).
 
 ### Parameters

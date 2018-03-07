@@ -12,7 +12,7 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 ```
 
 
-## static.find.returns()
+## `static.find.returns()`
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
@@ -40,7 +40,7 @@ ProductStub.static.find.returns(null, productData);
 ```
 
 
-## static.findById.returns()
+## `static.findById.returns()`
 Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
@@ -64,7 +64,7 @@ UserStub.static.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstN
 ```
 
 
-## static.findByIdAndRemove.returns()
+## `static.findByIdAndRemove.returns()`
 Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
@@ -90,7 +90,7 @@ UserStub
 ```
 
 
-## static.findByIdAndUpdate.returns()
+## `static.findByIdAndUpdate.returns()`
 Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
@@ -118,7 +118,7 @@ UserStub
 ```
 
 
-## proto.save.returns()
+## `proto.save.returns()`
 Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
 
 ### Parameters

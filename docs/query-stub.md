@@ -13,7 +13,7 @@ const taskController = proxyquire('../controllers/task', { 'mongoose': { Query: 
 ```
 
 
-## proto.returns()
+## `proto.returns()`
 Specify the data that the stub should return.
 
 ### Parameters

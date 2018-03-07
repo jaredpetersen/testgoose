@@ -16,7 +16,7 @@ You must specify `withArgs()` on each function that you expect the mock to be ca
 The mock will throw an error in the system under test if it is invoked differently than what was specified.
 
 
-## static.find.withArgs()
+## `static.find.withArgs()`
 Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
@@ -53,7 +53,7 @@ ProductMock
 ```
 
 
-## static.findById.withArgs()
+## `static.findById.withArgs()`
 Define the argument matcher(s) for Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
@@ -87,7 +87,7 @@ UserMock
 ```
 
 
-## static.findByIdAndRemove.withArgs()
+## `static.findByIdAndRemove.withArgs()`
 Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
@@ -124,7 +124,7 @@ UserMock
 ```
 
 
-## static.findByIdAndUpdate.withArgs()
+## `static.findByIdAndUpdate.withArgs()`
 Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
@@ -161,7 +161,7 @@ UserMock
 ```
 
 
-## proto.save.withArgs()
+## `proto.save.withArgs()`
 Define the argument matcher(s) for Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save). Returns itself so that the return data can be defined as well via [`.returns()`](/docs/model-mock.md#protosavewithargsreturns).
 
 ### Parameters
@@ -171,7 +171,7 @@ Any
 **[ModelMock.proto.prototype.save.withArgs()](/docs/model-mock.md#protosavewithargs)**
 
 
-## proto.save.withArgs().returns()
+## `proto.save.withArgs().returns()`
 Chain off of [`proto.prototype.save.withArgs()`](/docs/model-mock.md#protosavewithargs) to define the data returned from Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save).
 
 ### Parameters

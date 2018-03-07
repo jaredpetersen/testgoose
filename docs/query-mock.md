@@ -17,8 +17,8 @@ You must specify `withArgs()` on each function that you expect the mock to be ca
 The mock will throw an error in the system under test if it is invoked differently than what was specified.
 
 
-## proto.$where.withArgs()
-Add [Query.$where](http://mongoosejs.com/docs/api.html#query_Query-$where) to the mock assertion chain with the specified argument matchers.
+### `proto.$where.withArgs()`
+Add [Query.prototype.$where](http://mongoosejs.com/docs/api.html#query_Query-$where) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -55,8 +55,8 @@ ProductQueryMock
 ```
 
 
-## proto.where.withArgs()
-Add [Query.where](http://mongoosejs.com/docs/api.html#query_Query-where) to the mock assertion chain with the specified argument matchers.
+## `proto.where.withArgs()`
+Add [Query.prototype.where](http://mongoosejs.com/docs/api.html#query_Query-where) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -85,8 +85,8 @@ UserQueryMock.proto.where.withArgs({ firstName: 'Sally'}).returns(null, userData
 ```
 
 
-## proto.equals.withArgs()
-Add [Query.equals](http://mongoosejs.com/docs/api.html#query_Query-equals) to the mock assertion chain with the specified argument matchers.
+## `proto.equals.withArgs()`
+Add [Query.prototype.equals](http://mongoosejs.com/docs/api.html#query_Query-equals) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -105,8 +105,8 @@ UserQueryMock
 ```
 
 
-## proto.or.withArgs()
-Add [Query.or](http://mongoosejs.com/docs/api.html#query_Query-or) to the mock assertion chain with the specified argument matchers.
+## `proto.or.withArgs()`
+Add [Query.prototype.or](http://mongoosejs.com/docs/api.html#query_Query-or) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -124,8 +124,8 @@ HealthQueryMock
 ```
 
 
-## proto.nor.withArgs()
-Add [Query.nor](http://mongoosejs.com/docs/api.html#query_Query-nor) to the mock assertion chain with the specified argument matchers.
+## `proto.nor.withArgs()`
+Add [Query.prototype.nor](http://mongoosejs.com/docs/api.html#query_Query-nor) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -143,8 +143,8 @@ HealthQueryMock
 ```
 
 
-## proto.and.withArgs()
-Add [Query.and](http://mongoosejs.com/docs/api.html#query_Query-and) to the mock assertion chain with the specified argument matchers.
+## `proto.and.withArgs()`
+Add [Query.prototype.and](http://mongoosejs.com/docs/api.html#query_Query-and) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -162,8 +162,8 @@ HealthQueryMock
 ```
 
 
-## proto.gt.withArgs()
-Add [Query.gt](http://mongoosejs.com/docs/api.html#query_Query-gt) to the mock assertion chain with the specified argument matchers.
+## `proto.gt.withArgs()`
+Add [Query.prototype.gt](http://mongoosejs.com/docs/api.html#query_Query-gt) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -192,8 +192,8 @@ UserQueryMock.proto.gt.withArgs('age', 18).returns(null, userData);
 ```
 
 
-## proto.gte.withArgs()
-Add [Query.gte](http://mongoosejs.com/docs/api.html#query_Query-gte) to the mock assertion chain with the specified argument matchers.
+## `proto.gte.withArgs()`
+Add [Query.prototype.gte](http://mongoosejs.com/docs/api.html#query_Query-gte) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -222,8 +222,8 @@ UserQueryMock.proto.gte.withArgs('age', 18).returns(null, userData);
 ```
 
 
-## proto.lt.withArgs()
-Add [Query.lt](http://mongoosejs.com/docs/api.html#query_Query-lt) to the mock assertion chain with the specified argument matchers.
+## `proto.lt.withArgs()`
+Add [Query.prototype.lt](http://mongoosejs.com/docs/api.html#query_Query-lt) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -232,8 +232,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.lte.withArgs()
-Add [Query.lte](http://mongoosejs.com/docs/api.html#query_Query-lte) to the mock assertion chain with the specified argument matchers.
+## `proto.lte.withArgs()`
+Add [Query.prototype.lte](http://mongoosejs.com/docs/api.html#query_Query-lte) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -242,8 +242,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.ne.withArgs()
-Add [Query.ne](http://mongoosejs.com/docs/api.html#query_Query-ne) to the mock assertion chain with the specified argument matchers.
+## `proto.ne.withArgs()`
+Add [Query.prototype.ne](http://mongoosejs.com/docs/api.html#query_Query-ne) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -252,8 +252,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.in.withArgs()
-Add [Query.in](http://mongoosejs.com/docs/api.html#query_Query-in) to the mock assertion chain with the specified argument matchers.
+## `proto.in.withArgs()`
+Add [Query.prototype.in](http://mongoosejs.com/docs/api.html#query_Query-in) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -262,8 +262,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.nin.withArgs()
-Add [Query.nin](http://mongoosejs.com/docs/api.html#query_Query-nin) to the mock assertion chain with the specified argument matchers.
+## `proto.nin.withArgs()`
+Add [Query.prototype.nin](http://mongoosejs.com/docs/api.html#query_Query-nin) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -272,8 +272,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.all.withArgs()
-Add [Query.all](http://mongoosejs.com/docs/api.html#query_Query-all) to the mock assertion chain with the specified argument matchers.
+## `proto.all.withArgs()`
+Add [Query.prototype.all](http://mongoosejs.com/docs/api.html#query_Query-all) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -282,8 +282,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.size.withArgs()
-Add [Query.size](http://mongoosejs.com/docs/api.html#query_Query-size) to the mock assertion chain with the specified argument matchers.
+## `proto.size.withArgs()`
+Add [Query.prototype.size](http://mongoosejs.com/docs/api.html#query_Query-size) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -292,8 +292,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.regex.withArgs()
-Add [Query.regex](http://mongoosejs.com/docs/api.html#query_Query-regex) to the mock assertion chain with the specified argument matchers.
+## `proto.regex.withArgs()`
+Add [Query.prototype.regex](http://mongoosejs.com/docs/api.html#query_Query-regex) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -302,8 +302,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.maxDistance.withArgs()
-Add [Query.maxDistance](http://mongoosejs.com/docs/api.html#query_Query-maxDistance) to the mock assertion chain with the specified argument matchers.
+## `proto.maxDistance.withArgs()`
+Add [Query.prototype.maxDistance](http://mongoosejs.com/docs/api.html#query_Query-maxDistance) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -312,8 +312,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.mod.withArgs()
-Add [Query.mod](http://mongoosejs.com/docs/api.html#query_Query-mod) to the mock assertion chain with the specified argument matchers.
+## `proto.mod.withArgs()`
+Add [Query.prototype.mod](http://mongoosejs.com/docs/api.html#query_Query-mod) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -332,8 +332,8 @@ ProductQueryMock
 ```
 
 
-## proto.exists.withArgs()
-Add [Query.exists](http://mongoosejs.com/docs/api.html#query_Query-exists) to the mock assertion chain with the specified argument matchers.
+## `proto.exists.withArgs()`
+Add [Query.prototype.exists](http://mongoosejs.com/docs/api.html#query_Query-exists) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -361,8 +361,8 @@ ThingQueryMock
 ```
 
 
-## proto.elemMatch.withArgs()
-Add [Query.elemMatch](http://mongoosejs.com/docs/api.html#query_Query-mod) to the mock assertion chain with the specified argument matchers.
+## `proto.elemMatch.withArgs()`
+Add [Query.prototype.elemMatch](http://mongoosejs.com/docs/api.html#query_Query-mod) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -380,8 +380,8 @@ SocialQueryMock
 ```
 
 
-## proto.within.withArgs()
-Add [Query.within](http://mongoosejs.com/docs/api.html#query_Query-within) to the mock assertion chain with the specified argument matchers.
+## `proto.within.withArgs()`
+Add [Query.prototype.within](http://mongoosejs.com/docs/api.html#query_Query-within) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -400,8 +400,8 @@ GeoQueryMock
 ```
 
 
-## proto.slice.withArgs()
-Add [Query.slice](http://mongoosejs.com/docs/api.html#query_Query-slice) to the mock assertion chain with the specified argument matchers.
+## `proto.slice.withArgs()`
+Add [Query.prototype.slice](http://mongoosejs.com/docs/api.html#query_Query-slice) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -419,8 +419,8 @@ SocialQueryMock
 ```
 
 
-## proto.limit.withArgs()
-Add [Query.limit](http://mongoosejs.com/docs/api.html#query_Query-limit) to the mock assertion chain with the specified argument matchers.
+## `proto.limit.withArgs()`
+Add [Query.prototype.limit](http://mongoosejs.com/docs/api.html#query_Query-limit) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -438,8 +438,8 @@ SocialQueryMock
 ```
 
 
-## proto.skip.withArgs()
-Add [Query.skip](http://mongoosejs.com/docs/api.html#query_Query-skip) to the mock assertion chain with the specified argument matchers.
+## `proto.skip.withArgs()`
+Add [Query.prototype.skip](http://mongoosejs.com/docs/api.html#query_Query-skip) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -458,8 +458,8 @@ SocialQueryMock
 ```
 
 
-## proto.maxScan.withArgs()
-Add [Query.maxScan](http://mongoosejs.com/docs/api.html#query_Query-maxScan) to the mock assertion chain with the specified argument matchers.
+## `proto.maxScan.withArgs()`
+Add [Query.prototype.maxScan](http://mongoosejs.com/docs/api.html#query_Query-maxScan) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -477,8 +477,8 @@ SocialQueryMock
 ```
 
 
-## proto.batchSize.withArgs()
-Add [Query.batchSize](http://mongoosejs.com/docs/api.html#query_Query-batchSize) to the mock assertion chain with the specified argument matchers.
+## `proto.batchSize.withArgs()`
+Add [Query.prototype.batchSize](http://mongoosejs.com/docs/api.html#query_Query-batchSize) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -496,8 +496,8 @@ SocialQueryMock
 ```
 
 
-## proto.comment.withArgs()
-Add [Query.comment](http://mongoosejs.com/docs/api.html#query_Query-comment) to the mock assertion chain with the specified argument matchers.
+## `proto.comment.withArgs()`
+Add [Query.prototype.comment](http://mongoosejs.com/docs/api.html#query_Query-comment) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -515,8 +515,8 @@ SocialQueryMock
 ```
 
 
-## proto.snapshot.withArgs()
-Add [Query.snapshot](http://mongoosejs.com/docs/api.html#query_Query-snapshot) to the mock assertion chain with the specified argument matchers.
+## `proto.snapshot.withArgs()`
+Add [Query.prototype.snapshot](http://mongoosejs.com/docs/api.html#query_Query-snapshot) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -534,8 +534,8 @@ ProductQueryMock
 ```
 
 
-## proto.hint.withArgs()
-Add [Query.hint](http://mongoosejs.com/docs/api.html#query_Query-hint) to the mock assertion chain with the specified argument matchers.
+## `proto.hint.withArgs()`
+Add [Query.prototype.hint](http://mongoosejs.com/docs/api.html#query_Query-hint) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -553,8 +553,8 @@ ProductQueryMock
 ```
 
 
-## proto.select.withArgs()
-Add [Query.select](http://mongoosejs.com/docs/api.html#query_Query-select) to the mock assertion chain with the specified argument matchers.
+## `proto.select.withArgs()`
+Add [Query.prototype.select](http://mongoosejs.com/docs/api.html#query_Query-select) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -572,8 +572,8 @@ ProductQueryMock
 ```
 
 
-## proto.slaveOk.withArgs()
-*DEPRECATED* Add [Query.slaveOk](http://mongoosejs.com/docs/api.html#query_Query-select) to the mock assertion chain with the specified argument matchers.
+## `proto.slaveOk.withArgs()`
+*DEPRECATED* Add [Query.prototype.slaveOk](http://mongoosejs.com/docs/api.html#query_Query-select) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -591,8 +591,8 @@ ProductQueryMock
 ```
 
 
-## proto.read.withArgs()
-Add [Query.read](http://mongoosejs.com/docs/api.html#query_Query-read) to the mock assertion chain with the specified argument matchers.
+## `proto.read.withArgs()`
+Add [Query.prototype.read](http://mongoosejs.com/docs/api.html#query_Query-read) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -610,8 +610,8 @@ ProductQueryMock
 ```
 
 
-## proto.merge.withArgs()
-Add [Query.merge](http://mongoosejs.com/docs/api.html#query_Query-merge) to the mock assertion chain with the specified argument matchers.
+## `proto.merge.withArgs()`
+Add [Query.prototype.merge](http://mongoosejs.com/docs/api.html#query_Query-merge) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -620,8 +620,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.lean.withArgs()
-Add [Query.lean](http://mongoosejs.com/docs/api.html#query_Query-lean) to the mock assertion chain with the specified argument matchers.
+## `proto.lean.withArgs()`
+Add [Query.prototype.lean](http://mongoosejs.com/docs/api.html#query_Query-lean) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -639,8 +639,8 @@ ProductQueryMock
 ```
 
 
-## proto.find.withArgs()
-Add [Query.find](http://mongoosejs.com/docs/api.html#query_Query-find) to the mock assertion chain with the specified argument matchers.
+## `proto.find.withArgs()`
+Add [Query.prototype.find](http://mongoosejs.com/docs/api.html#query_Query-find) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -661,8 +661,8 @@ ProductQueryMock
 ```
 
 
-## proto.collation.withArgs()
-Add [Query.collation](http://mongoosejs.com/docs/api.html#query_Query-collation) to the mock assertion chain with the specified argument matchers.
+## `proto.collation.withArgs()`
+Add [Query.prototype.collation](http://mongoosejs.com/docs/api.html#query_Query-collation) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -671,8 +671,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.findOne.withArgs()
-Add [Query.findOne](http://mongoosejs.com/docs/api.html#query_Query-findOne) to the mock assertion chain with the specified argument matchers.
+## `proto.findOne.withArgs()`
+Add [Query.prototype.findOne](http://mongoosejs.com/docs/api.html#query_Query-findOne) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -690,8 +690,8 @@ ProductQueryMock
 ```
 
 
-## proto.count.withArgs()
-Add [Query.count](http://mongoosejs.com/docs/api.html#query_Query-count) to the mock assertion chain with the specified argument matchers.
+## `proto.count.withArgs()`
+Add [Query.prototype.count](http://mongoosejs.com/docs/api.html#query_Query-count) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -709,8 +709,8 @@ ProductQueryMock
 ```
 
 
-## proto.distinct.withArgs()
-Add [Query.distinct](http://mongoosejs.com/docs/api.html#query_Query-distinct) to the mock assertion chain with the specified argument matchers.
+## `proto.distinct.withArgs()`
+Add [Query.prototype.distinct](http://mongoosejs.com/docs/api.html#query_Query-distinct) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -728,8 +728,8 @@ ProductQueryMock
 ```
 
 
-## proto.sort.withArgs()
-Add [Query.sort](http://mongoosejs.com/docs/api.html#query_Query-sort) to the mock assertion chain with the specified argument matchers.
+## `proto.sort.withArgs()`
+Add [Query.prototype.sort](http://mongoosejs.com/docs/api.html#query_Query-sort) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -747,8 +747,8 @@ UserQueryMock
 ```
 
 
-## proto.remove.withArgs()
-Add [Query.remove](http://mongoosejs.com/docs/api.html#query_Query-remove) to the mock assertion chain with the specified argument matchers.
+## `proto.remove.withArgs()`
+Add [Query.prototype.remove](http://mongoosejs.com/docs/api.html#query_Query-remove) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -766,8 +766,8 @@ MusicQueryMock
 ```
 
 
-## proto.deleteOne.withArgs()
-Add [Query.deleteOne](http://mongoosejs.com/docs/api.html#query_Query-deleteOne) to the mock assertion chain with the specified argument matchers.
+## `proto.deleteOne.withArgs()`
+Add [Query.prototype.deleteOne](http://mongoosejs.com/docs/api.html#query_Query-deleteOne) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -785,8 +785,8 @@ MusicQueryMock
 ```
 
 
-## proto.deleteMany.withArgs()
-Add [Query.deleteMany](http://mongoosejs.com/docs/api.html#query_Query-deleteMany) to the mock assertion chain with the specified argument matchers.
+## `proto.deleteMany.withArgs()`
+Add [Query.prototype.deleteMany](http://mongoosejs.com/docs/api.html#query_Query-deleteMany) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -804,8 +804,8 @@ UserQueryMock
 ```
 
 
-## proto.findOneAndUpdate.withArgs()
-Add [Query.findOneAndUpdate](http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate) to the mock assertion chain with the specified argument matchers.
+## `proto.findOneAndUpdate.withArgs()`
+Add [Query.prototype.findOneAndUpdate](http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -814,8 +814,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.findOneAndRemove.withArgs()
-Add [Query.findOneAndRemove](http://mongoosejs.com/docs/api.html#query_Query-findOneAndRemove) to the mock assertion chain with the specified argument matchers.
+## `proto.findOneAndRemove.withArgs()`
+Add [Query.prototype.findOneAndRemove](http://mongoosejs.com/docs/api.html#query_Query-findOneAndRemove) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -824,8 +824,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.update.withArgs()
-Add [Query.update](http://mongoosejs.com/docs/api.html#query_Query-update) to the mock assertion chain with the specified argument matchers.
+## `proto.update.withArgs()`
+Add [Query.prototype.update](http://mongoosejs.com/docs/api.html#query_Query-update) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -843,8 +843,8 @@ BookQueryMock
 ```
 
 
-## proto.updateMany.withArgs()
-Add [Query.updateMany](http://mongoosejs.com/docs/api.html#query_Query-updateMany) to the mock assertion chain with the specified argument matchers.
+## `proto.updateMany.withArgs()`
+Add [Query.prototype.updateMany](http://mongoosejs.com/docs/api.html#query_Query-updateMany) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -853,8 +853,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.updateOne.withArgs()
-Add [Query.updateOne](http://mongoosejs.com/docs/api.html#query_Query-updateOne) to the mock assertion chain with the specified argument matchers.
+## `proto.updateOne.withArgs()`
+Add [Query.prototype.updateOne](http://mongoosejs.com/docs/api.html#query_Query-updateOne) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -863,8 +863,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.replaceOne.withArgs()
-Add [Query.replaceOne](http://mongoosejs.com/docs/api.html#query_Query-replaceOne) to the mock assertion chain with the specified argument matchers.
+## `proto.replaceOne.withArgs()`
+Add [Query.prototype.replaceOne](http://mongoosejs.com/docs/api.html#query_Query-replaceOne) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -873,8 +873,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.populate.withArgs()
-Add [Query.populate](http://mongoosejs.com/docs/api.html#query_Query-populate) to the mock assertion chain with the specified argument matchers.
+## `proto.populate.withArgs()`
+Add [Query.prototype.populate](http://mongoosejs.com/docs/api.html#query_Query-populate) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -892,8 +892,8 @@ CarQueryMock
 ```
 
 
-## proto.maxscan.withArgs()
-*DEPRECATED* Add [Query.maxscan](http://mongoosejs.com/docs/api.html#query_Query-maxscan) to the mock assertion chain with the specified argument matchers.
+## `proto.maxscan.withArgs()`
+*DEPRECATED* Add [Query.prototype.maxscan](http://mongoosejs.com/docs/api.html#query_Query-maxscan) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -902,8 +902,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.intersects.withArgs()
-Add [Query.intersects](http://mongoosejs.com/docs/api.html#query_Query-intersects) to the mock assertion chain with the specified argument matchers.
+## `proto.intersects.withArgs()`
+Add [Query.prototype.intersects](http://mongoosejs.com/docs/api.html#query_Query-intersects) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -922,8 +922,8 @@ GeoQueryMock
 ```
 
 
-## proto.geometry.withArgs()
-Add [Query.geometry](http://mongoosejs.com/docs/api.html#query_Query-geometry) to the mock assertion chain with the specified argument matchers.
+## `proto.geometry.withArgs()`
+Add [Query.prototype.geometry](http://mongoosejs.com/docs/api.html#query_Query-geometry) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -943,8 +943,8 @@ GeoQueryMock
 ```
 
 
-## proto.near.withArgs()
-Add [Query.near](http://mongoosejs.com/docs/api.html#query_Query-near) to the mock assertion chain with the specified argument matchers.
+## `proto.near.withArgs()`
+Add [Query.prototype.near](http://mongoosejs.com/docs/api.html#query_Query-near) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -963,8 +963,8 @@ GeoQueryMock
 ```
 
 
-## proto.nearSphere.withArgs()
-*DEPRECATED* Add [Query.nearSphere](http://mongoosejs.com/docs/api.html#query_Query-nearSphere) to the mock assertion chain with the specified argument matchers.
+## `proto.nearSphere.withArgs()`
+*DEPRECATED* Add [Query.prototype.nearSphere](http://mongoosejs.com/docs/api.html#query_Query-nearSphere) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -973,8 +973,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.polygon.withArgs()
-Add [Query.polygon](http://mongoosejs.com/docs/api.html#query_Query-polygon) to the mock assertion chain with the specified argument matchers.
+## `proto.polygon.withArgs()`
+Add [Query.prototype.polygon](http://mongoosejs.com/docs/api.html#query_Query-polygon) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -994,8 +994,8 @@ GeoQueryMock
 ```
 
 
-## proto.box.withArgs()
-Add [Query.box](http://mongoosejs.com/docs/api.html#query_Query-box) to the mock assertion chain with the specified argument matchers.
+## `proto.box.withArgs()`
+Add [Query.prototype.box](http://mongoosejs.com/docs/api.html#query_Query-box) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -1015,8 +1015,8 @@ GeoQueryMock
 ```
 
 
-## proto.circle.withArgs()
-Add [Query.circle](http://mongoosejs.com/docs/api.html#query_Query-circle) to the mock assertion chain with the specified argument matchers.
+## `proto.circle.withArgs()`
+Add [Query.prototype.circle](http://mongoosejs.com/docs/api.html#query_Query-circle) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -1036,8 +1036,8 @@ GeoQueryMock
 ```
 
 
-## proto.center.withArgs()
-*DEPRECATED* Add [Query.center](http://mongoosejs.com/docs/api.html#query_Query-center) to the mock assertion chain with the specified argument matchers.
+## `proto.center.withArgs()`
+*DEPRECATED* Add [Query.prototype.center](http://mongoosejs.com/docs/api.html#query_Query-center) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -1046,8 +1046,8 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.centerSphere.withArgs()
-*DEPRECATED* Add [Query.centerSphere](http://mongoosejs.com/docs/api.html#query_Query-centerSphere) to the mock assertion chain with the specified argument matchers.
+## `proto.centerSphere.withArgs()`
+*DEPRECATED* Add [Query.prototype.centerSphere](http://mongoosejs.com/docs/api.html#query_Query-centerSphere) to the mock assertion chain with the specified argument matchers.
 
 ### Parameters
 Any
@@ -1056,7 +1056,7 @@ Any
 **[QueryMock](docs/query-mock.md)**
 
 
-## proto.returns()
+## `proto.returns()`
 Specify the data that the mock assertion chain should return. Should only be called after setting up the assertion chain, e.g. `proto.$where.withArgs().returns()`, `proto.find.withArgs().proto.where.withArgs().returns()`, etc.
 
 ### Parameters
