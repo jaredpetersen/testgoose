@@ -168,7 +168,7 @@ Define the argument matcher(s) for Mongoose [Model.prototype.save](http://mongoo
 Any
 
 ### Returns
-**[ModelMock.proto.prototype.save.withArgs()](/docs/query-mock.md##protosavewithargs)**
+**[ModelMock.proto.prototype.save.withArgs()](/docs/model-mock.md#protosavewithargs)**
 
 
 ## proto.save.withArgs().returns()
