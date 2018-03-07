@@ -13,14 +13,11 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 
 
 ## static.find.returns()
-Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Any query chained off of it will return the specified data.
+Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
 - `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
-
-### Returns
-**[ModelMock](/docs/model-mock.md)**
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -44,7 +41,7 @@ ProductStub.static.find.returns(null, productData);
 
 
 ## static.findById.returns()
-Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Any query chained off of it will return the specified data.
+Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
@@ -68,7 +65,7 @@ UserStub.static.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstN
 
 
 ## static.findByIdAndRemove.returns()
-Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Any query chained off of it will return the specified data.
+Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
@@ -94,7 +91,7 @@ UserStub
 
 
 ## static.findByIdAndUpdate.returns()
-Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Any query chained off of it will return the specified data.
+Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback
