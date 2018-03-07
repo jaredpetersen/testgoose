@@ -1,4 +1,4 @@
-# Model Stub
+# ModelStub
 Stub of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
@@ -13,13 +13,19 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 
 
 ## static.find.returns()
-Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
+Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Any query chained off of it will return the specified data.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
 - `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
 
-##### Example
+### Returns
+**[ModelMock](/docs/model-mock.md)**
+
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const ProductStub = testgoose.model.stub();
@@ -38,13 +44,16 @@ ProductStub.static.find.returns(null, productData);
 
 
 ## static.findById.returns()
-Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
+Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Any query chained off of it will return the specified data.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
 
-##### Example
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
@@ -59,13 +68,16 @@ UserStub.static.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstN
 
 
 ## static.findByIdAndRemove.returns()
-Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
+Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Any query chained off of it will return the specified data.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndRemove callback
 
-##### Example
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
@@ -82,13 +94,16 @@ UserStub
 
 
 ## static.findByIdAndUpdate.returns()
-Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
+Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Any query chained off of it will return the specified data.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndUpdate callback
 
-##### Example
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
@@ -109,11 +124,14 @@ UserStub
 ## proto.save.returns()
 Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
 
-##### Example
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const CarStub = testgoose.model.stub();

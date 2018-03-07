@@ -17,7 +17,7 @@ const MyStub = testgoose.model.stub('Task', {key: 'value'});
 ```
 
 ### Returns
-Returns [Model Stub](/docs/model-stub.md).
+**[ModelStub](/docs/model-stub.md)**
 
 
 ## model.mock()
@@ -38,7 +38,7 @@ const MyMock = testgoose.model.mock('Task', {key: 'value'});
 ```
 
 ### Returns
-Returns [Model Mock](/docs/model-mock.md).
+**[ModelMock](/docs/model-mock.md)**
 
 
 ## query.stub()
@@ -54,7 +54,7 @@ const MyStub = testgoose.query.stub();
 ```
 
 ### Returns
-Returns [Query Stub](/docs/query-stub.md).
+**[QueryStub](/docs/query-stub.md)**
 
 
 ## query.mock()
@@ -70,4 +70,4 @@ const MyMock = testgoose.query.mock();
 ```
 
 ### Returns
-Returns [Query Mock](/docs/query-mock.md).
+**[QueryMock](/docs/query-mock.md)**

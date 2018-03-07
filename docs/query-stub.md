@@ -1,4 +1,4 @@
-# Query Stub
+# QueryStub
 Stub of Mongoose [Query](http://mongoosejs.com/docs/api.html#query-js). This is available indirectly through Model mock and Model stub (recommended) or directly ([advanced usage only](http://mongoosejs.com/docs/api.html#Query)).
 
 ```javaScript
@@ -21,7 +21,7 @@ Specify the data that the stub should return.
 - `data` **???** data to be returned by the Query Stub that should vary by the query
 
 ### Returns
-[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
 
 ### Example
 ```javascript

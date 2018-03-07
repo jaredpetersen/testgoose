@@ -1,4 +1,4 @@
-# Model Mock
+# ModelMock
 Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
@@ -16,14 +16,17 @@ You must specify `withArgs()` on each function that you expect the mock to be ca
 The mock will throw an error in the system under test if it is invoked differently than what was specified.
 
 
-## static.find.withArgs()...returns()
-Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find).
+## static.find.withArgs()
+Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
 - `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
 
-##### Example
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
@@ -50,14 +53,17 @@ ProductMock
 ```
 
 
-## static.findById.withArgs()...returns()
-Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById).
+## static.findById.withArgs()
+Define the argument matcher(s) for Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
 
-##### Example
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
@@ -81,14 +87,17 @@ UserMock
 ```
 
 
-## static.findByIdAndRemove.withArgs()...returns()
-Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove).
+## static.findByIdAndRemove.withArgs()
+Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndRemove callback
 
-##### Example
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
@@ -115,14 +124,17 @@ UserMock
 ```
 
 
-## static.findByIdAndUpdate.withArgs()...returns()
-Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate).
+## static.findByIdAndUpdate.withArgs()
+Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
-##### Parameters
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndUpdate callback
 
-##### Example
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
@@ -149,14 +161,27 @@ UserMock
 ```
 
 
-## proto.prototype.save.withArgs()...returns()
-Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save).
+## proto.save.withArgs()
+Define the argument matcher(s) for Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save). Returns itself so that the return data can be defined as well via [`.returns()`](/docs/model-mock.md#protosavewithargsreturns).
 
-##### Parameters
+### Parameters
+Any
+
+### Returns
+**[ModelMock.proto.prototype.save.withArgs()](/docs/query-mock.md##protosavewithargs)**
+
+
+## proto.save.withArgs().returns()
+Chain off of [`proto.prototype.save.withArgs()`](/docs/model-mock.md#protosavewithargs) to define the data returned from Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save).
+
+### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
 - `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
 
-##### Example
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
 ```javascript
 const testgoose = require('testgoose');
 const CarMock = testgoose.model.mock();
