@@ -1,0 +1,9 @@
+*.test.js
+*.log
+.eslintrc.json
+.nycrc
+.travis.yml
+coverage/
+docs/
+examples/
+scripts/
