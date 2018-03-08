@@ -13,7 +13,7 @@ npm install testgoose --save-dev
 ### Getting Started
 Using testgoose is easy and doesn't require the usage of other mocking libraries like [Sinon.js](http://sinonjs.org/) to make it work. Just create your stub/mock, define its behavior, and [proxyquire](https://github.com/thlorenz/proxyquire) it in to your module under test as needed.
 
-#### Model Stubs
+#### Stubbing Models
 ```javascript
 const testgoose = require('testgoose');
 
@@ -63,7 +63,7 @@ TaskStub.find().where('priority').gt(10)
 });
 ```
 
-#### Model Mocks
+#### Mocking Models
 ```javascript
 const testgoose = require('testgoose');
 
@@ -80,7 +80,7 @@ TaskMock.findById(1234, (err, task) => {
 });
 ```
 
-Model mocks work the exact same as model stubs but with one exception: you must use argument matchers to specify the arguments on every function you expect mock to be called with.
+Model mocks work the exact same as model stubs but with one exception: you must use argument matchers to specify the arguments on every function that you expect the mock to be called with.
 
 Defining the argument expectations and behavior of your mock is pretty simple. Here's how to do it:
 1. Create a model mock with `testgoose.model.mock()`
@@ -155,6 +155,69 @@ TaskMock
 **We advise that you generally stick to stubs when possible** as mocks tightly couple your tests to the unit under test. This is sometimes necessary though in order to assert that the unit under test is behaving correctly.
 
 At this point in time, the argument matchers provided to `withArgs()` must be the exact same as the data that is coming in. In the future, we'd like to also support matchers like `testgoose.match.string` for any string, `testgoose.match.boolean` for any boolean, `testgoose.match.number` for any number, etc. to alleviate the level of coupling. Look forward to an update on this in the future.
+
+#### Stubbing Queries
+```javascript
+const testgoose = require('testgoose');
+
+// Stub out the Mongoose query
+const QueryStub = testgoose.query.stub();
+QueryStub.proto.returns(null, [ { sku: 4549337193741, name: 'notebook' } ]);
+
+// Wrap the stub in a Mongoose wrapper so that it *could* be proxyquired in
+const mongoose = { Query: QueryStub };
+
+// Use the stub like a real query
+const queryStub = new mongoose.Query();
+queryStub
+  .find({ name: /notebook/i })
+  .where('color')
+  .equals('red')
+  .select('-color')
+  .then(docs => {
+    // do something
+  })
+  .catch(err => {
+    // handle the error
+  });
+```
+
+Since Mongoose allows you to directly use [Queries](http://mongoosejs.com/docs/api.html#Query) for advanced use cases, testgoose allows you to stub it as well. To stub the data returned by a Query, create a stub with `testgoose.query.stub()` and just call `.proto.returns()` on it with the data you would like the stub to return.
+
+#### Mocking Queries
+```javascript
+const testgoose = require('testgoose');
+
+// Mock out the Mongoose query
+const QueryMock = testgoose.query.mock();
+QueryMock
+  .proto.find.withArgs({ name: /notebook/i })
+  .proto.where.withArgs('color')
+  .proto.equals.withArgs('brown')
+  .proto.select.withArgs('-color')
+  .returns(null, [ { sku: 4549337193741, name: 'notebook' } ]);
+
+// Wrap the mock in a Mongoose wrapper so that it *could* be proxyquired in
+const mongoose = { Query: QueryMock };
+
+// Use the mock like a real query
+const queryMock = new mongoose.Query();
+queryStub
+  .find({ name: /notebook/i })
+  .where('color')
+  .equals('red')
+  .select('-color')
+  .then(docs => {
+    // do something
+  })
+  .catch(err => {
+    // handle the error
+  });
+```
+
+Mocking out Mongoose [Queries](http://mongoosejs.com/docs/api.html#Query) is a bit more involved than stubs because you must use argument matchers to specify the arguments on every function that you expect the mock to be called with.
+
+To mock the data returned by a query, create a mock with `testgoose.query.mock()`, define the chain of expected function calls through repeated `.proto.queryfunctionname.withArgs()` definitions, and then finish off the chain with a call to .`returns()` -- just like Model mock definitions.
 
 ### Documentation
 For more specific information on the available testgoose functions, check out the [docs](/docs).

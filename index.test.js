@@ -716,6 +716,35 @@ describe('testgoose', () => {
       done();
     });
 
+    it('mocks the query from inside a Mongoose wrapper', () => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query mock
+      const QueryMock = testgoose.query.mock();
+      QueryMock
+        .proto.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('fred')
+        .returns(null, dataStub);
+
+      // Wrap the mock in a Mongoose wrapper so that it *could* be proxyquired in
+      const mongoose = { Query: QueryMock };
+
+      // Use the mock like a real query
+      const queryMock = new mongoose.Query();
+      return queryMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('fred')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+    });
+
     it('mocks the query with multiple mock setups', () => {
       // Setup our stubs
       const dataStub = { name: 'fred' };
@@ -1230,6 +1259,31 @@ describe('testgoose', () => {
   });
 
   describe('query.stub()', () => {
+    it('stubs the query from inside a Mongoose wrapper', () => {
+      // Setup our stubs
+      const dataStub = { name: 'fred' };
+
+      // Create a Mongoose Query stub
+      const QueryStub = testgoose.query.stub();
+      QueryStub.proto.returns(null, dataStub);
+
+      // Wrap the mock in a Mongoose wrapper so that it *could* be proxyquired in
+      const mongoose = { Query: QueryStub };
+
+      // Use the stub like a real query
+      const queryStub = new mongoose.Query();
+      return queryStub
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('fred')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+    });
+
     it('stubs the callback err with a long query chain', (done) => {
       // Setup our stubs
       const errStub = 'something went wrong';
