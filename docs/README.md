@@ -1,6 +1,6 @@
 # testgoose
 ## `model.stub()`
-Creates a stub of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js).
+Creates a stub of a Mongoose [Model](http://mongoosejs.com/docs/api.html#Model).
 
 ### Parameters
 - `modelName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the model to be returned (optional, default `undefined`)
@@ -21,7 +21,7 @@ const MyStub = testgoose.model.stub('Task', {key: 'value'});
 
 
 ## `model.mock()`
-Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js).
+Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#Model).
 
 ### Parameters
 - `modelName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the model to be returned (optional, default `undefined`)

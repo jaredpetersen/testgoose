@@ -1,5 +1,5 @@
 # ModelMock
-Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
+Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#Model). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
 const testgoose = require('testgoose');
@@ -17,7 +17,7 @@ The mock will throw an error in the system under test if it is invoked different
 
 
 ## `static.find.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#find_find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
@@ -54,7 +54,7 @@ ProductMock
 
 
 ## `static.findById.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#findbyid_findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
@@ -88,7 +88,7 @@ UserMock
 
 
 ## `static.findByIdAndRemove.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
@@ -125,7 +125,7 @@ UserMock
 
 
 ## `static.findByIdAndUpdate.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback

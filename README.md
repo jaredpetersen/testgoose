@@ -32,11 +32,11 @@ Model stubs are a great way of unit testing an application that relies on Mongoo
 
 To use a model stub, all you have to do is:
 1. Create a model stub with `testgoose.model.stub()`
-2. Specify the type of the Mongoose model function that needs its behavior defined (`proto` for document functions and `static` for static functions)
+2. Specify the type of the Mongoose [Model](http://mongoosejs.com/docs/api.html#Model) function that needs its behavior defined (`proto` for document functions and `static` for static functions)
 3. Specify the name of the model function
 4. Call `.returns()` to define the data that the stub should return any time the previous function is invoked
 
-Any time the mock's defined function is invoked, the data that was defined will be returned either through the provided callback or through a promise (whichever the unit under test specifies). If there are queries that are chained off of the model function in the system under test, the queries will be resolved with the defined data as well. This allows you to write flexible tests that don't need to be rewritten every time a minor change to a query is made.
+Any time the mock's defined function is invoked, the data that was defined will be returned either through the provided callback or through a promise (whichever the unit under test specifies). If there are queries that are chained off of the model function in the unit under test, the queries will be resolved with the defined data as well. This allows you to write flexible tests that don't need to be rewritten every time a minor change to a query is made.
 
 ```javascript
 const testgoose = require('testgoose');
@@ -84,14 +84,14 @@ Model mocks work the exact same as model stubs but with one exception: you must 
 
 Defining the argument expectations and behavior of your mock is pretty simple. Here's how to do it:
 1. Create a model mock with `testgoose.model.mock()`
-2. Specify the type of the Mongoose model function that needs its behavior defined (`proto` for document functions and `static` for static functions)
+2. Specify the type of the Mongoose [Model](http://mongoosejs.com/docs/api.html#Model) function that needs its behavior defined (`proto` for document functions and `static` for static functions)
 3. Specify the name of the model function
 4. Call `.withArgs()` on it and provide it with the arguments you expect your mock to be called with
 5. Call `.returns()` to define the data that the mock should return any time the sequence of Mongoose [Model](http://mongoosejs.com/docs/api.html#Model) and [Query](http://mongoosejs.com/docs/api.html#Query) functions are invoked
 
 If your mock is called the exact same way that you defined it, the mock will return the data that you specified. If the mock is invoked in a way that you did not define during the mock setup, the mock will immediately throw an error. This ensures that the unit under test uses your mock correctly.
 
-Model mocks also support mocking the [Query](http://mongoosejs.com/docs/api.html#Query) that is returned by some Model functions. All you need to do is continue your assertion chain off of the original function:
+Model mocks also support mocking the [Query](http://mongoosejs.com/docs/api.html#Query) that is returned by some model functions. All you need to do is continue your assertion chain off of the original function:
 
 ```javascript
 const testgoose = require('testgoose');
@@ -122,7 +122,7 @@ TaskMock.find().where('priority').gt(10)
 });
 ```
 
-Since the model mock uses argument matchers to determine the data that it should return, you are also able to define the multiple behaviors for the same top-level Model function of the mock:
+Since the model mock uses argument matchers to determine the data that it should return, you are also able to define the multiple behaviors for the same top-level model function of the mock:
 
 ```javascript
 const testgoose = require('testgoose');
@@ -217,7 +217,7 @@ queryStub
 
 Mocking out Mongoose [Queries](http://mongoosejs.com/docs/api.html#Query) is a bit more involved than stubs because you must use argument matchers to specify the arguments on every function that you expect the mock to be called with.
 
-To mock the data returned by a query, create a mock with `testgoose.query.mock()`, define the chain of expected function calls through repeated `.proto.queryfunctionname.withArgs()` definitions, and then finish off the chain with a call to .`returns()` -- just like Model mock definitions.
+To mock the data returned by a query, create a mock with `testgoose.query.mock()`, define the chain of expected function calls through repeated `.proto.queryfunctionname.withArgs()` definitions, and then finish off the chain with a call to .`returns()` -- just like model mock definitions.
 
 ### Documentation
 For more specific information on the available testgoose functions, check out the [docs](/docs).

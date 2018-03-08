@@ -1,5 +1,5 @@
 # QueryStub
-Stub of Mongoose [Query](http://mongoosejs.com/docs/api.html#query-js). This is available indirectly through Model mock and Model stub (recommended) or directly ([advanced usage only](http://mongoosejs.com/docs/api.html#Query)).
+Stub of Mongoose [Query](http://mongoosejs.com/docs/api.html#Query). This is available indirectly through Model mock and Model stub (recommended) or directly ([advanced usage only](http://mongoosejs.com/docs/api.html#Query)).
 
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
