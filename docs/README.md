@@ -1,6 +1,6 @@
 # testgoose
-## model.stub()
-Creates a stub of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js).
+## `model.stub()`
+Creates a stub of a Mongoose [Model](http://mongoosejs.com/docs/api.html#Model).
 
 ### Parameters
 - `modelName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the model to be returned (optional, default `undefined`)
@@ -8,20 +8,20 @@ Creates a stub of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-j
 
 ### Example
 ```javascript
-const testgoose = require('mongoose-model-mock');
-const MyMock = testgoose.model.mock();
+const testgoose = require('testgoose');
+const MyStub = testgoose.model.stub();
 ```
 ```javascript
-const testgoose = require('mongoose-model-mock');
-const MyMock = testgoose.model.mock('Task', {key: 'value'});
+const testgoose = require('testgoose');
+const MyStub = testgoose.model.stub('Task', {key: 'value'});
 ```
 
 ### Returns
-Returns [Model Stub](/docs/model-stub.md).
+**[ModelStub](/docs/model-stub.md)**
 
 
-## model.mock()
-Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-js).
+## `model.mock()`
+Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#Model).
 
 ### Parameters
 - `modelName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** name of the model to be returned (optional, default `undefined`)
@@ -29,13 +29,45 @@ Creates a mock of a Mongoose [Model](http://mongoosejs.com/docs/api.html#model-j
 
 ### Example
 ```javascript
-const testgoose = require('mongoose-model-mock');
+const testgoose = require('testgoose');
 const MyMock = testgoose.model.mock();
 ```
 ```javascript
-const testgoose = require('mongoose-model-mock');
+const testgoose = require('testgoose');
 const MyMock = testgoose.model.mock('Task', {key: 'value'});
 ```
 
 ### Returns
-Returns [Model Mock](/docs/model-mock.md).
+**[ModelMock](/docs/model-mock.md)**
+
+
+## `query.stub()`
+Creates a stub of a Mongoose [Query](http://mongoosejs.com/docs/api.html#Query).
+
+### Parameters
+None
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const MyStub = testgoose.query.stub();
+```
+
+### Returns
+**[QueryStub](/docs/query-stub.md)**
+
+
+## `query.mock()`
+Creates a mock of a Mongoose [Query](http://mongoosejs.com/docs/api.html#Query).
+
+### Parameters
+None
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const MyMock = testgoose.query.mock();
+```
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**

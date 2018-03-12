@@ -1,5 +1,41 @@
-# Query Stub
-Stub of Mongoose [Query](http://mongoosejs.com/docs/api.html#query-js). This is only something that you should be accessing through Model stub methods that return a Query. Creating a Query stub directly will be supported at a future date.
+# QueryStub
+Stub of Mongoose [Query](http://mongoosejs.com/docs/api.html#Query). This is available indirectly through Model mock and Model stub (recommended) or directly ([advanced usage only](http://mongoosejs.com/docs/api.html#Query)).
+
+```javaScript
+const proxyquire = require('proxyquire').noCallThru();
+const testgoose = require('testgoose');
+
+const QueryStub = testgoose.query.stub();
+// Define stub behavior
+
+const taskController = proxyquire('../controllers/task', { 'mongoose': { Query: QueryStub } });
+// Call the function under test and make assertions
+```
 
 
-All functions that return a query like `find()`, `gt()`, `where()`, etc. are currently supported. Other functions like `toConstructor()` may be supported at a future date. If you use a query function that is not  yet supported, let us know by opening an issue. Your experiences using testgoose will drive the priority for adding support for particular functions.
+## `proto.returns()`
+Specify the data that the stub should return.
+
+### Parameters
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the Query Stub
+- `data` **???** data to be returned by the Query Stub that should vary by the query
+
+### Returns
+**[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const ProductQueryMock = testgoose.query.stub();
+ProductQueryMock.proto.returns(new Error('something bad happened'), null);
+```
+
+```javascript
+const testgoose = require('testgoose');
+const ProductQueryMock = testgoose.query.stub();
+const productData = [
+  { _id: '507f191e810c19729de860ea', name: 'banana' },
+  { _id: '5a16602357c05c3a06a4dca8', name: 'orange' }
+];
+ProductQueryMock.proto.returns(null, productData);
+```

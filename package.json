@@ -1,6 +1,6 @@
 {
   "name": "testgoose",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Mock and stub mongoose models for unit testing with ease",
   "main": "index.js",
   "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
@@ -14,7 +14,8 @@
     "stub",
     "test",
     "unit test",
-    "model"
+    "model",
+    "query"
   ],
   "engines": {
     "node": ">=6.0.0"
@@ -22,17 +23,16 @@
   "scripts": {
     "install:all": "npm install && node scripts/examplesinstall.js",
     "test": "mocha index.test.js lib/* --recursive",
-    "test:model": "mocha lib/model/model-mock.test.js",
-    "test:coverage": "nyc npm test",
+    "test:coverage": "nyc npm test --all",
     "test:all": "mocha index.test.js lib/* examples/*/test/* --recursive",
-    "test:all:coverage": "nyc npm run test:all",
+    "test:all:coverage": "nyc npm run test:all --all",
     "lint": "eslint index.js index.test.js lib/*"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.13.0",
-    "mocha": "^4.0.1",
-    "nyc": "^11.3.0"
+    "eslint": "^4.18.2",
+    "mocha": "^4.1.0",
+    "nyc": "^11.5.0"
   },
   "dependencies": {
     "deep-equal": "^1.0.1"
