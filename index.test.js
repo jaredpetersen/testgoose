@@ -62,7 +62,7 @@ describe('testgoose', () => {
       }
     });
 
-    it('mocks the model with multiple mock setups', (done) => {
+    it('mocks the model with multiple model setups', (done) => {
       // Setup our stubs
       const errStub = 'something went wrong';
 
@@ -105,6 +105,79 @@ describe('testgoose', () => {
           expect(data).to.be.null;
           done();
         });
+    });
+
+    it('mocks the model for multiple uses', () => {
+      // Create a Mongoose Model mock
+      const ModelMock = testgoose.model.mock();
+      ModelMock
+        .static.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('swimmy swam')
+        .returns(null, { name: 'fred' });
+
+      ModelMock
+        .static.find.withArgs({ occupation: /host/ })
+        .proto.where.withArgs('name.last')
+        .proto.equals.withArgs('Ghost')
+        .proto.where.withArgs('age')
+        .proto.gt.withArgs(17)
+        .proto.lt.withArgs(66)
+        .proto.where.withArgs('likes')
+        .proto.in.withArgs(['vaporizing', 'talking'])
+        .proto.limit.withArgs(10)
+        .proto.sort.withArgs('-occupation')
+        .proto.select.withArgs('fishy fish')
+        .returns({ name: 'albin' }, null);
+
+      // Use the mock like a real model
+      const swimmySwamModelMockPromise = ModelMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('swimmy swam')
+        .then(doc => {
+          expect(doc).to.deep.equal({ name: 'fred' });
+        })
+        .catch(() => {
+          expect.fail();
+        });
+
+      const fishyFishModelMockPromise = ModelMock
+        .find({ occupation: /host/ })
+        .where('name.last')
+        .equals('Ghost')
+        .where('age')
+        .gt(17)
+        .lt(66)
+        .where('likes')
+        .in(['vaporizing', 'talking'])
+        .limit(10)
+        .sort('-occupation')
+        .select('fishy fish')
+        .then(() => {
+          expect.fail();
+        })
+        .catch(err => {
+          expect(err).to.deep.equal({ name: 'albin' });
+        });
+
+      return Promise.all([swimmySwamModelMockPromise, fishyFishModelMockPromise]);
     });
 
     it('mocks the callback err with a single long query chain definition', (done) => {
@@ -171,7 +244,7 @@ describe('testgoose', () => {
         .returns('moose', null);
 
       ModelMock
-        .static.find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: 'host' })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -181,8 +254,8 @@ describe('testgoose', () => {
         .proto.in.withArgs(['vaporizing', 'talking'])
         .proto.limit.withArgs(10)
         .proto.sort.withArgs('-occupation')
-        .proto.select.withArgs('name occupation')
-        .returns(errStub, null);
+        .proto.select.withArgs('hero')
+        .returns('caravan', null);
 
       ModelMock
         .static.find.withArgs({ occupation: /host/ })
@@ -195,8 +268,8 @@ describe('testgoose', () => {
         .proto.in.withArgs(['vaporizing', 'talking'])
         .proto.limit.withArgs(10)
         .proto.sort.withArgs('-occupation')
-        .proto.select.withArgs('hero')
-        .returns('caravan');
+        .proto.select.withArgs('name occupation')
+        .returns(errStub, null);
 
       // Use the mock like a real model
       ModelMock
@@ -296,7 +369,7 @@ describe('testgoose', () => {
         .returns(null, dataStub);
 
       ModelMock
-        .static.find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: 'host' })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -394,7 +467,7 @@ describe('testgoose', () => {
         .returns('moose', null);
 
       ModelMock
-        .static.find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: 'host' })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -404,8 +477,8 @@ describe('testgoose', () => {
         .proto.in.withArgs(['vaporizing', 'talking'])
         .proto.limit.withArgs(10)
         .proto.sort.withArgs('-occupation')
-        .proto.select.withArgs('name occupation')
-        .returns(errStub, null);
+        .proto.select.withArgs('hero')
+        .returns('caravan', null);
 
       ModelMock
         .static.find.withArgs({ occupation: /host/ })
@@ -418,8 +491,8 @@ describe('testgoose', () => {
         .proto.in.withArgs(['vaporizing', 'talking'])
         .proto.limit.withArgs(10)
         .proto.sort.withArgs('-occupation')
-        .proto.select.withArgs('hero')
-        .returns('caravan');
+        .proto.select.withArgs('name occupation')
+        .returns(errStub, null);
 
       // Use the mock like a real model
       return ModelMock
@@ -521,7 +594,7 @@ describe('testgoose', () => {
         .returns(null, dataStub);
 
       ModelMock
-        .static.find.withArgs({ occupation: /host/ })
+        .static.find.withArgs({ occupation: 'host' })
         .proto.where.withArgs('name.last')
         .proto.equals.withArgs('Ghost')
         .proto.where.withArgs('age')
@@ -587,6 +660,38 @@ describe('testgoose', () => {
           expect(data).to.be.null;
           done();
         });
+    });
+
+    it('stubs the model for multiple uses', () => {
+      // Setup our stubs
+      const dataStub = { name: 'albin' };
+
+      // Create a Mongoose Model stub
+      const ModelStub = testgoose.model.stub();
+      ModelStub.static.find.returns(null, dataStub);
+
+      // Use the stub like a real model
+      const swimmySwamModelStubPromise = ModelStub
+        .find({ occupation: /host/ })
+        .select('swimmy swam')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+
+      const fishyFishModelStubPromise = ModelStub
+        .find({ occupation: /host/ })
+        .select('fishy fish')
+        .then(doc => {
+          expect(doc).to.deep.equal(dataStub);
+        })
+        .catch(() => {
+          expect.fail();
+        });
+
+      return Promise.all([swimmySwamModelStubPromise, fishyFishModelStubPromise]);
     });
 
     it('stubs the callback err with a long query chain', (done) => {

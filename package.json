@@ -23,9 +23,9 @@
   "scripts": {
     "install:all": "npm install && node scripts/examplesinstall.js",
     "test": "mocha index.test.js lib/* --recursive",
-    "test:coverage": "nyc npm test",
+    "test:coverage": "nyc npm test --all",
     "test:all": "mocha index.test.js lib/* examples/*/test/* --recursive",
-    "test:all:coverage": "nyc npm run test:all",
+    "test:all:coverage": "nyc npm run test:all --all",
     "lint": "eslint index.js index.test.js lib/*"
   },
   "devDependencies": {

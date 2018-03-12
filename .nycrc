@@ -6,10 +6,7 @@
   ],
   "exclude": [
     "coverage/**",
-    "test/**",
-    "test{,-*}.js",
     "**/*.test.js",
-    "**/__tests__/**",
     "**/node_modules/**",
     "examples/**"
   ]
