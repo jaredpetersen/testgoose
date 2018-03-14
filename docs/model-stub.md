@@ -16,8 +16,8 @@ const taskController = proxyquire('../controllers/task', { '../models/task': Tas
 Define the data returned from Mongoose [Model.remove](http://mongoosejs.com/docs/api.html#remove_remove). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
-- `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -34,8 +34,8 @@ ProductStub.static.remove.returns(new Error('something bad happened'), null);
 Define the data returned from Mongoose [Model.deleteOne](http://mongoosejs.com/docs/api.html#deleteone_deleteOne). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
-- `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -52,8 +52,8 @@ ProductStub.static.deleteOne.returns(new Error('something bad happened'), null);
 Define the data returned from Mongoose [Model.deleteMany](http://mongoosejs.com/docs/api.html#deletemany_deleteMany). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
-- `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -70,8 +70,8 @@ ProductStub.static.deleteOne.returns(new Error('something bad happened'), null);
 Define the data returned from Mongoose [Model.find](http://mongoosejs.com/docs/api.html#find_find). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
-- `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -98,8 +98,8 @@ ProductStub.static.find.returns(null, productData);
 Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#findbyid_findById). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned by the findById callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -119,22 +119,16 @@ UserStub.static.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstN
 
 
 ## `static.findOne.returns()`
-Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#findbyid_findById). Any additional query functions chained off of it in the system under test will return the specified data.
+Define the data returned from Mongoose [Model.findOne](http://mongoosejs.com/docs/api.html#findone_findOne). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
 
 ### Example
-```javascript
-const testgoose = require('testgoose');
-const UserStub = testgoose.model.stub();
-UserStub.static.findById.returns(new Error('something bad happened'), null);
-```
-
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
@@ -146,8 +140,8 @@ UserStub.static.findOne.returns(null, { _id: '507f1f77bcf86cd799439011', firstNa
 Define the data returned from Mongoose [Model.count](http://mongoosejs.com/docs/api.html#count_count). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned by the findById callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -164,8 +158,8 @@ VacationStub.static.count.returns(null, 92);
 Define the data returned from Mongoose [Model.distinct](http://mongoosejs.com/docs/api.html#distinct_distinct). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -182,8 +176,8 @@ EmployeeStub.static.distinct.returns(new Error('something bad happened'), null);
 Define the data returned from Mongoose [Model.where](http://mongoosejs.com/docs/api.html#where_where). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned by the findById callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -200,8 +194,8 @@ CitizenStub.static.where.returns(new Error('something bad happened'), null);
 Define the data returned from Mongoose [Model.findOneAndUpdate](http://mongoosejs.com/docs/api.html#findoneandupdate_findOneAndUpdate). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned by the findById callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -218,8 +212,8 @@ UserStub.static.findOneAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011'
 Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndUpdate callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned by the findByIdAndUpdate callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -246,8 +240,8 @@ UserStub
 Define the data returned from Mongoose [Model.findOneAndRemove](http://mongoosejs.com/docs/api.html#findoneandremove_findOneAndRemove). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned by the findById callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -264,8 +258,8 @@ UserStub.static.findOneAndRemove.returns(new Error('something bad happened'), nu
 Define the data returned from Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndRemove callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -290,8 +284,8 @@ UserStub
 Define the data returned from Mongoose [Model.update](http://mongoosejs.com/docs/api.html#update_update). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -308,8 +302,8 @@ UserStub.static.update.returns(new Error('something bad happened'), null);
 Define the data returned from Mongoose [Model.updateMany](http://mongoosejs.com/docs/api.html#updatemany_updateMany). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -326,8 +320,8 @@ RestaurantStub.static.updateMany.returns(new Error('something bad happened'), nu
 Define the data returned from Mongoose [Model.updateOne](http://mongoosejs.com/docs/api.html#updateone_updateOne). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -344,8 +338,8 @@ RestaurantStub.static.updateOne.returns(new Error('something bad happened'), nul
 Define the data returned from Mongoose [Model.replaceOne](http://mongoosejs.com/docs/api.html#replaceone_replaceOne). Any additional query functions chained off of it in the system under test will return the specified data.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -362,8 +356,8 @@ RestaurantStub.static.replaceOne.returns(new Error('something bad happened'), nu
 Define the data returned from Mongoose [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
+- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
