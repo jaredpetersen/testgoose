@@ -114,7 +114,9 @@ UserStub.static.findById.returns(new Error('something bad happened'), null);
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.static.findById.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
+UserStub
+  .static.findById
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
 ```
 
 
@@ -132,7 +134,9 @@ Define the data returned from Mongoose [Model.findOne](http://mongoosejs.com/doc
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.static.findOne.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Patrick', lastName: 'Pumpernickel' });
+UserStub
+  .static.findOne
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Patrick', lastName: 'Pumpernickel' });
 ```
 
 
