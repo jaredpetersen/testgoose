@@ -99,7 +99,7 @@ Define the data returned from Mongoose [Model.findById](http://mongoosejs.com/do
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
-- `data` **Any** data to be returned by the findById callback
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -141,7 +141,7 @@ Define the data returned from Mongoose [Model.count](http://mongoosejs.com/docs/
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
-- `data` **Any** data to be returned by the findById callback
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -177,7 +177,7 @@ Define the data returned from Mongoose [Model.where](http://mongoosejs.com/docs/
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
-- `data` **Any** data to be returned by the findById callback
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -195,7 +195,7 @@ Define the data returned from Mongoose [Model.findOneAndUpdate](http://mongoosej
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
-- `data` **Any** data to be returned by the findById callback
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -213,7 +213,7 @@ Define the data returned from Mongoose [Model.findByIdAndUpdate](http://mongoose
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
-- `data` **Any** data to be returned by the findByIdAndUpdate callback
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
@@ -241,7 +241,7 @@ Define the data returned from Mongoose [Model.findOneAndRemove](http://mongoosej
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
-- `data` **Any** data to be returned by the findById callback
+- `data` **Any** data to be returned
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
