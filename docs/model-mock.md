@@ -16,12 +16,11 @@ You must specify `withArgs()` on each function that you expect the mock to be ca
 The mock will throw an error in the system under test if it is invoked differently than what was specified.
 
 
-## `static.find.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#find_find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+## `static.remove.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.remove](http://mongoosejs.com/docs/api.html#remove_remove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the find callback
-- `docs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** documents to be returned by the find callback
+Any
 
 ### Returns
 **[QueryMock](/docs/query-mock.md)**
@@ -30,7 +29,58 @@ Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/d
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
-ProductMock.static.find.withArgs({name: 'banana'}).returns(new Error('something bad happened'), null);
+ProductMock.static.remove.withArgs({ name: 'watermelon' }).returns(new Error('something bad happened'), null);
+```
+
+
+## `static.deleteOne.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.deleteOne](http://mongoosejs.com/docs/api.html#deleteone_deleteOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const ProductMock = testgoose.model.mock();
+ProductMock.static.deleteOne.withArgs({ name: 'pomegranate' }).returns(new Error('something bad happened'), null);
+```
+
+
+## `static.deleteMany.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.deleteMany](http://mongoosejs.com/docs/api.html#deletemany_deleteMany). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const ProductMock = testgoose.model.mock();
+ProductMock.static.deleteMany.withArgs({ name: 'pomegranate' }).returns(new Error('something bad happened'), null);
+```
+
+
+## `static.find.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#find_find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const ProductMock = testgoose.model.mock();
+ProductMock.static.find.withArgs({ name: 'banana' }).returns(new Error('something bad happened'), null);
 ```
 
 ```javascript
@@ -57,8 +107,7 @@ ProductMock
 Define the argument matcher(s) for Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#findbyid_findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findById callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findById callback
+Any
 
 ### Returns
 **[QueryMock](/docs/query-mock.md)**
@@ -87,12 +136,79 @@ UserMock
 ```
 
 
-## `static.findByIdAndRemove.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+## `static.findOne.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.findOne](http://mongoosejs.com/docs/api.html#findone_findOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndRemove callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndRemove callback
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+UserMock.static.findOne.withArgs({ age: 24 }).returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Patrick', lastName: 'Pumpernickel' });
+```
+
+
+## `static.count.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.count](http://mongoosejs.com/docs/api.html#count_count). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+VacationMock.static.count.withArgs({ type: 'tropical' }).returns(null, 92);
+```
+
+
+## `static.distinct.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.distinct](http://mongoosejs.com/docs/api.html#distinct_distinct). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+EmployeeMock.static.distinct.withArgs('office').returns(new Error('something bad happened'), null);
+```
+
+
+## `static.where.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.where](http://mongoosejs.com/docs/api.html#where_where). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+CitizenMock.static.where.withArgs({ age: { $gte: 18 } }).returns(new Error('something bad happened'), null);
+```
+
+
+## `static.findOneAndUpdate.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.findOneAndUpdate](http://mongoosejs.com/docs/api.html#findoneandupdate_findOneAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
 
 ### Returns
 **[QueryMock](/docs/query-mock.md)**
@@ -102,25 +218,8 @@ Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mon
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
 UserMock
-  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
-  .returns(new Error('something bad happened'), null);
-```
-
-```javascript
-const testgoose = require('testgoose');
-const UserMock = testgoose.model.mock();
-UserMock
-  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
-  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Sally', lastName: 'Saltwater' });
-```
-
-```javascript
-const testgoose = require('testgoose');
-const UserMock = testgoose.model.mock();
-UserMock
-  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
-  .proto.select.withArgs('firstName')
-  .returns(null, { firstName: 'Sally' });
+  .static.findOneAndUpdate.withArgs('507f1f77bcf86cd799439011', { firstName: 'Gerald' })
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Gerald', lastName: 'Gumption' });
 ```
 
 
@@ -128,8 +227,7 @@ UserMock
 Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
-- `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the findByIdAndUpdate callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the findByIdAndUpdate callback
+Any
 
 ### Returns
 **[QueryMock](/docs/query-mock.md)**
@@ -161,6 +259,120 @@ UserMock
 ```
 
 
+## `static.findOneAndRemove.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.findOneAndRemove](http://mongoosejs.com/docs/api.html#findoneandremove_findOneAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+UserMock
+  .static.findOneAndRemove.withArgs({ _id: '507f1f77bcf86cd799439011' })
+  .returns(new Error('something bad happened'), null);
+```
+
+
+## `static.findByIdAndRemove.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+UserMock
+  .static.findByIdAndRemove.withArgs('507f1f77bcf86cd799439011')
+  .returns(new Error('something bad happened'), null);
+```
+
+
+## `static.update.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.update](http://mongoosejs.com/docs/api.html#update_update). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+UserMock
+  .static.update.withArgs({ age: { $gt: 18 } }, { oldEnough: true })
+  .returns(new Error('something bad happened'), null);
+```
+
+
+## `static.updateMany.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.updateMany](http://mongoosejs.com/docs/api.html#updatemany_updateMany). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+RestaurantMock
+  .static.updateMany.withArgs({ violations: { $gt: 4 } }, { $set: { 'Review' : true } })
+  .returns(new Error('something bad happened'), null);
+```
+
+
+## `static.updateOne.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.updateOne](http://mongoosejs.com/docs/api.html#updateone_updateOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+RestaurantMock
+  .static.updateOne.withArgs({ name : 'Otis Cafe' }, { $set: { violations : 0 } })
+  .returns(new Error('something bad happened'), null);
+```
+
+
+## `static.replaceOne.withArgs()`
+Define the argument matcher(s) for Mongoose [Model.replaceOne](http://mongoosejs.com/docs/api.html#replaceone_replaceOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+
+### Parameters
+Any
+
+### Returns
+**[QueryMock](/docs/query-mock.md)**
+
+### Example
+```javascript
+const testgoose = require('testgoose');
+const UserMock = testgoose.model.mock();
+RestaurantMock
+  .static.replaceOne.withArgs({ name : 'Otis Cafe' }, { name : 'Otis Cafe', employees: 4 })
+  .returns(new Error('something bad happened'), null);
+```
+
+
 ## `proto.save.withArgs()`
 Define the argument matcher(s) for Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save). Returns itself so that the return data can be defined as well via [`.returns()`](/docs/model-mock.md#protosavewithargsreturns).
 
@@ -176,7 +388,7 @@ Chain off of [`proto.prototype.save.withArgs()`](/docs/model-mock.md#protosavewi
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
-- `doc` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** document to be returned by the save callback
+- `data` **Any** data to be returned by the save callback
 
 ### Returns
 **[undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)**
