@@ -29,7 +29,9 @@ Any
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
-ProductMock.static.remove.withArgs({ name: 'watermelon' }).returns(new Error('something bad happened'), null);
+ProductMock
+  .static.remove.withArgs({ name: 'watermelon' })
+  .returns(new Error('something bad happened'), null);
 ```
 
 
@@ -46,7 +48,9 @@ Any
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
-ProductMock.static.deleteOne.withArgs({ name: 'pomegranate' }).returns(new Error('something bad happened'), null);
+ProductMock
+  .static.deleteOne.withArgs({ name: 'pomegranate' })
+  .returns(new Error('something bad happened'), null);
 ```
 
 
@@ -63,7 +67,9 @@ Any
 ```javascript
 const testgoose = require('testgoose');
 const ProductMock = testgoose.model.mock();
-ProductMock.static.deleteMany.withArgs({ name: 'pomegranate' }).returns(new Error('something bad happened'), null);
+ProductMock
+  .static.deleteMany.withArgs({ name: 'pomegranate' })
+  .returns(new Error('something bad happened'), null);
 ```
 
 
@@ -149,7 +155,9 @@ Any
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
-UserMock.static.findOne.withArgs({ age: 24 }).returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Patrick', lastName: 'Pumpernickel' });
+UserMock
+  .static.findOne.withArgs({ age: 24 })
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Patrick', lastName: 'Pumpernickel' });
 ```
 
 
@@ -200,7 +208,9 @@ Any
 ```javascript
 const testgoose = require('testgoose');
 const UserMock = testgoose.model.mock();
-CitizenMock.static.where.withArgs({ age: { $gte: 18 } }).returns(new Error('something bad happened'), null);
+CitizenMock
+  .static.where.withArgs({ age: { $gte: 18 } })
+  .returns(new Error('something bad happened'), null);
 ```
 
 

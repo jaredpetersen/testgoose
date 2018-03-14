@@ -204,7 +204,10 @@ Define the data returned from Mongoose [Model.findOneAndUpdate](http://mongoosej
 ```javascript
 const testgoose = require('testgoose');
 const UserStub = testgoose.model.stub();
-UserStub.static.findOneAndUpdate.returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Gerald', lastName: 'Gumption' });
+const
+UserStub
+  .static.findOneAndUpdate
+  .returns(null, { _id: '507f1f77bcf86cd799439011', firstName: 'Gerald', lastName: 'Gumption' });
 ```
 
 
