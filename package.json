@@ -1,7 +1,7 @@
 {
   "name": "testgoose",
-  "version": "2.0.0",
-  "description": "Mock and stub mongoose models for unit testing with ease",
+  "version": "2.1.0",
+  "description": "Mock and stub mongoose models and queries for unit testing with ease",
   "main": "index.js",
   "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
   "license": "MIT",
