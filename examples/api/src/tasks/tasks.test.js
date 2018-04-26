@@ -79,7 +79,7 @@ describe('examples - express.js rest api', () => {
 
         // Mock the Mongoose Task model
         const TaskMock = testgoose.model.mock();
-        TaskMock.static.findById.withArgs(req.params.id, '__v').returns(null, databaseData);
+        TaskMock.static.findById.withArgs(req.params.id).returns(null, databaseData);
 
         // Replace the reference to the original Task model with our mock model
         const taskController = proxyquire('./tasks', { './model': TaskMock } );
