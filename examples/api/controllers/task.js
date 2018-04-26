@@ -1,7 +1,7 @@
 'use strict';
 
-let Task = require('../models/task')
-let errors = require('./errors.js');
+const Task = require('../models/task')
+const errors = require('./errors.js');
 
 exports.getAll = (req, res, next) => {
   Task.find((err, tasks) => {

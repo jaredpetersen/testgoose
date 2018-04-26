@@ -13,8 +13,6 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "proxyquire": "^1.8.0",
-    "reqres": "^2.1.0",
-    "sinon-chai": "^2.14.0"
+    "proxyquire": "^1.8.0"
   }
 }
