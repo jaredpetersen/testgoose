@@ -3,7 +3,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const proxyquire = require('proxyquire').noCallThru();
-const testgoose = require('../../../index');
+const testgoose = require('../../../../index');
 
 describe('examples - express.js rest api', () => {
   describe('task controller', () => {
@@ -28,7 +28,7 @@ describe('examples - express.js rest api', () => {
         TaskStub.static.find.returns(null, databaseData);
 
         // Replace the reference to the original Task model with our stub model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
+        const taskController = proxyquire('./tasks', { './model': TaskStub } );
 
         // Run the controller function under test
         taskController.getAll(req, res, (next) => {
@@ -50,7 +50,7 @@ describe('examples - express.js rest api', () => {
         TaskStub.static.find.returns(databaseError);
 
         // Replace the reference to the original Task model with our stub model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
+        const taskController = proxyquire('./tasks', { './model': TaskStub } );
 
         // Run the function under test
         taskController.getAll(req, res, (next) => {
@@ -82,7 +82,7 @@ describe('examples - express.js rest api', () => {
         TaskMock.static.findById.withArgs(req.params.id, '__v').returns(null, databaseData);
 
         // Replace the reference to the original Task model with our mock model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskMock } );
+        const taskController = proxyquire('./tasks', { './model': TaskMock } );
 
         // Run the function under test
         taskController.getSingle(req, res, (next) => {
@@ -105,7 +105,7 @@ describe('examples - express.js rest api', () => {
         TaskStub.static.findById.returns(null, databaseData);
 
         // Replace the reference to the original Task model with our stub model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
+        const taskController = proxyquire('./tasks', { './model': TaskStub } );
 
         // Run the function under test
         taskController.getSingle(req, res, (next) => {
@@ -128,7 +128,7 @@ describe('examples - express.js rest api', () => {
         TaskStub.static.findById.returns(databaseError);
 
         // Replace the reference to the original Task model with our stub model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
+        const taskController = proxyquire('./tasks', { './model': TaskStub } );
 
         // Run the function under test
         taskController.getSingle(req, res, (next) => {
@@ -161,7 +161,7 @@ describe('examples - express.js rest api', () => {
         TaskStub.proto.save.returns();
 
         // Replace the reference to the original Task model with our stub model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
+        const taskController = proxyquire('./tasks', { './model': TaskStub } );
 
         // Run the function under test
         taskController.create(req, res, (next) => {
@@ -184,7 +184,7 @@ describe('examples - express.js rest api', () => {
         TaskStub.proto.save.returns(databaseError, null);
 
         // Replace the reference to the original Task model with our stub model
-        const taskController = proxyquire('../controllers/task', { '../models/task': TaskStub } );
+        const taskController = proxyquire('./tasks', { './model': TaskStub } );
 
         // Run the function under test
         taskController.create(req, res, (next) => {
