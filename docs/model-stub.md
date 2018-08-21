@@ -360,7 +360,21 @@ RestaurantStub.static.replaceOne.returns(new Error('something bad happened'), nu
 
 
 ## `proto.save.returns()`
-Define the data returned from Mongoose [Model#save](https://mongoosejs.com/docs/api.html#model_Model-save). If parameters are not specified, the stub Model instance will use the properties assigned to it instead to return a new object.
+Define the data returned from Mongoose [Model#save](https://mongoosejs.com/docs/api.html#model_Model-save).
+
+If parameters are not specified, the stub Model instance will return an object of the properties assigned to it in the system under test:
+
+```javascript
+const myMock = new MyMock();
+myMock.name = 'A';
+myMock.age = 49;
+// myMock.save returns { name: 'A', age: 49 }
+```
+
+```javascript
+const myMock = new MyMock({ name: 'B', age: 67 });
+// myMock.save returns { name: 'B', age: 67 }
+```
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned
