@@ -1,5 +1,5 @@
 # ModelMock
-Mock of Mongoose [Model](http://mongoosejs.com/docs/api.html#Model). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
+Mock of Mongoose [Model](https://mongoosejs.com/docs/api.html#Model). To get your module under test to require it instead of the real Mongoose Model, use [proxyquire](https://github.com/thlorenz/proxyquire):
 ```javaScript
 const proxyquire = require('proxyquire').noCallThru();
 const testgoose = require('testgoose');
@@ -17,7 +17,7 @@ The mock will throw an error in the system under test if it is invoked different
 
 
 ## `static.remove.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.remove](http://mongoosejs.com/docs/api.html#remove_remove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.remove](https://mongoosejs.com/docs/api.html#remove_remove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -36,7 +36,7 @@ ProductMock
 
 
 ## `static.deleteOne.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.deleteOne](http://mongoosejs.com/docs/api.html#deleteone_deleteOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.deleteOne](https://mongoosejs.com/docs/api.html#deleteone_deleteOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -55,7 +55,7 @@ ProductMock
 
 
 ## `static.deleteMany.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.deleteMany](http://mongoosejs.com/docs/api.html#deletemany_deleteMany). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.deleteMany](https://mongoosejs.com/docs/api.html#deletemany_deleteMany). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -74,7 +74,7 @@ ProductMock
 
 
 ## `static.find.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.find](http://mongoosejs.com/docs/api.html#find_find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.find](https://mongoosejs.com/docs/api.html#find_find). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -110,7 +110,7 @@ ProductMock
 
 
 ## `static.findById.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findById](http://mongoosejs.com/docs/api.html#findbyid_findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findById](https://mongoosejs.com/docs/api.html#findbyid_findById). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -143,7 +143,7 @@ UserMock
 
 
 ## `static.findOne.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findOne](http://mongoosejs.com/docs/api.html#findone_findOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findOne](https://mongoosejs.com/docs/api.html#findone_findOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -162,7 +162,7 @@ UserMock
 
 
 ## `static.count.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.count](http://mongoosejs.com/docs/api.html#count_count). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.count](https://mongoosejs.com/docs/api.html#count_count). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -179,7 +179,7 @@ VacationMock.static.count.withArgs({ type: 'tropical' }).returns(null, 92);
 
 
 ## `static.distinct.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.distinct](http://mongoosejs.com/docs/api.html#distinct_distinct). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.distinct](https://mongoosejs.com/docs/api.html#distinct_distinct). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -196,7 +196,7 @@ EmployeeMock.static.distinct.withArgs('office').returns(new Error('something bad
 
 
 ## `static.where.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.where](http://mongoosejs.com/docs/api.html#where_where). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.where](https://mongoosejs.com/docs/api.html#where_where). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -215,7 +215,7 @@ CitizenMock
 
 
 ## `static.findOneAndUpdate.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findOneAndUpdate](http://mongoosejs.com/docs/api.html#findoneandupdate_findOneAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findOneAndUpdate](https://mongoosejs.com/docs/api.html#findoneandupdate_findOneAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -234,7 +234,7 @@ UserMock
 
 
 ## `static.findByIdAndUpdate.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findByIdAndUpdate](https://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -270,7 +270,7 @@ UserMock
 
 
 ## `static.findOneAndRemove.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findOneAndRemove](http://mongoosejs.com/docs/api.html#findoneandremove_findOneAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findOneAndRemove](https://mongoosejs.com/docs/api.html#findoneandremove_findOneAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -289,7 +289,7 @@ UserMock
 
 
 ## `static.findByIdAndRemove.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.findByIdAndRemove](https://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -308,7 +308,7 @@ UserMock
 
 
 ## `static.update.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.update](http://mongoosejs.com/docs/api.html#update_update). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.update](https://mongoosejs.com/docs/api.html#update_update). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -327,7 +327,7 @@ UserMock
 
 
 ## `static.updateMany.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.updateMany](http://mongoosejs.com/docs/api.html#updatemany_updateMany). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.updateMany](https://mongoosejs.com/docs/api.html#updatemany_updateMany). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -346,7 +346,7 @@ RestaurantMock
 
 
 ## `static.updateOne.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.updateOne](http://mongoosejs.com/docs/api.html#updateone_updateOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.updateOne](https://mongoosejs.com/docs/api.html#updateone_updateOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -365,7 +365,7 @@ RestaurantMock
 
 
 ## `static.replaceOne.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.replaceOne](http://mongoosejs.com/docs/api.html#replaceone_replaceOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
+Define the argument matcher(s) for Mongoose [Model.replaceOne](https://mongoosejs.com/docs/api.html#replaceone_replaceOne). Complete or continue the mock definition via the returned **[QueryMock](/docs/query-mock.md)**.
 
 ### Parameters
 Any
@@ -384,7 +384,7 @@ RestaurantMock
 
 
 ## `proto.save.withArgs()`
-Define the argument matcher(s) for Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save). Returns itself so that the return data can be defined as well via [`.returns()`](/docs/model-mock.md#protosavewithargsreturns).
+Define the argument matcher(s) for Mongoose [Model.prototype.save](https://mongoosejs.com/docs/api.html#model_Model-save). Returns itself so that the return data can be defined as well via [`.returns()`](/docs/model-mock.md#protosavewithargsreturns).
 
 ### Parameters
 Any
@@ -394,7 +394,7 @@ Any
 
 
 ## `proto.save.withArgs().returns()`
-Chain off of [`proto.prototype.save.withArgs()`](/docs/model-mock.md#protosavewithargs) to define the data returned from Mongoose [Model.prototype.save](http://mongoosejs.com/docs/api.html#model_Model-save).
+Chain off of [`proto.prototype.save.withArgs()`](/docs/model-mock.md#protosavewithargs) to define the data returned from Mongoose [Model.prototype.save](https://mongoosejs.com/docs/api.html#model_Model-save).
 
 ### Parameters
 - `err` **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** error to be returned by the save callback
