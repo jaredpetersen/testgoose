@@ -151,7 +151,7 @@ describe('examples - express.js rest api', () => {
             return res;
           },
           json: (data) => {
-            expect(data).to.deep.equal({ name: req.body.name, description: null });
+            expect(data).to.deep.equal({ name: req.body.name });
             done();
           }
         };

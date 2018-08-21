@@ -19,9 +19,8 @@ exports.getSingle = (req, res, next) => {
 };
 
 exports.create = (req, res, next) => {
-  const newTask = new Task();
-  newTask.name = req.body.name;
-  newTask.description = req.body.description || null;
+  // You would actually want to sanitize the input here to prevent issues like injecting an _id
+  const newTask = new Task(req.body);
 
   newTask.save((err, savedTask) => {
     if (err) return next(err);
