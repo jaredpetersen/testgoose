@@ -1,6 +1,6 @@
 {
   "name": "testgoose",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Mock and stub mongoose models and queries for unit testing with ease",
   "main": "index.js",
   "author": "Jared Petersen <jaredtoddpetersen@gmail.com> (https://github.com/jaredpetersen/)",
@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.18.2",
-    "mocha": "^4.1.0",
-    "nyc": "^11.6.0"
+    "eslint": "^5.4.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
   },
   "dependencies": {
     "deep-equal": "^1.0.1"

@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Setup the database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/todo', { useMongoClient: true })
+mongoose.connect('mongodb://localhost:27017/todo', { useNewUrlParser: true })
   .catch((err) => {
     // Shut down the API if a database connection cannot be established
     console.error(err);

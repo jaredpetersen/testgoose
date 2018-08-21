@@ -4,17 +4,15 @@
   "description": "Example API that shows the power of mongoosemodelmock",
   "main": "server.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha src/**/*.test.js"
   },
   "dependencies": {
-    "express": "^4.16.2",
-    "mongoose": "^4.13.4"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^4.0.1",
-    "proxyquire": "^1.8.0",
-    "reqres": "^2.1.0",
-    "sinon-chai": "^2.14.0"
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.0.1"
   }
 }
